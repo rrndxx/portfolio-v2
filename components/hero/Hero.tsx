@@ -1,11 +1,10 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { motion, useReducedMotion } from "framer-motion";
 import { Button } from "@/components/ui/Button";
 import { GlowDisc } from "@/components/hero/GlowDisc";
+import { GlitchField } from "@/components/hero/GlitchField";
 import { HeroAvatar } from "@/components/hero/HeroAvatar";
-import { defaultTransition, reducedMotionFade } from "@/lib/motion";
 import type { SiteConfig } from "@/lib/types";
 
 interface HeroProps {
@@ -13,46 +12,19 @@ interface HeroProps {
 }
 
 function Wordmark({ text }: { text: string }) {
-  const prefersReducedMotion = useReducedMotion();
-  const parts = text.split("/").map((part) => part.trim()).filter(Boolean);
+  const parts = text
+    .split("/")
+    .map((part) => part.trim())
+    .filter(Boolean);
 
   return (
-    <motion.h1
-      className="relative z-10 mx-auto max-w-[18ch] text-center font-hero text-hero font-bold uppercase leading-[0.95] tracking-[-0.02em] text-text-primary"
-      initial="hidden"
-      animate="visible"
-      variants={
-        prefersReducedMotion
-          ? reducedMotionFade
-          : {
-              hidden: {},
-              visible: {
-                transition: { staggerChildren: 0.08, delayChildren: 0.1 },
-              },
-            }
-      }
-    >
+    <h1 className="relative z-10 w-full max-w-none text-center font-hero text-[clamp(2.5rem,11vw,7.5rem)] font-bold uppercase leading-[0.88] tracking-[-0.03em] text-text-primary md:text-left">
       {parts.map((part) => (
-        <motion.span
-          key={part}
-          className="block"
-          variants={
-            prefersReducedMotion
-              ? reducedMotionFade
-              : {
-                  hidden: { opacity: 0, y: 18 },
-                  visible: {
-                    opacity: 1,
-                    y: 0,
-                    transition: defaultTransition,
-                  },
-                }
-          }
-        >
+        <span key={part} className="block whitespace-nowrap">
           {part}
-        </motion.span>
+        </span>
       ))}
-    </motion.h1>
+    </h1>
   );
 }
 
@@ -92,50 +64,47 @@ export function Hero({ config }: HeroProps) {
       id="hero"
       className="relative min-h-dvh overflow-hidden bg-bg-void"
     >
-      {/* Left accent strip — collapses to top strip on mobile */}
+      {/* Left accent strip */}
       <div
         aria-hidden
-        className="absolute inset-x-0 top-0 z-0 h-2 bg-accent-primary md:inset-y-0 md:left-0 md:right-auto md:h-auto md:w-[28vw]"
+        className="absolute inset-x-0 top-0 z-0 h-1.5 bg-accent-primary md:inset-y-0 md:left-0 md:right-auto md:h-auto md:w-[22vw]"
       />
 
       {/* Ghost letterforms */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 z-[1] overflow-hidden select-none"
+        className="pointer-events-none absolute inset-0 z-[1] overflow-hidden select-none md:left-[22vw]"
       >
-        <span className="absolute left-[32%] top-[18%] font-hero text-[18vw] font-bold leading-none text-text-primary/5">
+        <span className="absolute left-[6%] top-[14%] font-hero text-[min(22vw,180px)] font-bold leading-none text-text-primary/[0.04]">
           F
         </span>
-        <span className="absolute right-[8%] top-[42%] font-hero text-[14vw] font-bold leading-none text-text-primary/4">
+        <span className="absolute right-[6%] top-[36%] font-hero text-[min(18vw,140px)] font-bold leading-none text-text-primary/[0.035]">
           S
         </span>
-        <span className="absolute bottom-[22%] left-[40%] font-hero text-[12vw] font-bold leading-none text-text-primary/3">
+        <span className="absolute bottom-[28%] left-[28%] font-hero text-[min(14vw,110px)] font-bold leading-none text-text-primary/[0.03]">
           D
         </span>
-        {/* Scan-line accents */}
-        <div className="absolute left-[30%] top-[28%] h-px w-24 bg-accent-glow/30 md:w-40" />
-        <div className="absolute right-[18%] top-[58%] h-px w-16 bg-accent-electric/25 md:w-28" />
-        <div className="absolute bottom-[36%] left-[48%] h-px w-20 bg-accent-primary/20" />
       </div>
 
+      <GlitchField />
       <GlowDisc />
 
-      {/* Top-right CTA */}
       <div className="absolute right-4 top-4 z-30 md:right-8 md:top-8">
         <Button variant="pill" href={config.heroCta.href}>
           {config.heroCta.label}
         </Button>
       </div>
 
-      {/* Wordmark layer — sits behind avatar */}
-      <div className="absolute inset-0 z-10 flex items-center justify-center px-6 pt-16 md:pl-[18vw] md:pr-8">
-        <Wordmark text={config.heroHeadline} />
+      {/* Wordmark behind avatar — wide, breaks past the figure */}
+      <div className="absolute inset-0 z-10 flex items-center px-5 pt-10 md:left-[22vw] md:px-10 md:pt-0 lg:px-16">
+        <div className="w-full max-w-[1100px] -translate-y-[8%] md:-translate-y-[4%]">
+          <Wordmark text={config.heroHeadline} />
+        </div>
       </div>
 
       <HeroAvatar src={config.heroAvatar} alt={`${config.name} avatar`} />
 
-      {/* Bottom meta + socials */}
-      <div className="absolute inset-x-0 bottom-0 z-30 flex items-end justify-between px-4 pb-5 md:px-8 md:pb-8 md:pl-[minmax(4rem,8vw)]">
+      <div className="absolute inset-x-0 bottom-0 z-30 flex items-end justify-between px-4 pb-5 md:left-[22vw] md:px-10 md:pb-8">
         <p className="font-sans text-meta uppercase tracking-[0.08em] text-text-muted">
           {config.heroTag}
         </p>

@@ -12,7 +12,9 @@ function sectionIdFromHref(href: string): string {
 }
 
 export function VerticalNavRail({ items }: VerticalNavRailProps) {
-  const [activeId, setActiveId] = useState(sectionIdFromHref(items[0]?.href ?? "hero"));
+  const [activeId, setActiveId] = useState(
+    sectionIdFromHref(items[0]?.href ?? "hero"),
+  );
 
   useEffect(() => {
     const ids = items.map((item) => sectionIdFromHref(item.href));
@@ -45,23 +47,26 @@ export function VerticalNavRail({ items }: VerticalNavRailProps) {
   return (
     <nav
       aria-label="Primary"
-      className="pointer-events-none fixed left-0 top-0 z-40 hidden h-dvh w-14 md:block"
+      className="pointer-events-none fixed left-0 top-0 z-40 hidden h-dvh w-12 md:block lg:w-14"
     >
-      <ul className="pointer-events-auto flex h-full flex-col items-center justifying-center gap-10">
+      <ul className="pointer-events-auto flex h-full flex-col items-center justify-center gap-2 py-16">
         {items.map((item) => {
           const id = sectionIdFromHref(item.href);
           const isActive = activeId === id;
 
           return (
-            <li key={item.href} className="relative">
+            <li
+              key={item.href}
+              className="flex h-[4.75rem] w-full items-center justify-center"
+            >
               <a
                 href={item.href}
                 className={[
-                  "block origin-center -rotate-90 font-sans text-meta uppercase whitespace-nowrap",
-                  "tracking-[0.08em] transition-colors duration-300",
+                  "font-sans text-meta uppercase tracking-[0.12em] whitespace-nowrap",
+                  "-rotate-90 transition-colors duration-300",
                   isActive
                     ? "text-accent-glow"
-                    : "text-text-muted hover:text-text-primary",
+                    : "text-text-primary/70 hover:text-text-primary",
                 ].join(" ")}
                 aria-current={isActive ? "true" : undefined}
               >
