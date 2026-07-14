@@ -117,3 +117,31 @@ body {
   color: var(--text-on-accent);
 }
 
+/* Featured project cards — character-profile language */
+.project-title-ghost {
+  color: transparent;
+  -webkit-text-stroke: 1px color-mix(in srgb, var(--text-primary) 28%, transparent);
+  text-stroke: 1px color-mix(in srgb, var(--text-primary) 28%, transparent);
+}
+
+.project-orb {
+  box-shadow:
+    0 0 60px color-mix(in srgb, var(--accent-primary) 45%, transparent),
+    0 0 120px color-mix(in srgb, var(--accent-glow) 25%, transparent);
+}
+
+.project-orb-scanlines {
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 3px,
+    color-mix(in srgb, var(--bg-void) 28%, transparent) 3px,
+    color-mix(in srgb, var(--bg-void) 28%, transparent) 4px
+  );
+}
+
+.project-card-frame {
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--border-subtle) 80%, transparent);
+}
+
+

@@ -1,6 +1,8 @@
 "use client";
 
 import { Reveal } from "@/components/ui/Reveal";
+import { SectionAtmosphere } from "@/components/ui/SectionAtmosphere";
+import { SectionBlend } from "@/components/ui/SectionBlend";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import type { ExperienceEntry } from "@/lib/types";
 
@@ -8,7 +10,6 @@ interface ExperienceTimelineProps {
   entries: ExperienceEntry[];
 }
 
-/** Content indent only — dots stay locked to the left rule. */
 const contentIndent = [
   "md:pl-0",
   "md:pl-12",
@@ -20,9 +21,12 @@ export function ExperienceTimeline({ entries }: ExperienceTimelineProps) {
   return (
     <section
       id="experience"
-      className="relative overflow-hidden border-t border-border-subtle bg-bg-void py-16 md:py-32"
+      className="relative overflow-hidden bg-bg-void py-16 md:py-32"
     >
-      <div className="pl-[8vw] pr-[5vw] md:pl-[14vw] md:pr-[10vw]">
+      <SectionBlend from="void" to="void" />
+      <SectionAtmosphere variant="experience" />
+
+      <div className="relative z-[2] pl-[8vw] pr-[5vw] md:pl-[14vw] md:pr-[10vw]">
         <Reveal>
           <SectionHeading className="mb-12 md:mb-16">Experience</SectionHeading>
         </Reveal>
@@ -30,7 +34,7 @@ export function ExperienceTimeline({ entries }: ExperienceTimelineProps) {
         <div className="relative max-w-3xl">
           <div
             aria-hidden
-            className="absolute bottom-2 left-0 top-2 w-px bg-border-subtle"
+            className="absolute bottom-2 left-0 top-2 w-px bg-gradient-to-b from-transparent via-border-subtle to-transparent"
           />
 
           <ol className="space-y-12 md:space-y-16">

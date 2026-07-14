@@ -8,7 +8,7 @@
     "image": "/images/projects/netdetect/cover.svg",
     "liveUrl": "",
     "repoUrl": "",
-    "layoutVariant": "stacked-title-left-bleed"
+    "layoutVariant": "angled-color-field"
   },
   {
     "slug": "everyshelf",
@@ -19,7 +19,7 @@
     "image": "/images/projects/everyshelf/cover.svg",
     "liveUrl": "",
     "repoUrl": "",
-    "layoutVariant": "right-bleed-diagonal"
+    "layoutVariant": "angled-color-field"
   },
   {
     "slug": "qr-wise-clinics",
@@ -30,6 +30,6 @@
     "image": "/images/projects/qr-wise-clinics/cover.svg",
     "liveUrl": "",
     "repoUrl": "",
-    "layoutVariant": "full-bleed-color-field"
+    "layoutVariant": "angled-color-field"
   }
 ]

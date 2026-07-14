@@ -1,6 +1,7 @@
 "use client";
 
 import { Reveal } from "@/components/ui/Reveal";
+import { SectionBlend } from "@/components/ui/SectionBlend";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Tag } from "@/components/ui/Tag";
 import type { AboutContent } from "@/lib/types";
@@ -19,16 +20,25 @@ export function About({ content }: AboutProps) {
   return (
     <section
       id="about"
-      className="relative overflow-hidden border-t border-border-subtle bg-bg-void py-16 md:py-32"
+      className="relative overflow-hidden bg-bg-void py-16 md:py-32"
     >
-      {/* Diagonal accent edge into this section */}
+      <SectionBlend from="void" to="panel" />
+
+      {/* Soft geometric wash — replaces hard clip accent */}
       <div
         aria-hidden
-        className="pointer-events-none absolute -top-px right-0 h-24 w-[42vw] bg-accent-primary/15"
-        style={{ clipPath: "polygon(18% 0, 100% 0, 100% 100%, 0 100%)" }}
+        className="pointer-events-none absolute -right-[8%] top-0 h-[50%] w-[50%] opacity-50"
+        style={{
+          background:
+            "radial-gradient(ellipse at 70% 20%, color-mix(in srgb, var(--accent-primary) 28%, transparent) 0%, transparent 65%)",
+        }}
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute right-[8%] top-[18%] h-24 w-24 rounded-full border border-accent-glow/15"
       />
 
-      <div className="pl-[8vw] pr-[4vw] md:pl-[14vw] md:pr-[8vw]">
+      <div className="relative z-[2] pl-[8vw] pr-[4vw] md:pl-[14vw] md:pr-[8vw]">
         <Reveal>
           <SectionHeading className="mb-10 md:mb-14">About</SectionHeading>
         </Reveal>

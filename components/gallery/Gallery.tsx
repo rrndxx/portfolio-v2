@@ -4,6 +4,8 @@ import { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { Reveal } from "@/components/ui/Reveal";
+import { SectionAtmosphere } from "@/components/ui/SectionAtmosphere";
+import { SectionBlend } from "@/components/ui/SectionBlend";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { defaultTransition } from "@/lib/motion";
 import type { GalleryAspect, GalleryItem } from "@/lib/types";
@@ -137,15 +139,12 @@ export function Gallery({ items }: GalleryProps) {
   return (
     <section
       id="gallery"
-      className="relative overflow-hidden border-t border-border-subtle bg-bg-void py-16 md:py-32"
+      className="relative overflow-hidden bg-bg-void py-16 md:py-32"
     >
-      <div
-        aria-hidden
-        className="pointer-events-none absolute bottom-0 left-0 h-32 w-[36vw] bg-accent-primary/10"
-        style={{ clipPath: "polygon(0 40%, 100% 0, 100% 100%, 0 100%)" }}
-      />
+      <SectionBlend from="void" to="panel" />
+      <SectionAtmosphere variant="gallery" />
 
-      <div className="pl-[6vw] pr-[6vw] md:pl-[12vw] md:pr-[8vw]">
+      <div className="relative z-[2] pl-[6vw] pr-[6vw] md:pl-[12vw] md:pr-[8vw]">
         <Reveal>
           <SectionHeading className="mb-10 md:mb-14">Gallery</SectionHeading>
         </Reveal>

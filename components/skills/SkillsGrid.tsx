@@ -1,6 +1,8 @@
 "use client";
 
 import { Reveal } from "@/components/ui/Reveal";
+import { SectionAtmosphere } from "@/components/ui/SectionAtmosphere";
+import { SectionBlend } from "@/components/ui/SectionBlend";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Tag } from "@/components/ui/Tag";
 import type { SkillCategory, SkillsContent } from "@/lib/types";
@@ -22,8 +24,14 @@ const sizeClass = {
   sm: "px-2.5 py-1 text-[0.65rem]",
 } as const;
 
-/** Per-tag vertical nudge indexes within a cluster — irregular, not a grid line. */
-const tagNudge = ["translate-y-0", "translate-y-3", "-translate-y-2", "translate-y-1", "-translate-y-1", "translate-y-2"];
+const tagNudge = [
+  "translate-y-0",
+  "translate-y-3",
+  "-translate-y-2",
+  "translate-y-1",
+  "-translate-y-1",
+  "translate-y-2",
+];
 
 const clusterLayout: Record<string, string> = {
   Frontend: "md:col-start-1 md:row-start-1 md:mt-0",
@@ -56,9 +64,11 @@ export function SkillsGrid({ content }: SkillsGridProps) {
     <section
       id="skills"
       className="relative overflow-hidden bg-bg-panel py-16 md:py-32"
-      style={{ clipPath: "polygon(0 0, 100% 2.5rem, 100% 100%, 0 100%)" }}
     >
-      <div className="pl-[6vw] pr-[8vw] md:pl-[12vw] md:pr-[6vw]">
+      <SectionBlend from="void" to="void" />
+      <SectionAtmosphere variant="skills" />
+
+      <div className="relative z-[2] pl-[6vw] pr-[8vw] md:pl-[12vw] md:pr-[6vw]">
         <Reveal>
           <SectionHeading className="mb-12 md:mb-16">Skills</SectionHeading>
         </Reveal>

@@ -44,10 +44,8 @@ export interface SkillsContent {
   categories: SkillCategory[];
 }
 
-export type ProjectLayoutVariant =
-  | "stacked-title-left-bleed"
-  | "right-bleed-diagonal"
-  | "full-bleed-color-field";
+/** Shared angled composition; side is chosen by featured index (alternating). */
+export type ProjectLayoutVariant = "angled-color-field";
 
 export interface Project {
   slug: string;
