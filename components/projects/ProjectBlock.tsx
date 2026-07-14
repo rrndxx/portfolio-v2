@@ -14,9 +14,9 @@ interface ProjectBlockProps {
 }
 
 const PLATE_STYLES = [
-  "bg-accent-primary/35",
-  "bg-accent-primary-dim/55",
-  "bg-accent-electric/30",
+  "bg-accent-primary/40",
+  "bg-accent-primary-dim/60",
+  "bg-accent-electric/35",
 ] as const;
 
 function Layer({
@@ -52,17 +52,43 @@ function Layer({
   );
 }
 
+function Barcode({
+  className = "",
+  tone = "glow",
+  count = 3,
+}: {
+  className?: string;
+  tone?: "glow" | "electric" | "light";
+  count?: number;
+}) {
+  const color =
+    tone === "glow"
+      ? "bg-accent-glow/65"
+      : tone === "electric"
+        ? "bg-accent-electric/55"
+        : "bg-text-primary/55";
+
+  return (
+    <div aria-hidden className={["flex gap-[3px]", className].join(" ")}>
+      {Array.from({ length: count }).map((_, i) => (
+        <span
+          key={i}
+          className={["block w-[2px] -skew-x-[22deg]", color].join(" ")}
+          style={{ height: `${10 + (i % 3) * 4}px` }}
+        />
+      ))}
+    </div>
+  );
+}
+
 /**
- * Hybrid of cyber profile cards + angled game UI —
- * ghost titles, slant plates, glitch ticks, frame-breaking cover.
+ * Cyber profile project block — chamfered frame, slant plates, glitch ticks.
  */
 export function ProjectBlock({ project, index = 0 }: ProjectBlockProps) {
   const visualOnEnd = index % 2 === 0;
   const plate = PLATE_STYLES[index % PLATE_STYLES.length];
   const tech = project.techStack.filter((t) => !t.startsWith("TODO"));
-  const frameClass = visualOnEnd
-    ? "project-card-frame"
-    : "project-card-frame-flip";
+  const indexLabel = String(index + 1).padStart(2, "0");
 
   const copy = (
     <div
@@ -74,12 +100,13 @@ export function ProjectBlock({ project, index = 0 }: ProjectBlockProps) {
       <Layer from={visualOnEnd ? "left" : "right"} delay={0.06}>
         <div
           className={[
-            "flex flex-wrap gap-3",
+            "flex flex-wrap items-center gap-3",
             visualOnEnd ? "justify-start" : "justify-end",
           ].join(" ")}
         >
-          <span className="slant-chip bg-accent-primary/25 px-3 py-1 font-sans text-meta uppercase tracking-[0.16em] text-accent-glow">
-            Project_
+          <Barcode tone="glow" />
+          <span className="slant-chip bg-accent-primary/30 px-3 py-1 font-sans text-meta uppercase tracking-[0.16em] text-accent-glow">
+            File_{indexLabel}
           </span>
           <span className="slant-chip-flip border border-border-subtle px-3 py-1 font-sans text-meta uppercase tracking-[0.16em] text-text-muted">
             Case study_
@@ -109,13 +136,23 @@ export function ProjectBlock({ project, index = 0 }: ProjectBlockProps) {
         <Layer from="up" delay={0.2} className="mt-7">
           <ul
             className={[
-              "flex flex-wrap gap-2",
-              visualOnEnd ? "justify-start" : "justify-end",
+              "flex flex-col gap-2",
+              visualOnEnd ? "items-start" : "items-end",
             ].join(" ")}
           >
             {tech.map((item, i) => (
-              <li key={item} className={i % 2 === 0 ? "mt-0" : "mt-1.5"}>
-                <span className="slant-chip inline-block border border-border-subtle bg-bg-panel-raised/90 px-3 py-1.5 font-sans text-meta uppercase tracking-[0.08em] text-text-secondary transition-colors hover:border-accent-electric/50 hover:text-accent-electric">
+              <li
+                key={item}
+                className="flex items-baseline gap-3"
+                style={{
+                  marginLeft: visualOnEnd ? `${i * 0.45}rem` : undefined,
+                  marginRight: visualOnEnd ? undefined : `${i * 0.45}rem`,
+                }}
+              >
+                <span className="font-sans text-[0.6rem] uppercase tracking-[0.14em] text-accent-electric">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <span className="border-b border-border-subtle pb-1 font-sans text-meta uppercase tracking-[0.08em] text-text-secondary transition-colors hover:border-accent-electric/50 hover:text-accent-electric">
                   {item}
                 </span>
               </li>
@@ -131,11 +168,16 @@ export function ProjectBlock({ project, index = 0 }: ProjectBlockProps) {
             visualOnEnd ? "justify-start" : "justify-end",
           ].join(" ")}
         >
-          {projectLinks(project).map((link) => (
+          {projectLinks(project).map((link, i) => (
             <Link
               key={link.href + link.label}
               href={link.href}
-              className="slant-chip bg-accent-primary px-4 py-2 font-sans text-meta uppercase tracking-[0.1em] text-text-on-accent transition-colors hover:bg-accent-glow"
+              className={[
+                "work-cta px-4 py-2 font-sans text-meta uppercase tracking-[0.1em]",
+                i === 0
+                  ? "work-cta-primary text-text-on-accent"
+                  : "work-cta-ghost text-text-primary",
+              ].join(" ")}
               {...(link.href.startsWith("http")
                 ? { target: "_blank", rel: "noopener noreferrer" }
                 : {})}
@@ -155,7 +197,6 @@ export function ProjectBlock({ project, index = 0 }: ProjectBlockProps) {
         visualOnEnd ? "md:justify-end" : "md:justify-start",
       ].join(" ")}
     >
-      {/* Angled color plate (Destiny/Jessica hybrid) */}
       <Layer
         from="fade"
         delay={0.04}
@@ -166,8 +207,7 @@ export function ProjectBlock({ project, index = 0 }: ProjectBlockProps) {
           visualOnEnd ? "slant-panel" : "slant-panel-flip",
         ].join(" ")}
       >
-        <div className="project-orb-scanlines absolute inset-0 opacity-35" />
-        {/* Mostly static ticks; one living glitch per card */}
+        <div className="project-orb-scanlines absolute inset-0 opacity-40" />
         <span className="absolute left-[12%] top-[16%] h-[2px] w-10 bg-accent-glow/70" />
         <span
           className="glitch-anim-flicker absolute left-[12%] top-[19%] h-[2px] w-4 bg-text-primary/40"
@@ -175,9 +215,16 @@ export function ProjectBlock({ project, index = 0 }: ProjectBlockProps) {
         />
         <span className="absolute right-[14%] top-[42%] h-[2px] w-8 bg-bg-void/50" />
         <span className="absolute right-[18%] bottom-[28%] h-[2px] w-12 bg-accent-electric/55" />
+        <div className="absolute bottom-4 left-[12%] flex gap-[3px]">
+          {[0, 1, 2, 3].map((i) => (
+            <span
+              key={i}
+              className="block h-2.5 w-[2px] -skew-x-[22deg] bg-text-primary/35"
+            />
+          ))}
+        </div>
       </Layer>
 
-      {/* Low-poly ghost figure */}
       <div
         aria-hidden
         className={[
@@ -195,7 +242,7 @@ export function ProjectBlock({ project, index = 0 }: ProjectBlockProps) {
           visualOnEnd ? "md:mr-2 lg:mr-4" : "md:ml-2 lg:ml-4",
         ].join(" ")}
       >
-        <div className="group relative aspect-[4/5] w-full overflow-hidden">
+        <div className="gallery-frame group relative aspect-[4/5] w-full overflow-hidden">
           <Image
             src={project.image}
             alt={project.name}
@@ -204,12 +251,16 @@ export function ProjectBlock({ project, index = 0 }: ProjectBlockProps) {
             className="object-cover object-top transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"
           />
           <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-bg-panel to-transparent md:hidden" />
+          <div
+            aria-hidden
+            className="glitch-texture pointer-events-none absolute inset-x-0 top-0 h-1.5 opacity-70"
+          />
         </div>
 
         {tech[0] ? (
           <div
             className={[
-              "absolute bottom-4 z-20 slant-chip bg-bg-void/85 px-3 py-1.5 backdrop-blur-sm",
+              "absolute bottom-4 z-20 slant-chip border border-accent-glow/30 bg-bg-void/90 px-3 py-1.5",
               visualOnEnd ? "right-3" : "left-3",
             ].join(" ")}
           >
@@ -224,34 +275,29 @@ export function ProjectBlock({ project, index = 0 }: ProjectBlockProps) {
 
   return (
     <article className="relative px-[4vw] md:px-[8vw]">
-      <div className={["relative overflow-hidden bg-bg-panel", frameClass].join(" ")}>
+      <div className={["relative overflow-hidden bg-bg-panel", "project-card-frame"].join(" ")}>
         <div
           aria-hidden
-          className="glitch-texture pointer-events-none absolute inset-x-0 top-0 z-20 h-2 opacity-70"
+          className="glitch-texture pointer-events-none absolute inset-x-0 top-0 z-20 h-2.5 opacity-80"
         />
-        {/* Corner barcode ticks on the frame */}
         <div
           aria-hidden
-          className="pointer-events-none absolute left-3 top-4 z-20 flex gap-[3px]"
+          className="pointer-events-none absolute left-3 top-4 z-20"
         >
-          {[0, 1, 2].map((i) => (
-            <span
-              key={i}
-              className="block h-3 w-[2px] -skew-x-[22deg] bg-accent-glow/55"
-            />
-          ))}
+          <Barcode tone="glow" count={3} />
         </div>
         <div
           aria-hidden
-          className="pointer-events-none absolute bottom-4 right-4 z-20 flex gap-[3px]"
+          className="pointer-events-none absolute bottom-4 right-4 z-20"
         >
-          {[0, 1, 2, 3].map((i) => (
-            <span
-              key={i}
-              className="block h-3 w-[2px] -skew-x-[22deg] bg-accent-electric/45"
-            />
-          ))}
+          <Barcode tone="electric" count={4} />
         </div>
+        <p
+          aria-hidden
+          className="pointer-events-none absolute right-4 top-4 z-20 font-sans text-[0.6rem] uppercase tracking-[0.18em] text-text-muted/70"
+        >
+          {indexLabel}_
+        </p>
 
         <div
           className={[
