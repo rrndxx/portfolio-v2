@@ -18,10 +18,18 @@ function Wordmark({ text }: { text: string }) {
     .filter(Boolean);
 
   return (
-    <h1 className="relative z-10 w-full max-w-none text-center font-hero text-[clamp(2.5rem,11vw,7.5rem)] font-bold uppercase leading-[0.88] tracking-[-0.03em] text-text-primary md:text-left">
+    <h1 className="relative z-10 w-full max-w-none text-center md:text-left">
       {parts.map((part) => (
-        <span key={part} className="block whitespace-nowrap">
-          {part}
+        <span key={part} className="relative block">
+          <span
+            aria-hidden
+            className="title-ghost absolute inset-0 translate-x-[0.08em] translate-y-[0.04em] font-hero text-[clamp(2.5rem,11vw,7.5rem)] font-bold uppercase leading-[0.88] tracking-[-0.03em]"
+          >
+            {part}
+          </span>
+          <span className="relative font-hero text-[clamp(2.5rem,11vw,7.5rem)] font-bold uppercase leading-[0.88] tracking-[-0.03em] text-text-primary">
+            {part}
+          </span>
         </span>
       ))}
     </h1>
@@ -64,10 +72,32 @@ export function Hero({ config }: HeroProps) {
       id="hero"
       className="relative min-h-dvh overflow-hidden bg-bg-void"
     >
-      {/* Left accent strip */}
+      {/* Slanted side panel (Jessica Jones band language) */}
       <div
         aria-hidden
-        className="absolute inset-x-0 top-0 z-0 h-1.5 bg-accent-primary md:inset-y-0 md:left-0 md:right-auto md:h-auto md:w-[22vw]"
+        className="glitch-texture absolute inset-y-0 left-0 z-0 hidden w-[26vw] md:block"
+        style={{ clipPath: "polygon(0 0, 88% 0, 100% 100%, 0 100%)" }}
+      />
+      <div
+        aria-hidden
+        className="absolute inset-x-0 top-0 z-0 h-2 bg-accent-primary md:hidden"
+      />
+
+      {/* Top glitch band */}
+      <div
+        aria-hidden
+        className="glitch-texture slant-band pointer-events-none absolute inset-x-0 top-0 z-[5] h-10 opacity-80 md:h-12"
+      />
+      {/* Bottom glitch band */}
+      <div
+        aria-hidden
+        className="glitch-texture slant-band-flip pointer-events-none absolute inset-x-0 bottom-0 z-[5] h-10 opacity-70 md:h-12"
+      />
+
+      {/* Perspective geo grid under the figure */}
+      <div
+        aria-hidden
+        className="geo-grid pointer-events-none absolute inset-x-[22vw] bottom-[-8%] z-[1] hidden h-[42%] opacity-50 md:block"
       />
 
       {/* Ghost letterforms */}
@@ -75,28 +105,39 @@ export function Hero({ config }: HeroProps) {
         aria-hidden
         className="pointer-events-none absolute inset-0 z-[1] overflow-hidden select-none md:left-[22vw]"
       >
-        <span className="absolute left-[6%] top-[14%] font-hero text-[min(22vw,180px)] font-bold leading-none text-text-primary/[0.04]">
+        <span className="absolute left-[6%] top-[18%] font-hero text-[min(22vw,180px)] font-bold leading-none text-text-primary/[0.045]">
           F
         </span>
-        <span className="absolute right-[6%] top-[36%] font-hero text-[min(18vw,140px)] font-bold leading-none text-text-primary/[0.035]">
+        <span className="absolute right-[6%] top-[38%] font-hero text-[min(18vw,140px)] font-bold leading-none text-text-primary/[0.04]">
           S
         </span>
-        <span className="absolute bottom-[28%] left-[28%] font-hero text-[min(14vw,110px)] font-bold leading-none text-text-primary/[0.03]">
+        <span className="absolute bottom-[30%] left-[28%] font-hero text-[min(14vw,110px)] font-bold leading-none text-text-primary/[0.035]">
           D
         </span>
       </div>
 
+      {/* Low-poly silhouette plate behind avatar */}
+      <div
+        aria-hidden
+        className="poly-silhouette pointer-events-none absolute bottom-[6%] left-1/2 z-[2] h-[55vh] w-[min(70vw,420px)] -translate-x-1/2 bg-accent-primary/25 md:left-[62%] md:h-[62vh] md:w-[min(40vw,460px)]"
+      />
+
       <GlitchField />
       <GlowDisc />
 
-      <div className="absolute right-4 top-4 z-30 md:right-8 md:top-8">
-        <Button variant="pill" href={config.heroCta.href}>
+      <div className="absolute right-4 top-6 z-30 md:right-8 md:top-10">
+        <Button variant="slant" href={config.heroCta.href}>
           {config.heroCta.label}
         </Button>
       </div>
 
-      {/* Wordmark behind avatar — wide, breaks past the figure */}
-      <div className="absolute inset-0 z-10 flex items-center px-5 pt-10 md:left-[22vw] md:px-10 md:pt-0 lg:px-16">
+      <div className="absolute left-[26vw] top-8 z-30 hidden md:block">
+        <p className="font-sans text-meta uppercase tracking-[0.2em] text-accent-glow/80">
+          Role_
+        </p>
+      </div>
+
+      <div className="absolute inset-0 z-10 flex items-center px-5 pt-16 md:left-[22vw] md:px-10 md:pt-0 lg:px-16">
         <div className="w-full max-w-[1100px] -translate-y-[8%] md:-translate-y-[4%]">
           <Wordmark text={config.heroHeadline} />
         </div>
@@ -104,8 +145,8 @@ export function Hero({ config }: HeroProps) {
 
       <HeroAvatar src={config.heroAvatar} alt={`${config.name} avatar`} />
 
-      <div className="absolute inset-x-0 bottom-0 z-30 flex items-end justify-between px-4 pb-5 md:left-[22vw] md:px-10 md:pb-8">
-        <p className="font-sans text-meta uppercase tracking-[0.08em] text-text-muted">
+      <div className="absolute inset-x-0 bottom-0 z-30 flex items-end justify-between px-4 pb-8 md:left-[26vw] md:px-10 md:pb-12">
+        <p className="slant-chip bg-bg-void/70 px-3 py-1.5 font-sans text-meta uppercase tracking-[0.08em] text-text-muted backdrop-blur-sm">
           {config.heroTag}
         </p>
         <div className="flex items-center gap-4">

@@ -5,8 +5,8 @@ import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionAtmosphere } from "@/components/ui/SectionAtmosphere";
-import { SectionBlend } from "@/components/ui/SectionBlend";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { SectionShell } from "@/components/ui/SectionShell";
 import { defaultTransition } from "@/lib/motion";
 import type { GalleryAspect, GalleryItem } from "@/lib/types";
 
@@ -137,14 +137,17 @@ export function Gallery({ items }: GalleryProps) {
   const close = useCallback(() => setActive(null), []);
 
   return (
-    <section
+    <SectionShell
       id="gallery"
-      className="relative overflow-hidden bg-bg-void py-16 md:py-32"
+      className="bg-bg-void pb-16 md:pb-32"
+      cut="rise-left"
+      blendFrom="panel"
+      zIndex={5}
+      style={{ ["--section-pad-y" as string]: "5rem" }}
     >
-      <SectionBlend from="void" to="panel" />
       <SectionAtmosphere variant="gallery" />
 
-      <div className="relative z-[2] pl-[6vw] pr-[6vw] md:pl-[12vw] md:pr-[8vw]">
+      <div className="pl-[6vw] pr-[6vw] md:pl-[12vw] md:pr-[8vw]">
         <Reveal>
           <SectionHeading className="mb-10 md:mb-14">Gallery</SectionHeading>
         </Reveal>
@@ -166,6 +169,6 @@ export function Gallery({ items }: GalleryProps) {
       <AnimatePresence>
         {active ? <Lightbox item={active} onClose={close} /> : null}
       </AnimatePresence>
-    </section>
+    </SectionShell>
   );
 }

@@ -1,6 +1,6 @@
 import type { ButtonHTMLAttributes, ReactNode } from "react";
 
-type ButtonVariant = "primary" | "ghost" | "pill";
+type ButtonVariant = "primary" | "ghost" | "pill" | "slant";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant;
@@ -10,11 +10,13 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const variantClasses: Record<ButtonVariant, string> = {
   primary:
-    "bg-accent-primary text-text-on-accent hover:bg-accent-glow hover:text-text-on-accent",
+    "rounded-md bg-accent-primary text-text-on-accent hover:bg-accent-glow hover:text-text-on-accent",
   ghost:
-    "bg-transparent text-text-primary border border-border-subtle hover:border-accent-electric hover:text-accent-electric",
+    "rounded-md bg-transparent text-text-primary border border-border-subtle hover:border-accent-electric hover:text-accent-electric",
   pill:
     "rounded-full bg-bg-panel-raised text-text-primary hover:bg-accent-primary hover:text-text-on-accent",
+  slant:
+    "slant-chip border-0 bg-accent-primary text-text-on-accent hover:bg-accent-glow",
 };
 
 export function Button({
@@ -30,7 +32,6 @@ export function Button({
     "font-sans text-meta uppercase tracking-[0.08em]",
     "transition-colors duration-300",
     "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-glow",
-    variant === "pill" ? "rounded-full" : "rounded-md",
     variantClasses[variant],
     className,
   ]

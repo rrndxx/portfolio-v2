@@ -2,8 +2,8 @@
 
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionAtmosphere } from "@/components/ui/SectionAtmosphere";
-import { SectionBlend } from "@/components/ui/SectionBlend";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { SectionShell } from "@/components/ui/SectionShell";
 import type { ExperienceEntry } from "@/lib/types";
 
 interface ExperienceTimelineProps {
@@ -19,14 +19,17 @@ const contentIndent = [
 
 export function ExperienceTimeline({ entries }: ExperienceTimelineProps) {
   return (
-    <section
+    <SectionShell
       id="experience"
-      className="relative overflow-hidden bg-bg-void py-16 md:py-32"
+      className="bg-bg-panel pb-16 md:pb-32"
+      cut="shallow-right"
+      blendFrom="void"
+      zIndex={4}
+      style={{ ["--section-pad-y" as string]: "5rem" }}
     >
-      <SectionBlend from="void" to="void" />
       <SectionAtmosphere variant="experience" />
 
-      <div className="relative z-[2] pl-[8vw] pr-[5vw] md:pl-[14vw] md:pr-[10vw]">
+      <div className="pl-[8vw] pr-[5vw] md:pl-[14vw] md:pr-[10vw]">
         <Reveal>
           <SectionHeading className="mb-12 md:mb-16">Experience</SectionHeading>
         </Reveal>
@@ -39,7 +42,10 @@ export function ExperienceTimeline({ entries }: ExperienceTimelineProps) {
 
           <ol className="space-y-12 md:space-y-16">
             {entries.map((entry, index) => (
-              <Reveal key={`${entry.role}-${entry.org}-${index}`} delay={index * 0.06}>
+              <Reveal
+                key={`${entry.role}-${entry.org}-${index}`}
+                delay={index * 0.06}
+              >
                 <li className="relative pl-8 md:pl-10">
                   <span
                     aria-hidden
@@ -66,6 +72,6 @@ export function ExperienceTimeline({ entries }: ExperienceTimelineProps) {
           </ol>
         </div>
       </div>
-    </section>
+    </SectionShell>
   );
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import { Reveal } from "@/components/ui/Reveal";
-import { SectionBlend } from "@/components/ui/SectionBlend";
+import { SectionShell } from "@/components/ui/SectionShell";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Tag } from "@/components/ui/Tag";
 import type { AboutContent } from "@/lib/types";
@@ -18,13 +18,12 @@ const credentialOffsets = [
 
 export function About({ content }: AboutProps) {
   return (
-    <section
+    <SectionShell
       id="about"
-      className="relative overflow-hidden bg-bg-void py-16 md:py-32"
+      className="bg-bg-void pb-16 md:pb-32"
+      style={{ ["--section-pad-y" as string]: "4rem" }}
+      zIndex={1}
     >
-      <SectionBlend from="void" to="panel" />
-
-      {/* Soft geometric wash — replaces hard clip accent */}
       <div
         aria-hidden
         className="pointer-events-none absolute -right-[8%] top-0 h-[50%] w-[50%] opacity-50"
@@ -38,7 +37,7 @@ export function About({ content }: AboutProps) {
         className="pointer-events-none absolute right-[8%] top-[18%] h-24 w-24 rounded-full border border-accent-glow/15"
       />
 
-      <div className="relative z-[2] pl-[8vw] pr-[4vw] md:pl-[14vw] md:pr-[8vw]">
+      <div className="pl-[8vw] pr-[4vw] pt-16 md:pl-[14vw] md:pr-[8vw] md:pt-32">
         <Reveal>
           <SectionHeading className="mb-10 md:mb-14">About</SectionHeading>
         </Reveal>
@@ -59,7 +58,10 @@ export function About({ content }: AboutProps) {
           <Reveal delay={0.15}>
             <ul className="mt-12 flex flex-col items-start gap-1 md:mt-16">
               {content.credentials.map((credential, index) => (
-                <li key={credential} className={credentialOffsets[index] ?? "ml-4 mt-2"}>
+                <li
+                  key={credential}
+                  className={credentialOffsets[index] ?? "ml-4 mt-2"}
+                >
                   <Tag>{credential}</Tag>
                 </li>
               ))}
@@ -67,6 +69,6 @@ export function About({ content }: AboutProps) {
           </Reveal>
         </div>
       </div>
-    </section>
+    </SectionShell>
   );
 }

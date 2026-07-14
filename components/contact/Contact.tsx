@@ -1,5 +1,5 @@
-import { SectionBlend } from "@/components/ui/SectionBlend";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { SectionShell } from "@/components/ui/SectionShell";
 import type { SiteConfig } from "@/lib/types";
 
 interface ContactProps {
@@ -11,23 +11,24 @@ export function Contact({ config }: ContactProps) {
   const mailto = emailIsTodo ? undefined : `mailto:${config.email}`;
 
   return (
-    <section
+    <SectionShell
       id="contact"
-      className="relative overflow-hidden bg-bg-panel py-20 md:py-36"
+      className="bg-bg-panel pb-20 md:pb-36"
+      cut="steep-right"
+      blendFrom="void"
+      zIndex={6}
+      style={{ ["--section-pad-y" as string]: "6rem" }}
     >
-      <SectionBlend from="void" />
-
-      {/* Soft closing orbs */}
       <div
         aria-hidden
-        className="pointer-events-none absolute left-1/2 top-0 h-48 w-[min(80vw,520px)] -translate-x-1/2 opacity-60"
+        className="pointer-events-none absolute left-1/2 top-[8%] h-48 w-[min(80vw,520px)] -translate-x-1/2 opacity-60"
         style={{
           background:
             "radial-gradient(ellipse at center, color-mix(in srgb, var(--accent-primary) 30%, transparent) 0%, transparent 70%)",
         }}
       />
 
-      <div className="relative z-[2] mx-auto max-w-3xl px-6 text-center md:px-8">
+      <div className="mx-auto max-w-3xl px-6 text-center md:px-8">
         <SectionHeading className="text-[clamp(2rem,5vw,3.5rem)]">
           {config.closingHeadline}
         </SectionHeading>
@@ -86,6 +87,6 @@ export function Contact({ config }: ContactProps) {
           {config.footerNote}
         </p>
       </div>
-    </section>
+    </SectionShell>
   );
 }

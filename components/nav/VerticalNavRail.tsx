@@ -63,11 +63,11 @@ export function VerticalNavRail({ items }: VerticalNavRailProps) {
               <a
                 href={item.href}
                 className={[
-                  "font-sans text-meta uppercase tracking-[0.12em] whitespace-nowrap",
-                  "-rotate-90 transition-colors duration-300",
+                  "block origin-center -rotate-90 font-sans text-meta uppercase whitespace-nowrap",
+                  "tracking-[0.14em] transition-colors duration-300",
                   isActive
                     ? "text-accent-glow"
-                    : "text-text-primary/70 hover:text-text-primary",
+                    : "text-text-primary/65 hover:text-text-primary",
                 ].join(" ")}
                 aria-current={isActive ? "true" : undefined}
               >

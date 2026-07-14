@@ -13,20 +13,10 @@ interface ProjectBlockProps {
   index?: number;
 }
 
-/** Per-card orb palette — stays inside design tokens, varies by slot. */
-const ORB_STYLES = [
-  {
-    background:
-      "radial-gradient(circle at 35% 30%, var(--accent-glow) 0%, var(--accent-primary) 42%, var(--accent-primary-dim) 72%, transparent 78%)",
-  },
-  {
-    background:
-      "radial-gradient(circle at 60% 40%, var(--accent-electric) 0%, var(--accent-primary) 48%, color-mix(in srgb, var(--accent-primary-dim) 70%, var(--bg-void)) 75%, transparent 80%)",
-  },
-  {
-    background:
-      "radial-gradient(circle at 40% 55%, var(--accent-glow) 0%, var(--accent-electric) 35%, var(--accent-primary-dim) 70%, transparent 78%)",
-  },
+const PLATE_STYLES = [
+  "bg-accent-primary/35",
+  "bg-accent-primary-dim/55",
+  "bg-accent-electric/30",
 ] as const;
 
 function Layer({
@@ -62,58 +52,17 @@ function Layer({
   );
 }
 
-function OrbGlitchMarks({ flip }: { flip?: boolean }) {
-  const ticks = [
-    { top: "18%", width: "2.75rem", tone: "bg-bg-void/50" },
-    { top: "22%", width: "1.1rem", tone: "bg-text-primary/35" },
-    { top: "34%", width: "3.5rem", tone: "bg-bg-void/40" },
-    { top: "48%", width: "1.75rem", tone: "bg-accent-glow/45" },
-    { top: "61%", width: "2.25rem", tone: "bg-bg-void/55" },
-    { top: "72%", width: "0.9rem", tone: "bg-text-primary/30" },
-    { top: "78%", width: "3rem", tone: "bg-accent-electric/40" },
-  ];
-
-  return (
-    <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden rounded-full">
-      {/* Scanline wash */}
-      <div className="project-orb-scanlines absolute inset-0 opacity-40" />
-
-      {ticks.map((tick, i) => (
-        <span
-          key={i}
-          className={["absolute h-[2px]", tick.tone].join(" ")}
-          style={{
-            top: tick.top,
-            width: tick.width,
-            ...(flip
-              ? { right: `${12 + (i % 3) * 8}%` }
-              : { left: `${12 + (i % 3) * 8}%` }),
-          }}
-        />
-      ))}
-
-      <div
-        className={[
-          "absolute top-[40%] flex gap-1",
-          flip ? "right-[18%]" : "left-[18%]",
-        ].join(" ")}
-      >
-        <span className="h-[2px] w-4 bg-bg-void/60" />
-        <span className="h-[2px] w-2 bg-accent-glow/70" />
-        <span className="h-[2px] w-5 bg-text-primary/25" />
-      </div>
-    </div>
-  );
-}
-
 /**
- * Character-card language: ghost outline title, solid name, orb + frame-breaking cover.
- * Alternates text/visual columns by index.
+ * Hybrid of cyber profile cards + angled game UI —
+ * ghost titles, slant plates, glitch ticks, frame-breaking cover.
  */
 export function ProjectBlock({ project, index = 0 }: ProjectBlockProps) {
   const visualOnEnd = index % 2 === 0;
-  const orb = ORB_STYLES[index % ORB_STYLES.length];
+  const plate = PLATE_STYLES[index % PLATE_STYLES.length];
   const tech = project.techStack.filter((t) => !t.startsWith("TODO"));
+  const frameClass = visualOnEnd
+    ? "project-card-frame"
+    : "project-card-frame-flip";
 
   const copy = (
     <div
@@ -125,15 +74,15 @@ export function ProjectBlock({ project, index = 0 }: ProjectBlockProps) {
       <Layer from={visualOnEnd ? "left" : "right"} delay={0.06}>
         <div
           className={[
-            "flex flex-wrap gap-x-8 gap-y-2",
+            "flex flex-wrap gap-3",
             visualOnEnd ? "justify-start" : "justify-end",
           ].join(" ")}
         >
-          <span className="font-sans text-meta uppercase tracking-[0.18em] text-text-muted">
-            Project
+          <span className="slant-chip bg-accent-primary/25 px-3 py-1 font-sans text-meta uppercase tracking-[0.16em] text-accent-glow">
+            Project_
           </span>
-          <span className="font-sans text-meta uppercase tracking-[0.18em] text-text-muted">
-            Case study
+          <span className="slant-chip-flip border border-border-subtle px-3 py-1 font-sans text-meta uppercase tracking-[0.16em] text-text-muted">
+            Case study_
           </span>
         </div>
       </Layer>
@@ -141,27 +90,19 @@ export function ProjectBlock({ project, index = 0 }: ProjectBlockProps) {
       <Layer from="up" delay={0.1} className="relative mt-6 md:mt-8">
         <span
           aria-hidden
-          className={[
-            "project-title-ghost pointer-events-none select-none font-display uppercase leading-[0.85]",
-            "text-[clamp(2.75rem,8vw,5.5rem)]",
-            visualOnEnd ? "block" : "block",
-          ].join(" ")}
+          className="project-title-ghost pointer-events-none block select-none font-display text-[clamp(2.75rem,8vw,5.5rem)] uppercase leading-[0.85]"
         >
           {project.name}
         </span>
-        <h3
-          className={[
-            "relative z-[1] -mt-[0.55em] font-display uppercase leading-[0.9] tracking-tight text-text-primary",
-            "text-[clamp(1.75rem,4.5vw,3rem)]",
-            visualOnEnd ? "" : "w-full",
-          ].join(" ")}
-        >
+        <h3 className="relative z-[1] -mt-[0.55em] font-display text-[clamp(1.75rem,4.5vw,3rem)] uppercase leading-[0.9] tracking-tight text-text-primary">
           {project.name}
         </h3>
       </Layer>
 
       <Layer from="up" delay={0.16} className="mt-6 max-w-md md:mt-8">
-        <p className="font-sans text-body text-text-secondary">{project.description}</p>
+        <p className="font-sans text-body text-text-secondary">
+          {project.description}
+        </p>
       </Layer>
 
       {tech.length > 0 ? (
@@ -174,7 +115,7 @@ export function ProjectBlock({ project, index = 0 }: ProjectBlockProps) {
           >
             {tech.map((item, i) => (
               <li key={item} className={i % 2 === 0 ? "mt-0" : "mt-1.5"}>
-                <span className="inline-block border border-border-subtle bg-bg-panel-raised/80 px-3 py-1.5 font-sans text-meta uppercase tracking-[0.08em] text-text-secondary transition-colors hover:border-accent-electric/40 hover:text-accent-electric">
+                <span className="slant-chip inline-block border border-border-subtle bg-bg-panel-raised/90 px-3 py-1.5 font-sans text-meta uppercase tracking-[0.08em] text-text-secondary transition-colors hover:border-accent-electric/50 hover:text-accent-electric">
                   {item}
                 </span>
               </li>
@@ -186,7 +127,7 @@ export function ProjectBlock({ project, index = 0 }: ProjectBlockProps) {
       <Layer from="up" delay={0.24} className="mt-8">
         <div
           className={[
-            "flex flex-wrap gap-4",
+            "flex flex-wrap gap-3",
             visualOnEnd ? "justify-start" : "justify-end",
           ].join(" ")}
         >
@@ -194,7 +135,7 @@ export function ProjectBlock({ project, index = 0 }: ProjectBlockProps) {
             <Link
               key={link.href + link.label}
               href={link.href}
-              className="font-sans text-meta uppercase tracking-[0.1em] text-accent-electric transition-colors hover:text-accent-glow"
+              className="slant-chip bg-accent-primary px-4 py-2 font-sans text-meta uppercase tracking-[0.1em] text-text-on-accent transition-colors hover:bg-accent-glow"
               {...(link.href.startsWith("http")
                 ? { target: "_blank", rel: "noopener noreferrer" }
                 : {})}
@@ -214,25 +155,39 @@ export function ProjectBlock({ project, index = 0 }: ProjectBlockProps) {
         visualOnEnd ? "md:justify-end" : "md:justify-start",
       ].join(" ")}
     >
+      {/* Angled color plate (Destiny/Jessica hybrid) */}
       <Layer
         from="fade"
-        delay={0.05}
-        className="absolute left-1/2 top-[18%] h-[min(72vw,360px)] w-[min(72vw,360px)] -translate-x-1/2 md:top-[12%] md:h-[380px] md:w-[380px] lg:h-[420px] lg:w-[420px]"
+        delay={0.04}
+        className={[
+          "absolute top-[10%] h-[78%] w-[88%] md:top-[8%] md:h-[84%] md:w-[92%]",
+          visualOnEnd ? "right-0" : "left-0",
+          plate,
+          visualOnEnd ? "slant-panel" : "slant-panel-flip",
+        ].join(" ")}
       >
-        <div
-          className="project-orb relative h-full w-full rounded-full"
-          style={orb}
-        >
-          <OrbGlitchMarks flip={!visualOnEnd} />
-        </div>
+        <div className="project-orb-scanlines absolute inset-0 opacity-35" />
+        {/* Glitch ticks on the plate */}
+        <span className="absolute left-[12%] top-[16%] h-[2px] w-10 bg-accent-glow/70" />
+        <span className="absolute left-[12%] top-[19%] h-[2px] w-4 bg-text-primary/40" />
+        <span className="absolute right-[14%] top-[42%] h-[2px] w-8 bg-bg-void/50" />
+        <span className="absolute right-[18%] bottom-[28%] h-[2px] w-12 bg-accent-electric/55" />
       </Layer>
+
+      {/* Low-poly ghost figure */}
+      <div
+        aria-hidden
+        className={[
+          "poly-silhouette absolute top-[12%] z-[1] h-[70%] w-[70%] bg-accent-glow/20",
+          visualOnEnd ? "right-[4%]" : "left-[4%]",
+        ].join(" ")}
+      />
 
       <Layer
         from={visualOnEnd ? "right" : "left"}
         delay={0.14}
         className={[
           "relative z-10 w-[min(78%,340px)] md:w-[min(85%,380px)]",
-          // Break the frame — extend past card edges
           "md:-mb-8 lg:-mb-12",
           visualOnEnd ? "md:mr-2 lg:mr-4" : "md:ml-2 lg:ml-4",
         ].join(" ")}
@@ -245,19 +200,18 @@ export function ProjectBlock({ project, index = 0 }: ProjectBlockProps) {
             sizes="(max-width: 768px) 78vw, 380px"
             className="object-cover object-top"
           />
-          {/* Soft edge fade into card so it doesn't look cut like a stamp */}
           <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-bg-panel to-transparent md:hidden" />
         </div>
 
         {tech[0] ? (
           <div
             className={[
-              "absolute bottom-4 z-20 border border-border-subtle/80 bg-bg-void/80 px-3 py-1.5 backdrop-blur-sm",
+              "absolute bottom-4 z-20 slant-chip bg-bg-void/85 px-3 py-1.5 backdrop-blur-sm",
               visualOnEnd ? "right-3" : "left-3",
             ].join(" ")}
           >
             <span className="font-sans text-[0.65rem] uppercase tracking-[0.14em] text-accent-glow">
-              {tech[0]}
+              {tech[0]}_
             </span>
           </div>
         ) : null}
@@ -267,11 +221,10 @@ export function ProjectBlock({ project, index = 0 }: ProjectBlockProps) {
 
   return (
     <article className="relative px-[4vw] md:px-[8vw]">
-      <div className="project-card-frame relative overflow-visible bg-bg-panel">
-        {/* Hairline top edge accent */}
+      <div className={["relative overflow-visible bg-bg-panel", frameClass].join(" ")}>
         <div
           aria-hidden
-          className="absolute inset-x-0 top-0 z-20 h-px bg-gradient-to-r from-transparent via-accent-glow/50 to-transparent"
+          className="glitch-texture pointer-events-none absolute inset-x-0 top-0 z-20 h-2 opacity-70"
         />
 
         <div

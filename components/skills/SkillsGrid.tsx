@@ -2,8 +2,8 @@
 
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionAtmosphere } from "@/components/ui/SectionAtmosphere";
-import { SectionBlend } from "@/components/ui/SectionBlend";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { SectionShell } from "@/components/ui/SectionShell";
 import { Tag } from "@/components/ui/Tag";
 import type { SkillCategory, SkillsContent } from "@/lib/types";
 
@@ -61,14 +61,16 @@ function SkillCluster({ category }: { category: SkillCategory }) {
 
 export function SkillsGrid({ content }: SkillsGridProps) {
   return (
-    <section
+    <SectionShell
       id="skills"
-      className="relative overflow-hidden bg-bg-panel py-16 md:py-32"
+      className="bg-bg-panel pb-16 md:pb-32"
+      cut="rise-right"
+      blendFrom="void"
+      zIndex={2}
+      style={{ ["--section-pad-y" as string]: "5rem" }}
     >
-      <SectionBlend from="void" to="void" />
       <SectionAtmosphere variant="skills" />
-
-      <div className="relative z-[2] pl-[6vw] pr-[8vw] md:pl-[12vw] md:pr-[6vw]">
+      <div className="pl-[6vw] pr-[8vw] md:pl-[12vw] md:pr-[6vw]">
         <Reveal>
           <SectionHeading className="mb-12 md:mb-16">Skills</SectionHeading>
         </Reveal>
@@ -81,6 +83,6 @@ export function SkillsGrid({ content }: SkillsGridProps) {
           </div>
         </Reveal>
       </div>
-    </section>
+    </SectionShell>
   );
 }
