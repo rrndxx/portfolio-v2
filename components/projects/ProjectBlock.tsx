@@ -224,11 +224,34 @@ export function ProjectBlock({ project, index = 0 }: ProjectBlockProps) {
 
   return (
     <article className="relative px-[4vw] md:px-[8vw]">
-      <div className={["relative overflow-visible bg-bg-panel", frameClass].join(" ")}>
+      <div className={["relative overflow-hidden bg-bg-panel", frameClass].join(" ")}>
         <div
           aria-hidden
           className="glitch-texture pointer-events-none absolute inset-x-0 top-0 z-20 h-2 opacity-70"
         />
+        {/* Corner barcode ticks on the frame */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute left-3 top-4 z-20 flex gap-[3px]"
+        >
+          {[0, 1, 2].map((i) => (
+            <span
+              key={i}
+              className="block h-3 w-[2px] -skew-x-[22deg] bg-accent-glow/55"
+            />
+          ))}
+        </div>
+        <div
+          aria-hidden
+          className="pointer-events-none absolute bottom-4 right-4 z-20 flex gap-[3px]"
+        >
+          {[0, 1, 2, 3].map((i) => (
+            <span
+              key={i}
+              className="block h-3 w-[2px] -skew-x-[22deg] bg-accent-electric/45"
+            />
+          ))}
+        </div>
 
         <div
           className={[

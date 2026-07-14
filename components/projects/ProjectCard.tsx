@@ -13,7 +13,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
   return (
     <Link
       href={`/work/${project.slug}`}
-      className="group block overflow-hidden bg-bg-panel-raised transition-colors duration-300 hover:bg-bg-panel"
+      className="project-card-frame group block overflow-hidden bg-bg-panel-raised transition-colors duration-300 hover:bg-bg-panel"
     >
       <div className="relative aspect-[16/10] w-full overflow-hidden">
         <Image

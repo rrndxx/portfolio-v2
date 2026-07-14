@@ -100,22 +100,7 @@ export function Hero({ config }: HeroProps) {
       >
         <span className="hero-fight-mega select-none font-display font-black uppercase leading-none text-bg-void">
           {backdrop}
-        </span>
-      </div>
-
-      {/* Ghost headline — hard type only */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-[36%] z-[6] flex flex-col items-center px-4 opacity-20 md:top-[32%]"
-      >
-        {headlineParts.map((part) => (
-          <span
-            key={part}
-            className="font-hero text-[clamp(1.75rem,8vw,5rem)] font-bold uppercase tracking-[0.14em] text-text-primary"
-          >
-            {part}
-          </span>
-        ))}
+        </span> 
       </div>
 
       <div className="hero-enter-ui absolute left-4 top-5 z-30 md:left-16 md:top-7 lg:left-20">

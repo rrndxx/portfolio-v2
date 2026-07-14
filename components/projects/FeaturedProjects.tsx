@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { ProjectBlock } from "@/components/projects/ProjectBlock";
 import { Reveal } from "@/components/ui/Reveal";
+import { SectionAtmosphere } from "@/components/ui/SectionAtmosphere";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SectionShell } from "@/components/ui/SectionShell";
 import type { Project } from "@/lib/types";
@@ -21,7 +22,9 @@ export function FeaturedProjects({ projects }: FeaturedProjectsProps) {
       zIndex={3}
       style={{ ["--section-pad-y" as string]: "3.5rem" }}
     >
-      <div className="pl-[6vw] pr-[4vw] md:pl-[12vw] md:pr-[6vw]">
+      <SectionAtmosphere variant="projects" />
+
+      <div className="relative z-[1] pl-[6vw] pr-[4vw] md:pl-[12vw] md:pr-[6vw]">
         <Reveal>
           <SectionHeading className="mb-4 md:mb-6">Work</SectionHeading>
           <p className="mb-10 max-w-lg font-sans text-body text-text-secondary md:mb-14">
@@ -30,13 +33,13 @@ export function FeaturedProjects({ projects }: FeaturedProjectsProps) {
         </Reveal>
       </div>
 
-      <div className="flex flex-col gap-10 md:gap-14">
+      <div className="relative z-[1] flex flex-col gap-10 md:gap-14">
         {projects.map((project, index) => (
           <ProjectBlock key={project.slug} project={project} index={index} />
         ))}
       </div>
 
-      <Reveal className="mt-10 px-[6vw] pb-8 md:mt-16 md:px-[12vw] md:pb-12">
+      <Reveal className="relative z-[1] mt-10 px-[6vw] pb-8 md:mt-16 md:px-[12vw] md:pb-12">
         <Link
           href="/work"
           className="inline-flex items-center gap-2 font-sans text-meta uppercase tracking-[0.1em] text-accent-electric transition-colors hover:text-accent-glow"

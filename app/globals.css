@@ -417,14 +417,32 @@ body {
   );
 }
 
-.project-card-frame {
-  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 1.5vw), calc(100% - 2vw) 100%, 0 100%);
+.project-card-frame,
+.project-card-frame-flip {
+  /* Upper-right + bottom-left chamfers */
+  clip-path: polygon(
+    0 0,
+    calc(100% - 22px) 0,
+    100% 22px,
+    100% 100%,
+    22px 100%,
+    0 calc(100% - 22px)
+  );
   box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--border-subtle) 80%, transparent);
 }
 
-.project-card-frame-flip {
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 2vw 100%, 0 calc(100% - 1.5vw));
-  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--border-subtle) 80%, transparent);
+@media (min-width: 768px) {
+  .project-card-frame,
+  .project-card-frame-flip {
+    clip-path: polygon(
+      0 0,
+      calc(100% - 2vw) 0,
+      100% 2vw,
+      100% 100%,
+      2vw 100%,
+      0 calc(100% - 2vw)
+    );
+  }
 }
 
 .poly-silhouette {
@@ -709,6 +727,129 @@ body {
 
 .hero-fight-plate {
   box-shadow: 4px 4px 0 color-mix(in srgb, var(--bg-void) 55%, transparent);
+}
+
+/* ——— Shared cyber ambient (sections = lite) ——— */
+.cyber-ambient-full {
+  --cyber-slash-a: 0.22;
+  --cyber-slash-b: 0.32;
+  --cyber-slash-c: 0.4;
+  --cyber-slash-d: 0.16;
+  --cyber-cut: 0.55;
+  --cyber-cut-br: 0.7;
+  --cyber-tick: 0.4;
+  --cyber-wash: 1;
+  --cyber-mark: 0.85;
+  --cyber-fleck: 0.9;
+}
+
+.cyber-ambient-lite {
+  --cyber-slash-a: 0.08;
+  --cyber-slash-b: 0.11;
+  --cyber-slash-c: 0.09;
+  --cyber-slash-d: 0.07;
+  --cyber-cut: 0.14;
+  --cyber-cut-br: 0.18;
+  --cyber-tick: 0.16;
+  --cyber-wash: 0.4;
+  --cyber-mark: 0.45;
+  --cyber-fleck: 0.5;
+}
+
+.cyber-slash-wash {
+  opacity: var(--cyber-wash);
+  background: linear-gradient(
+    118deg,
+    transparent 0%,
+    transparent 26%,
+    color-mix(in srgb, var(--text-primary) 12%, transparent) 26.2%,
+    color-mix(in srgb, var(--text-primary) 12%, transparent) 27.6%,
+    transparent 27.8%,
+    transparent 52%,
+    color-mix(in srgb, var(--accent-glow) 14%, transparent) 52.2%,
+    color-mix(in srgb, var(--accent-glow) 14%, transparent) 54%,
+    transparent 54.2%,
+    transparent 74%,
+    color-mix(in srgb, var(--text-primary) 9%, transparent) 74.2%,
+    color-mix(in srgb, var(--text-primary) 9%, transparent) 75%,
+    transparent 75.2%
+  );
+}
+
+.cyber-slash {
+  position: absolute;
+  transform: skewX(-28deg);
+}
+
+.cyber-slash-a {
+  top: 12%;
+  left: -10%;
+  width: 46%;
+  height: 8px;
+  background: var(--text-primary);
+  opacity: var(--cyber-slash-a);
+}
+
+.cyber-slash-b {
+  top: 30%;
+  right: -8%;
+  width: 34%;
+  height: 5px;
+  background: var(--accent-glow);
+  opacity: var(--cyber-slash-b);
+}
+
+.cyber-slash-c {
+  bottom: 34%;
+  left: -4%;
+  width: 40%;
+  height: 6px;
+  background: var(--bg-void);
+  opacity: var(--cyber-slash-c);
+}
+
+.cyber-slash-d {
+  bottom: 14%;
+  right: -10%;
+  width: 44%;
+  height: 11px;
+  background: var(--text-primary);
+  opacity: var(--cyber-slash-d);
+}
+
+.cyber-cut {
+  position: absolute;
+  background: var(--bg-void);
+  opacity: var(--cyber-cut);
+}
+
+.cyber-cut-tl {
+  top: 0;
+  left: 0;
+  width: min(22vw, 200px);
+  height: min(12vh, 110px);
+  clip-path: polygon(0 0, 100% 0, 52% 100%, 0 100%);
+}
+
+.cyber-cut-br {
+  right: 0;
+  bottom: 0;
+  width: min(28vw, 260px);
+  height: min(16vh, 140px);
+  clip-path: polygon(48% 0, 100% 0, 100% 100%, 0 100%);
+  opacity: var(--cyber-cut-br);
+}
+
+.cyber-tick {
+  opacity: var(--cyber-tick);
+}
+
+.cyber-glitch-mark {
+  opacity: var(--cyber-mark);
+}
+
+.cyber-fleck {
+  opacity: var(--cyber-fleck);
 }
 
 

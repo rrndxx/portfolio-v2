@@ -1,4 +1,5 @@
 import { GlitchField } from "@/components/hero/GlitchField";
+import { CyberAmbient } from "@/components/ui/CyberAmbient";
 import { GhostMarks } from "@/components/ui/GhostMarks";
 
 type AtmosphereVariant =
@@ -7,7 +8,8 @@ type AtmosphereVariant =
   | "gallery"
   | "about"
   | "contact"
-  | "achievements";
+  | "achievements"
+  | "projects";
 
 interface SectionAtmosphereProps {
   variant?: AtmosphereVariant;
@@ -20,10 +22,12 @@ const LETTERS: Record<AtmosphereVariant, string[]> = {
   achievements: ["W", "I", "N"],
   gallery: ["G", "L", "Y"],
   contact: ["C", "T", "N"],
+  projects: ["W", "R", "K"],
 };
 
 /**
- * Ambient glitch lines + ghost marks — no circular halos.
+ * Quiet cyber atmosphere for below-fold sections —
+ * same language as hero, lower opacity for hierarchy.
  */
 export function SectionAtmosphere({
   variant = "experience",
@@ -34,12 +38,8 @@ export function SectionAtmosphere({
       className="pointer-events-none absolute inset-0 z-0 overflow-hidden"
     >
       <GhostMarks letters={LETTERS[variant]} />
-      <GlitchField density="lite" className="opacity-80" />
-
-      {/* Small geometric flecks instead of glow orbs */}
-      <div className="absolute right-[12%] top-[20%] hidden h-2.5 w-2.5 rotate-45 border border-accent-glow/30 md:block" />
-      <div className="absolute right-[28%] bottom-[24%] hidden h-2 w-2 rounded-full bg-accent-electric/35 md:block" />
-      <div className="absolute left-[10%] bottom-[30%] hidden h-px w-10 bg-accent-primary/40 md:block" />
+      <CyberAmbient density="lite" className="z-[1]" />
+      <GlitchField density="lite" className="z-[1] opacity-40" />
     </div>
   );
 }
