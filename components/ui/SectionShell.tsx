@@ -1,6 +1,7 @@
 import type { CSSProperties, ReactNode } from "react";
 import {
   SECTION_CUTS,
+  isLeftLean,
   type SectionCutId,
 } from "@/lib/section-cuts";
 
@@ -22,7 +23,7 @@ const blendTone: Record<BlendFrom, string> = {
 };
 
 /**
- * Diagonal seam shell — glitch-textured edge along the slant, soft under-bleed.
+ * Cyber diagonal seam shell — glitch ribbon, barcode ticks along the cut.
  */
 export function SectionShell({
   id,
@@ -34,6 +35,7 @@ export function SectionShell({
   style,
 }: SectionShellProps) {
   const cutDef = cut ? SECTION_CUTS[cut] : null;
+  const leftLean = cut ? isLeftLean(cut) : false;
 
   const cutStyles: CSSProperties = cutDef
     ? {
@@ -64,21 +66,49 @@ export function SectionShell({
         />
       ) : null}
 
-      {/* Glitch ribbon hugging the diagonal top edge */}
       {cutDef ? (
-        <div
-          aria-hidden
-          className="glitch-texture pointer-events-none absolute inset-x-0 top-0 z-[1] opacity-55"
-          style={{
-            height: cutDef.depth,
-            clipPath:
-              cut === "rise-left" ||
-              cut === "steep-left" ||
-              cut === "shallow-left"
-                ? "polygon(0 0, 100% 0, 100% 35%, 0 100%)"
-                : "polygon(0 0, 100% 0, 100% 100%, 0 35%)",
-          }}
-        />
+        <>
+          {/* Primary glitch ribbon on the seam */}
+          <div
+            aria-hidden
+            className="glitch-texture pointer-events-none absolute inset-x-0 top-0 z-[1] opacity-70"
+            style={{
+              height: cutDef.depth,
+              clipPath: leftLean
+                ? "polygon(0 0, 100% 0, 100% 40%, 0 100%)"
+                : "polygon(0 0, 100% 0, 100% 100%, 0 40%)",
+            }}
+          />
+          {/* Hard hairline along the cut */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-x-0 top-0 z-[1] border-t border-accent-glow/35"
+            style={{ height: cutDef.depth }}
+          />
+          {/* Barcode ticks riding the seam */}
+          <div
+            aria-hidden
+            className={[
+              "pointer-events-none absolute z-[1] flex gap-[3px]",
+              leftLean ? "left-[8%] top-[0.6vw]" : "right-[8%] top-[0.6vw]",
+            ].join(" ")}
+          >
+            {[0, 1, 2, 3, 4].map((i) => (
+              <span
+                key={i}
+                className="block w-[2px] -skew-x-[28deg] bg-text-primary/55"
+                style={{ height: `${8 + (i % 3) * 5}px` }}
+              />
+            ))}
+          </div>
+          <div
+            aria-hidden
+            className={[
+              "pointer-events-none absolute z-[1] h-[2px] w-10 bg-accent-electric/50",
+              leftLean ? "right-[14%] top-[1.2vw]" : "left-[14%] top-[1.2vw]",
+            ].join(" ")}
+          />
+        </>
       ) : null}
 
       <div className="relative z-[2]">{children}</div>

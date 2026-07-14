@@ -19,7 +19,7 @@
     { "label": "Gallery", "href": "/#gallery" },
     { "label": "Contact", "href": "/#contact" }
   ],
-  "heroTag": "PORTFOLIO — 2026",
+  "heroTag": "PORTFOLIO",
   "heroCta": { "label": "Let's talk", "href": "/#contact" },
   "closingHeadline": "Let's build something useful together.",
   "footerNote": "Designed and built by Rendyll Ryan Cabardo."

@@ -3,6 +3,8 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { CyberAmbient } from "@/components/ui/CyberAmbient";
+import { GlitchField } from "@/components/hero/GlitchField";
 import type { Project } from "@/lib/types";
 
 interface WorkSelectScreenProps {
@@ -10,7 +12,7 @@ interface WorkSelectScreenProps {
 }
 
 /**
- * Character-select style archive — parallelogram roster + diagonal detail stage.
+ * Character-select archive — cyber parallelogram roster + diagonal stage.
  */
 export function WorkSelectScreen({ projects }: WorkSelectScreenProps) {
   const [activeSlug, setActiveSlug] = useState(projects[0]?.slug ?? "");
@@ -27,40 +29,58 @@ export function WorkSelectScreen({ projects }: WorkSelectScreenProps) {
 
   return (
     <div className="work-select relative min-h-dvh overflow-hidden bg-bg-void">
-      {/* Diagonal slash stage (Evely-style pink cut → indigo) */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 z-0"
-      >
+      {/* Stage backdrop */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 z-0">
         <div className="absolute inset-0 bg-bg-panel" />
         <div
-          className="glitch-texture absolute inset-0 opacity-90"
+          className="absolute inset-0 bg-gradient-to-br from-accent-primary/40 via-accent-primary-dim/30 to-bg-void"
           style={{
-            clipPath: "polygon(38% 0, 100% 0, 100% 100%, 12% 100%)",
+            clipPath: "polygon(36% 0, 100% 0, 100% 100%, 8% 100%)",
           }}
         />
         <div
-          className="absolute inset-0 opacity-[0.07]"
+          className="absolute inset-0 opacity-[0.12]"
           style={{
             backgroundImage:
-              "repeating-linear-gradient(135deg, var(--text-primary) 0 1px, transparent 1px 18px)",
-            clipPath: "polygon(0 0, 38% 0, 12% 100%, 0 100%)",
+              "repeating-linear-gradient(-22deg, transparent 0, transparent 26px, color-mix(in srgb, var(--bg-void) 55%, transparent) 26px, color-mix(in srgb, var(--bg-void) 55%, transparent) 28px)",
+            clipPath: "polygon(36% 0, 100% 0, 100% 100%, 8% 100%)",
+          }}
+        />
+        <div
+          className="absolute inset-0 opacity-[0.08]"
+          style={{
+            backgroundImage:
+              "repeating-linear-gradient(135deg, var(--text-primary) 0 1px, transparent 1px 16px)",
+            clipPath: "polygon(0 0, 36% 0, 8% 100%, 0 100%)",
           }}
         />
       </div>
 
-      {/* Top / bottom frame bands */}
+      <CyberAmbient density="lite" className="z-[1]" />
+      <GlitchField density="lite" className="z-[1] opacity-50" />
+
+      {/* Top / bottom cyber bands */}
       <div
         aria-hidden
-        className="glitch-texture slant-band pointer-events-none absolute inset-x-0 top-0 z-20 h-8 opacity-80 md:h-10"
+        className="glitch-texture slant-band pointer-events-none absolute inset-x-0 top-0 z-20 h-8 opacity-85 md:h-10"
       />
       <div
         aria-hidden
-        className="glitch-texture slant-band-flip pointer-events-none absolute inset-x-0 bottom-0 z-20 h-8 opacity-70 md:h-10"
+        className="pointer-events-none absolute left-[10%] top-2 z-20 flex gap-[3px] md:top-3"
+      >
+        {[0, 1, 2, 3].map((i) => (
+          <span
+            key={i}
+            className="block h-3 w-[2px] -skew-x-[28deg] bg-text-primary/60"
+          />
+        ))}
+      </div>
+      <div
+        aria-hidden
+        className="glitch-texture slant-band-flip pointer-events-none absolute inset-x-0 bottom-0 z-20 h-8 opacity-75 md:h-10"
       />
 
       <div className="relative z-10 flex min-h-dvh flex-col px-[5vw] pb-16 pt-16 md:flex-row md:items-stretch md:gap-8 md:px-[6vw] md:pb-20 md:pt-20 lg:gap-12 lg:pl-[calc(3rem+4vw)]">
-        {/* LEFT — roster of parallelogram slots */}
         <aside className="flex w-full shrink-0 flex-col md:w-[200px] lg:w-[240px]">
           <div className="mb-6 flex items-end justify-between gap-4 md:mb-8 md:block">
             <div>
@@ -73,7 +93,7 @@ export function WorkSelectScreen({ projects }: WorkSelectScreenProps) {
             </div>
             <Link
               href="/#projects"
-              className="slant-chip bg-bg-void/80 px-3 py-2 font-sans text-meta uppercase tracking-[0.08em] text-text-muted transition-colors hover:text-accent-glow md:mt-4"
+              className="slant-chip border border-border-subtle bg-bg-void/80 px-3 py-2 font-sans text-meta uppercase tracking-[0.08em] text-text-muted transition-colors hover:border-accent-electric hover:text-accent-glow md:mt-4"
             >
               ← Home
             </Link>
@@ -83,12 +103,11 @@ export function WorkSelectScreen({ projects }: WorkSelectScreenProps) {
             {projects.map((project, index) => {
               const isActive = project.slug === active.slug;
               return (
-                <li key={project.slug} className="relative w-[140px] shrink-0 md:w-full">
-                  {/* White offset shadow */}
-                  <div
-                    aria-hidden
-                    className="work-slot-shadow absolute inset-0"
-                  />
+                <li
+                  key={project.slug}
+                  className="relative w-[140px] shrink-0 md:w-full"
+                >
+                  <div aria-hidden className="work-slot-shadow absolute inset-0" />
                   <button
                     type="button"
                     onClick={() => setActiveSlug(project.slug)}
@@ -109,6 +128,14 @@ export function WorkSelectScreen({ projects }: WorkSelectScreenProps) {
                         className="object-cover"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-bg-void/90 via-transparent to-transparent" />
+                      <div className="absolute left-2 top-2 flex gap-[2px]">
+                        {[0, 1, 2].map((i) => (
+                          <span
+                            key={i}
+                            className="block h-2 w-[2px] -skew-x-[22deg] bg-accent-glow/70"
+                          />
+                        ))}
+                      </div>
                       <div className="absolute inset-x-0 bottom-0 p-2.5">
                         <p className="font-sans text-[0.6rem] uppercase tracking-[0.14em] text-accent-glow/80">
                           {String(index + 1).padStart(2, "0")}_
@@ -125,19 +152,17 @@ export function WorkSelectScreen({ projects }: WorkSelectScreenProps) {
           </ul>
         </aside>
 
-        {/* CENTER / RIGHT — active project stage */}
         <section className="relative mt-8 flex min-w-0 flex-1 flex-col md:mt-0 md:flex-row md:items-end md:gap-6 lg:gap-10">
-          {/* Large visual */}
           <div className="relative mx-auto w-full max-w-md flex-1 md:mx-0 md:max-w-none">
             <div
               aria-hidden
-              className="work-stage-plate absolute inset-x-[6%] bottom-[4%] top-[8%] bg-accent-primary/40"
+              className="work-stage-plate absolute inset-x-[6%] bottom-[4%] top-[8%] bg-accent-primary/45"
             />
             <div
               aria-hidden
-              className="poly-silhouette absolute bottom-[6%] left-1/2 h-[70%] w-[70%] -translate-x-1/2 bg-accent-glow/20"
+              className="absolute inset-x-[10%] top-[6%] z-[2] h-1.5 glitch-texture opacity-70"
             />
-            <div className="relative z-[1] mx-auto aspect-[3/4] w-[min(100%,380px)] md:w-[min(100%,440px)] lg:w-[min(92%,520px)]">
+            <div className="project-card-frame relative z-[1] mx-auto aspect-[3/4] w-[min(100%,380px)] overflow-hidden md:w-[min(100%,440px)] lg:w-[min(92%,520px)]">
               <Image
                 src={active.image}
                 alt={active.name}
@@ -149,8 +174,15 @@ export function WorkSelectScreen({ projects }: WorkSelectScreenProps) {
             </div>
           </div>
 
-          {/* Detail panel */}
           <div className="relative z-[2] mt-8 w-full max-w-lg md:mt-0 md:w-[42%] md:pb-6 lg:w-[38%]">
+            <div className="mb-2 flex gap-[3px]">
+              {[0, 1, 2].map((i) => (
+                <span
+                  key={i}
+                  className="block h-2.5 w-[3px] -skew-x-[22deg] bg-accent-electric"
+                />
+              ))}
+            </div>
             <p className="font-sans text-meta uppercase tracking-[0.2em] text-text-muted">
               {active.featured ? "Featured project_" : "Project_"}
             </p>

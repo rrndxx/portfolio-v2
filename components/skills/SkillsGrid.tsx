@@ -133,7 +133,7 @@ export function SkillsGrid({ content }: SkillsGridProps) {
     <SectionShell
       id="skills"
       className="bg-bg-panel pb-16 md:pb-32"
-      cut="rise-right"
+      cut="blade-right"
       blendFrom="void"
       zIndex={2}
       style={{ ["--section-pad-y" as string]: "5rem" }}

@@ -140,7 +140,7 @@ export function Gallery({ items }: GalleryProps) {
     <SectionShell
       id="gallery"
       className="bg-bg-void pb-16 md:pb-32"
-      cut="rise-right"
+      cut="rise-left"
       blendFrom="void"
       zIndex={6}
       style={{ ["--section-pad-y" as string]: "5rem" }}

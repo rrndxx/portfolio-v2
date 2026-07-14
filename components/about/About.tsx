@@ -22,6 +22,8 @@ export function About({ content }: AboutProps) {
     <SectionShell
       id="about"
       className="bg-bg-void pb-16 md:pb-32"
+      cut="rise-left"
+      blendFrom="void"
       style={{ ["--section-pad-y" as string]: "4rem" }}
       zIndex={1}
     >

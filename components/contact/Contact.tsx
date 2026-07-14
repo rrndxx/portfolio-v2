@@ -15,7 +15,7 @@ export function Contact({ config }: ContactProps) {
     <SectionShell
       id="contact"
       className="bg-bg-panel pb-20 md:pb-36"
-      cut="steep-right"
+      cut="blade-right"
       blendFrom="void"
       zIndex={7}
       style={{ ["--section-pad-y" as string]: "6rem" }}

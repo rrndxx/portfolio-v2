@@ -16,7 +16,7 @@ export function Achievements({ items }: AchievementsProps) {
     <SectionShell
       id="achievements"
       className="bg-bg-void pb-16 md:pb-32"
-      cut="shallow-left"
+      cut="blade-left"
       blendFrom="panel"
       zIndex={5}
       style={{ ["--section-pad-y" as string]: "5rem" }}

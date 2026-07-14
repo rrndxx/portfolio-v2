@@ -17,7 +17,7 @@ export function FeaturedProjects({ projects }: FeaturedProjectsProps) {
     <SectionShell
       id="projects"
       className="bg-bg-void pb-10 md:pb-16"
-      cut="steep-left"
+      cut="blade-left"
       blendFrom="panel"
       zIndex={3}
       style={{ ["--section-pad-y" as string]: "3.5rem" }}
