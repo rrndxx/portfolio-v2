@@ -93,10 +93,10 @@ export function WorkSelectScreen({ projects }: WorkSelectScreenProps) {
                     type="button"
                     onClick={() => setActiveSlug(project.slug)}
                     className={[
-                      "work-slot relative block w-full overflow-hidden text-left transition-transform duration-300",
+                      "work-slot relative block w-full overflow-hidden text-left transition-[transform,filter] duration-300",
                       isActive
                         ? "work-slot-active scale-[1.02]"
-                        : "hover:-translate-y-1",
+                        : "hover:-translate-y-1.5 hover:brightness-110",
                     ].join(" ")}
                     aria-pressed={isActive}
                   >

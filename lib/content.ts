@@ -1,5 +1,6 @@
 import type {
   AboutContent,
+  Achievement,
   ExperienceEntry,
   GalleryItem,
   Project,
@@ -8,6 +9,7 @@ import type {
 } from "@/lib/types";
 
 import aboutJson from "@/data/about.json";
+import achievementsJson from "@/data/achievements.json";
 import experienceJson from "@/data/experience.json";
 import galleryJson from "@/data/gallery.json";
 import projectsJson from "@/data/projects.json";
@@ -36,6 +38,10 @@ export function getFeaturedProjects(): Project[] {
 
 export function getExperience(): ExperienceEntry[] {
   return experienceJson as ExperienceEntry[];
+}
+
+export function getAchievements(): Achievement[] {
+  return achievementsJson as Achievement[];
 }
 
 export function getGallery(): GalleryItem[] {

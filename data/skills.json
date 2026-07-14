@@ -2,19 +2,34 @@
   "categories": [
     {
       "name": "Frontend",
-      "skills": ["React", "Next.js", "TypeScript", "Tailwind CSS"]
+      "skills": [
+        "React",
+        "Next.js",
+        "React Native",
+        "Tailwind CSS",
+        "Shadcn UI",
+        "Framer Motion"
+      ]
     },
     {
       "name": "Backend",
-      "skills": ["NestJS", "FastAPI", "Node.js", "Express"]
+      "skills": ["Node.js", "Express", "NestJS", "FastAPI", "Flask", "PHP"]
     },
     {
       "name": "Data & Infra",
-      "skills": ["PostgreSQL", "MySQL", "Redis", "Supabase", "Firebase", "Meilisearch"]
+      "skills": [
+        "PostgreSQL",
+        "MySQL",
+        "MongoDB",
+        "Supabase",
+        "Firebase",
+        "Redis",
+        "Meilisearch"
+      ]
     },
     {
       "name": "Tooling",
-      "skills": ["Docker"]
+      "skills": ["Docker", "Git", "GitHub"]
     }
   ]
 }

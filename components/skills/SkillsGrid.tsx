@@ -55,7 +55,7 @@ function SkillParallelogram({
     <div
       className={[
         "relative w-full max-w-[240px] shrink-0 md:max-w-none md:flex-1",
-        "transition-transform duration-300 hover:-translate-y-2",
+        "transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-2 hover:scale-[1.01]",
       ].join(" ")}
       style={{ zIndex: index + 1 }}
     >

@@ -12,37 +12,72 @@ function sectionIdFromHref(href: string): string {
   return hash || "hero";
 }
 
+/** All homepage sections — spy this list, then map onto the nearest nav item. */
+const SPY_ORDER = [
+  "hero",
+  "about",
+  "skills",
+  "projects",
+  "experience",
+  "achievements",
+  "gallery",
+  "contact",
+] as const;
+
+function resolveNavId(sectionId: string, navIds: string[]): string {
+  if (navIds.includes(sectionId)) return sectionId;
+
+  const aliases: Record<string, string> = {
+    skills: "about",
+  };
+
+  const aliased = aliases[sectionId];
+  if (aliased && navIds.includes(aliased)) return aliased;
+
+  const idx = SPY_ORDER.indexOf(sectionId as (typeof SPY_ORDER)[number]);
+  if (idx === -1) return navIds[0] ?? "hero";
+
+  for (let i = idx; i >= 0; i--) {
+    const id = SPY_ORDER[i];
+    if (navIds.includes(id)) return id;
+  }
+
+  return navIds[0] ?? "hero";
+}
+
 export function VerticalNavRail({ items }: VerticalNavRailProps) {
   const [activeId, setActiveId] = useState(
-    sectionIdFromHref(items[0]?.href ?? "hero"),
+    () => sectionIdFromHref(items[0]?.href ?? "hero"),
   );
 
   useEffect(() => {
-    const ids = items.map((item) => sectionIdFromHref(item.href));
-    const elements = ids
-      .map((id) => document.getElementById(id))
-      .filter((el): el is HTMLElement => Boolean(el));
+    const navIds = items.map((item) => sectionIdFromHref(item.href));
+    const elements = SPY_ORDER.map((id) => document.getElementById(id)).filter(
+      (el): el is HTMLElement => Boolean(el),
+    );
 
     if (elements.length === 0) return;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+    const update = () => {
+      const marker = window.scrollY + window.innerHeight * 0.28;
+      let current = elements[0].id;
 
-        if (visible[0]?.target.id) {
-          setActiveId(visible[0].target.id);
-        }
-      },
-      {
-        rootMargin: "-35% 0px -45% 0px",
-        threshold: [0.1, 0.25, 0.5],
-      },
-    );
+      for (const el of elements) {
+        const top = el.getBoundingClientRect().top + window.scrollY;
+        if (top <= marker) current = el.id;
+      }
 
-    elements.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
+      setActiveId(resolveNavId(current, navIds));
+    };
+
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+
+    return () => {
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+    };
   }, [items]);
 
   return (
@@ -50,7 +85,7 @@ export function VerticalNavRail({ items }: VerticalNavRailProps) {
       aria-label="Primary"
       className="pointer-events-none fixed left-0 top-0 z-40 hidden h-dvh w-12 md:block lg:w-14"
     >
-      <ul className="pointer-events-auto flex h-full flex-col items-center justify-center gap-2 py-16">
+      <ul className="pointer-events-auto flex h-full flex-col items-center justify-center gap-1 py-12 lg:gap-1.5">
         {items.map((item) => {
           const id = sectionIdFromHref(item.href);
           const isActive = activeId === id;
@@ -58,16 +93,23 @@ export function VerticalNavRail({ items }: VerticalNavRailProps) {
           return (
             <li
               key={item.href}
-              className="flex h-[4.75rem] w-full items-center justify-center"
+              className="relative flex h-[3.85rem] w-full items-center justify-center lg:h-[4.25rem]"
             >
+              {isActive ? (
+                <span
+                  aria-hidden
+                  className="absolute right-1.5 top-1/2 z-10 h-1.5 w-1.5 -translate-y-1/2 rounded-full bg-accent-glow shadow-[0_0_10px_var(--accent-glow)] lg:right-2"
+                />
+              ) : null}
               <a
                 href={item.href}
+                onClick={() => setActiveId(id)}
                 className={[
-                  "block origin-center -rotate-90 font-sans text-meta uppercase whitespace-nowrap",
-                  "tracking-[0.14em] transition-colors duration-300",
+                  "relative block origin-center -rotate-90 font-sans text-meta uppercase whitespace-nowrap",
+                  "tracking-[0.14em] transition-[color,transform] duration-300",
                   isActive
-                    ? "text-accent-glow"
-                    : "text-text-primary/65 hover:text-text-primary",
+                    ? "scale-105 text-accent-glow"
+                    : "text-text-primary/55 hover:scale-105 hover:text-text-primary",
                 ].join(" ")}
                 aria-current={isActive ? "true" : undefined}
               >

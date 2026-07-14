@@ -2,23 +2,24 @@
   "name": "RRNDXX",
   "role": "Full-Stack Developer",
   "heroHeadline": "FULL-STACK / DEVELOPER",
-  "heroAvatar": "/images/avatar/hero-avatar.svg",
+  "heroAvatar": "/images/avatar/hero-avatar.png",
   "location": "Cebu City, Philippines",
   "email": "rendyllcabardo11@gmail.com",
   "socials": {
     "github": "https://github.com/rrndxx",
-    "portfolio": "https://rrndxx.netlify.app",
-    "linkedin": ""
+    "linkedin": "https://www.linkedin.com/in/rendyll"
   },
   "navItems": [
     { "label": "Home", "href": "/#hero" },
     { "label": "About", "href": "/#about" },
     { "label": "Work", "href": "/#projects" },
+    { "label": "Career", "href": "/#experience" },
+    { "label": "Wins", "href": "/#achievements" },
     { "label": "Gallery", "href": "/#gallery" },
     { "label": "Contact", "href": "/#contact" }
   ],
   "heroTag": "PORTFOLIO — 2026",
   "heroCta": { "label": "Let's talk", "href": "/#contact" },
-  "closingHeadline": "TODO: e.g. Let's build something worth shipping.",
-  "footerNote": "TODO: e.g. Designed and built by [name]. All rights reserved."
+  "closingHeadline": "Let's build something useful together.",
+  "footerNote": "Designed and built by Rendyll Ryan Cabardo."
 }

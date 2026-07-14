@@ -140,9 +140,9 @@ export function Gallery({ items }: GalleryProps) {
     <SectionShell
       id="gallery"
       className="bg-bg-void pb-16 md:pb-32"
-      cut="rise-left"
-      blendFrom="panel"
-      zIndex={5}
+      cut="rise-right"
+      blendFrom="void"
+      zIndex={6}
       style={{ ["--section-pad-y" as string]: "5rem" }}
     >
       <SectionAtmosphere variant="gallery" />

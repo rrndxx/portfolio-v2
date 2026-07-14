@@ -1,7 +1,13 @@
 import { GlitchField } from "@/components/hero/GlitchField";
 import { GhostMarks } from "@/components/ui/GhostMarks";
 
-type AtmosphereVariant = "experience" | "skills" | "gallery" | "about" | "contact";
+type AtmosphereVariant =
+  | "experience"
+  | "skills"
+  | "gallery"
+  | "about"
+  | "contact"
+  | "achievements";
 
 interface SectionAtmosphereProps {
   variant?: AtmosphereVariant;
@@ -11,6 +17,7 @@ const LETTERS: Record<AtmosphereVariant, string[]> = {
   about: ["A", "B", "O", "U"],
   skills: ["S", "K", "L"],
   experience: ["E", "X", "P"],
+  achievements: ["W", "I", "N"],
   gallery: ["G", "L", "Y"],
   contact: ["C", "T", "N"],
 };

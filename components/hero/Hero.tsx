@@ -18,16 +18,19 @@ function Wordmark({ text }: { text: string }) {
     .filter(Boolean);
 
   return (
-    <h1 className="relative mx-auto w-full max-w-[98vw] text-center font-hero text-[clamp(2.75rem,13vw,8.5rem)] font-bold uppercase leading-[0.86] tracking-[0.06em] text-text-primary md:tracking-[0.1em]">
-      {parts.map((part) => (
+    <h1 className="hero-enter-word relative mx-auto w-full max-w-[98vw] text-center font-hero text-[clamp(2.75rem,13vw,8.5rem)] font-bold uppercase leading-[0.86] tracking-[0.06em] text-text-primary md:tracking-[0.1em]">
+      {parts.map((part, index) => (
         <span key={part} className="relative block whitespace-nowrap">
           <span
             aria-hidden
-            className="title-ghost absolute inset-0 translate-x-[0.04em] font-hero text-[clamp(2.75rem,13vw,8.5rem)] font-bold uppercase leading-[0.86] tracking-[0.06em] opacity-55 md:tracking-[0.1em]"
+            className={[
+              "title-ghost absolute inset-0 translate-x-[0.04em] font-hero text-[clamp(2.75rem,13vw,8.5rem)] font-bold uppercase leading-[0.86] tracking-[0.06em] opacity-55 md:tracking-[0.1em]",
+              index === 0 ? "title-ghost-twitch" : "",
+            ].join(" ")}
           >
             {part}
           </span>
-          <span className="relative inline-block scale-x-110 origin-center">
+          <span className="relative inline-block origin-center scale-x-110">
             {part}
           </span>
         </span>
@@ -55,7 +58,7 @@ function SocialIcon({
       target={isExternal ? "_blank" : undefined}
       rel={isExternal ? "noopener noreferrer" : undefined}
       aria-label={label}
-      className="text-text-muted transition-colors duration-300 hover:text-accent-glow"
+      className="text-text-muted transition-[color,transform] duration-300 hover:scale-110 hover:text-accent-glow"
     >
       {children}
     </a>
@@ -66,10 +69,10 @@ function PaginationDots() {
   return (
     <div
       aria-hidden
-      className="pointer-events-none absolute right-5 top-1/2 z-30 hidden -translate-y-1/2 flex-col items-center gap-3 md:flex lg:right-8"
+      className="hero-enter-ui pointer-events-none absolute right-5 top-1/2 z-30 hidden -translate-y-1/2 flex-col items-center gap-3 md:flex lg:right-8"
     >
-      <span className="h-1.5 w-1.5 rounded-full bg-text-primary/40" />
-      <span className="h-2 w-2 rounded-full bg-accent-primary" />
+      <span className="h-1.5 w-1.5 rounded-full bg-text-primary/40 transition-transform duration-300" />
+      <span className="h-2 w-2 rounded-full bg-accent-primary shadow-[0_0_12px_var(--accent-glow)]" />
       <span className="h-1.5 w-1.5 rounded-full bg-text-primary/40" />
     </div>
   );
@@ -95,13 +98,13 @@ export function Hero({ config }: HeroProps) {
       <GhostMarks letters={["P", "R", "E", "S", "D"]} />
       <GlitchField />
 
-      <div className="absolute left-4 top-5 z-30 md:left-[calc(20vw+1.25rem)] md:top-7">
+      <div className="hero-enter-ui absolute left-4 top-5 z-30 md:left-[calc(20vw+1.25rem)] md:top-7">
         <p className="font-hero text-sm font-bold uppercase tracking-[0.35em] text-text-primary md:text-base md:tracking-[0.42em]">
           {brand.slice(0, 8)}
         </p>
       </div>
 
-      <div className="absolute right-4 top-4 z-30 flex items-center gap-2 md:right-8 md:top-6">
+      <div className="hero-enter-ui absolute right-4 top-4 z-30 flex items-center gap-2 md:right-8 md:top-6">
         <Button variant="pill" href={config.heroCta.href}>
           {config.heroCta.label}
         </Button>
@@ -117,7 +120,7 @@ export function Hero({ config }: HeroProps) {
 
       <HeroAvatar src={config.heroAvatar} alt={`${config.name} avatar`} />
 
-      <div className="absolute inset-x-0 bottom-0 z-30 flex items-end justify-between px-5 pb-6 md:px-8 md:pb-8 md:pl-[calc(20vw+1.5rem)]">
+      <div className="hero-enter-ui absolute inset-x-0 bottom-0 z-30 flex items-end justify-between px-5 pb-6 md:px-8 md:pb-8 md:pl-[calc(20vw+1.5rem)]">
         <p className="font-sans text-meta uppercase tracking-[0.1em] text-text-muted">
           {config.heroTag}
         </p>

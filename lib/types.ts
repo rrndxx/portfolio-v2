@@ -5,8 +5,8 @@ export interface NavItem {
 
 export interface Socials {
   github: string;
-  portfolio: string;
   linkedin: string;
+  portfolio?: string;
 }
 
 export interface HeroCta {
@@ -64,6 +64,12 @@ export interface ExperienceEntry {
   role: string;
   org: string;
   description: string;
+}
+
+export interface Achievement {
+  id: string;
+  title: string;
+  year: string;
 }
 
 export type GalleryItemType = "project-shot" | "art";

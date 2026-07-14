@@ -90,6 +90,25 @@
 
 html {
   scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+body {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -105,6 +124,198 @@ html {
     transition-duration: 0.01ms !important;
   }
 }
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Sparse animated glitch ticks — only a few streaks use these */
+  @keyframes glitch-flicker {
+    0%,
+    100% {
+      opacity: 0.15;
+      transform: scaleX(0.35);
+    }
+    8% {
+      opacity: 0.9;
+      transform: scaleX(1);
+    }
+    12% {
+      opacity: 0.2;
+      transform: scaleX(0.55) translateX(4px);
+    }
+    18% {
+      opacity: 0.85;
+      transform: scaleX(1.15) translateX(-2px);
+    }
+    28%,
+    72% {
+      opacity: 0.25;
+      transform: scaleX(0.4);
+    }
+    78% {
+      opacity: 1;
+      transform: scaleX(1);
+    }
+    84% {
+      opacity: 0.35;
+      transform: scaleX(0.7) translateX(6px);
+    }
+  }
+
+  @keyframes glitch-scan {
+    0%,
+    100% {
+      opacity: 0.2;
+      transform: translateX(-12px) scaleX(0.6);
+    }
+    40% {
+      opacity: 0.85;
+      transform: translateX(0) scaleX(1);
+    }
+    55% {
+      opacity: 0.4;
+      transform: translateX(10px) scaleX(0.85);
+    }
+    70% {
+      opacity: 0.9;
+      transform: translateX(-4px) scaleX(1.05);
+    }
+  }
+
+  @keyframes glitch-blink {
+    0%,
+    92%,
+    100% {
+      opacity: 0.35;
+    }
+    93% {
+      opacity: 1;
+    }
+    94% {
+      opacity: 0.1;
+    }
+    96% {
+      opacity: 0.95;
+    }
+    97% {
+      opacity: 0.2;
+    }
+  }
+
+  @keyframes glitch-burst {
+    0%,
+    100% {
+      opacity: 0.25;
+      gap: 0.25rem;
+    }
+    15% {
+      opacity: 1;
+      gap: 0.15rem;
+    }
+    22% {
+      opacity: 0.2;
+      gap: 0.45rem;
+    }
+    30% {
+      opacity: 0.85;
+      gap: 0.2rem;
+    }
+    45%,
+    100% {
+      opacity: 0.35;
+    }
+  }
+
+  @keyframes hero-enter {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes hero-enter-fade {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes ghost-drift {
+    0%,
+    100% {
+      opacity: 0.045;
+      transform: translate(0, 0);
+    }
+    50% {
+      opacity: 0.07;
+      transform: translate(4px, -6px);
+    }
+  }
+
+  @keyframes title-ghost-twitch {
+    0%,
+    88%,
+    100% {
+      transform: translate(0.04em, 0);
+      filter: none;
+    }
+    90% {
+      transform: translate(0.08em, 1px);
+      filter: drop-shadow(-2px 0 color-mix(in srgb, var(--accent-electric) 55%, transparent));
+    }
+    92% {
+      transform: translate(0.01em, -1px);
+      filter: drop-shadow(2px 0 color-mix(in srgb, var(--accent-glow) 50%, transparent));
+    }
+    94% {
+      transform: translate(0.05em, 0);
+      filter: none;
+    }
+  }
+
+  .glitch-anim-flicker {
+    transform-origin: left center;
+    animation: glitch-flicker 4.8s var(--ease-out-expo) infinite;
+  }
+
+  .glitch-anim-scan {
+    transform-origin: left center;
+    animation: glitch-scan 3.6s var(--ease-out-expo) infinite;
+  }
+
+  .glitch-anim-blink {
+    animation: glitch-blink 5.2s steps(1, end) infinite;
+  }
+
+  .glitch-burst-anim {
+    animation: glitch-burst 4.2s var(--ease-out-expo) infinite;
+  }
+
+  .hero-enter-word {
+    animation: hero-enter 0.75s var(--ease-out-expo) both;
+  }
+
+  .hero-enter-ui {
+    animation: hero-enter-fade 0.7s var(--ease-out-expo) 0.25s both;
+  }
+
+  .hero-enter-avatar {
+    animation: hero-enter 0.85s var(--ease-out-expo) 0.15s both;
+  }
+
+  .ghost-drift {
+    animation: ghost-drift 7s var(--ease-out-expo) infinite;
+  }
+
+  .title-ghost-twitch {
+    animation: title-ghost-twitch 6.5s steps(1, end) infinite;
+  }
+}
+
 
 body {
   background: var(--bg-void);
@@ -321,5 +532,4 @@ body {
   box-shadow: inset 0 0 0 1px var(--accent-electric);
   color: var(--accent-electric);
 }
-
 

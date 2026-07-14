@@ -167,9 +167,12 @@ export function ProjectBlock({ project, index = 0 }: ProjectBlockProps) {
         ].join(" ")}
       >
         <div className="project-orb-scanlines absolute inset-0 opacity-35" />
-        {/* Glitch ticks on the plate */}
+        {/* Mostly static ticks; one living glitch per card */}
         <span className="absolute left-[12%] top-[16%] h-[2px] w-10 bg-accent-glow/70" />
-        <span className="absolute left-[12%] top-[19%] h-[2px] w-4 bg-text-primary/40" />
+        <span
+          className="glitch-anim-flicker absolute left-[12%] top-[19%] h-[2px] w-4 bg-text-primary/40"
+          style={{ animationDelay: `${0.4 + index * 0.35}s` }}
+        />
         <span className="absolute right-[14%] top-[42%] h-[2px] w-8 bg-bg-void/50" />
         <span className="absolute right-[18%] bottom-[28%] h-[2px] w-12 bg-accent-electric/55" />
       </Layer>
@@ -192,13 +195,13 @@ export function ProjectBlock({ project, index = 0 }: ProjectBlockProps) {
           visualOnEnd ? "md:mr-2 lg:mr-4" : "md:ml-2 lg:ml-4",
         ].join(" ")}
       >
-        <div className="relative aspect-[4/5] w-full">
+        <div className="group relative aspect-[4/5] w-full overflow-hidden">
           <Image
             src={project.image}
             alt={project.name}
             fill
             sizes="(max-width: 768px) 78vw, 380px"
-            className="object-cover object-top"
+            className="object-cover object-top transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"
           />
           <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-bg-panel to-transparent md:hidden" />
         </div>

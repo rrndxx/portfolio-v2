@@ -7,7 +7,7 @@ interface HeroAvatarProps {
 
 export function HeroAvatar({ src, alt }: HeroAvatarProps) {
   return (
-    <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 flex justify-center">
+    <div className="hero-enter-avatar pointer-events-none absolute inset-x-0 bottom-0 z-20 flex justify-center">
       <div className="relative h-[52vh] w-[min(78vw,400px)] md:h-[72vh] md:w-[min(42vw,480px)]">
         <Image
           src={src}
