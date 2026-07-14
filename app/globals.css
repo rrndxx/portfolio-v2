@@ -570,4 +570,145 @@ body {
   }
 }
 
+/* ——— Hero cyber fight — hard diagonals, no curves ——— */
+.hero-fight-field {
+  background: linear-gradient(
+    148deg,
+    var(--accent-primary) 0%,
+    var(--accent-electric) 32%,
+    var(--accent-primary-dim) 64%,
+    var(--bg-void) 100%
+  );
+}
+
+.hero-fight-field::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    -22deg,
+    transparent 0,
+    transparent 28px,
+    color-mix(in srgb, var(--bg-void) 16%, transparent) 28px,
+    color-mix(in srgb, var(--bg-void) 16%, transparent) 30px
+  );
+  pointer-events: none;
+}
+
+.hero-fight-field::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    var(--bg-void) 0%,
+    transparent 22%,
+    transparent 78%,
+    color-mix(in srgb, var(--bg-void) 40%, transparent) 100%
+  );
+  pointer-events: none;
+}
+
+.hero-fight-slashes {
+  background:
+    linear-gradient(
+      118deg,
+      transparent 0%,
+      transparent 24%,
+      color-mix(in srgb, var(--text-primary) 22%, transparent) 24.2%,
+      color-mix(in srgb, var(--text-primary) 22%, transparent) 26%,
+      transparent 26.2%,
+      transparent 41%,
+      color-mix(in srgb, var(--text-primary) 14%, transparent) 41.2%,
+      color-mix(in srgb, var(--text-primary) 14%, transparent) 42%,
+      transparent 42.2%,
+      transparent 63%,
+      color-mix(in srgb, var(--accent-glow) 28%, transparent) 63.2%,
+      color-mix(in srgb, var(--accent-glow) 28%, transparent) 66%,
+      transparent 66.2%,
+      transparent 78%,
+      color-mix(in srgb, var(--text-primary) 18%, transparent) 78.2%,
+      color-mix(in srgb, var(--text-primary) 18%, transparent) 79%,
+      transparent 79.2%
+    );
+}
+
+.hero-slash {
+  position: absolute;
+  background: color-mix(in srgb, var(--text-primary) 14%, transparent);
+  transform: skewX(-28deg);
+}
+
+.hero-slash-a {
+  top: 8%;
+  left: -10%;
+  width: 55%;
+  height: 14px;
+  background: color-mix(in srgb, var(--text-primary) 20%, transparent);
+}
+
+.hero-slash-b {
+  top: 26%;
+  right: -8%;
+  width: 40%;
+  height: 8px;
+  background: color-mix(in srgb, var(--accent-glow) 35%, transparent);
+}
+
+.hero-slash-c {
+  bottom: 34%;
+  left: -5%;
+  width: 48%;
+  height: 10px;
+  background: color-mix(in srgb, var(--bg-void) 45%, transparent);
+}
+
+.hero-slash-d {
+  bottom: 18%;
+  right: -12%;
+  width: 52%;
+  height: 18px;
+  background: color-mix(in srgb, var(--text-primary) 16%, transparent);
+}
+
+.hero-cut {
+  position: absolute;
+  background: color-mix(in srgb, var(--bg-void) 55%, transparent);
+}
+
+.hero-cut-tl {
+  top: 0;
+  left: 0;
+  width: 28vw;
+  height: 18vh;
+  clip-path: polygon(0 0, 100% 0, 55% 100%, 0 100%);
+}
+
+.hero-cut-br {
+  right: 0;
+  bottom: 0;
+  width: 34vw;
+  height: 22vh;
+  clip-path: polygon(45% 0, 100% 0, 100% 100%, 0 100%);
+  background: color-mix(in srgb, var(--bg-void) 70%, transparent);
+}
+
+.hero-fight-mega {
+  font-size: clamp(5.5rem, 28vw, 18rem);
+  letter-spacing: -0.04em;
+  opacity: 0.9;
+  text-shadow: 6px 6px 0 color-mix(in srgb, var(--bg-void) 50%, transparent);
+  transform: scaleX(1.08) skewX(-6deg);
+}
+
+.hero-fight-title {
+  text-shadow:
+    3px 3px 0 var(--bg-void),
+    6px 6px 0 color-mix(in srgb, var(--bg-void) 55%, transparent);
+}
+
+.hero-fight-plate {
+  box-shadow: 4px 4px 0 color-mix(in srgb, var(--bg-void) 55%, transparent);
+}
+
 

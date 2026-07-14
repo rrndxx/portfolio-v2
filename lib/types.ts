@@ -18,6 +18,7 @@ export interface SiteConfig {
   name: string;
   role: string;
   heroHeadline: string;
+  heroBackdrop: string;
   heroAvatar: string;
   location: string;
   email: string;
