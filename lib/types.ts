@@ -70,6 +70,8 @@ export interface Achievement {
   id: string;
   title: string;
   year: string;
+  category?: string;
+  organization?: string;
 }
 
 export type GalleryItemType = "project-shot" | "art";

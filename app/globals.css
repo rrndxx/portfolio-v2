@@ -533,3 +533,41 @@ body {
   color: var(--accent-electric);
 }
 
+/* Achievements — lower-third parallelogram plates */
+.achieve-lt {
+  transition: transform 0.3s var(--ease-out-expo);
+}
+
+.achieve-lt:hover {
+  transform: translateY(-3px);
+}
+
+.achieve-lt-plate {
+  transform: skewX(-14deg);
+  transform-origin: center;
+}
+
+.achieve-lt-unskew {
+  transform: skewX(14deg);
+}
+
+.achieve-lt-shadow {
+  box-shadow: 4px 5px 0 color-mix(in srgb, var(--bg-void) 55%, transparent);
+}
+
+.achieve-lt-outline {
+  border: 1.5px solid color-mix(in srgb, var(--accent-glow) 40%, transparent);
+  transform: skewX(-14deg);
+  left: 2%;
+  right: 2%;
+  top: 0.4rem;
+  height: 3.75rem;
+}
+
+@media (min-width: 768px) {
+  .achieve-lt-outline {
+    height: 4rem;
+  }
+}
+
+

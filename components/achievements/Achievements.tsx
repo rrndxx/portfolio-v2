@@ -11,15 +11,6 @@ interface AchievementsProps {
   items: Achievement[];
 }
 
-const OFFSETS = [
-  "md:mt-0",
-  "md:mt-8",
-  "md:mt-3",
-  "md:mt-12",
-  "md:mt-5",
-  "md:mt-10",
-] as const;
-
 export function Achievements({ items }: AchievementsProps) {
   return (
     <SectionShell
@@ -32,19 +23,15 @@ export function Achievements({ items }: AchievementsProps) {
     >
       <SectionAtmosphere variant="achievements" />
 
-      <div className="pl-[8vw] pr-[6vw] md:pl-[14vw] md:pr-[10vw]">
+      <div className="pl-[6vw] pr-[6vw] md:pl-[12vw] md:pr-[10vw]">
         <Reveal>
           <SectionHeading className="mb-12 md:mb-16">Achievements</SectionHeading>
         </Reveal>
 
-        <div className="flex flex-wrap items-start gap-8 md:gap-x-10 md:gap-y-12">
+        <div className="grid grid-cols-1 items-start gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-12">
           {items.map((item, index) => (
-            <Reveal
-              key={item.id}
-              delay={index * 0.08}
-              className={OFFSETS[index % OFFSETS.length]}
-            >
-              <AchievementCard achievement={item} index={index} />
+            <Reveal key={item.id} delay={(index % 3) * 0.04} className="h-full">
+              <AchievementCard achievement={item} />
             </Reveal>
           ))}
         </div>

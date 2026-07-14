@@ -2,16 +2,92 @@
   {
     "id": "magna-cum-laude",
     "title": "Magna Cum Laude",
+    "category": "Academic",
+    "organization": "CRMC",
     "year": "2026"
   },
   {
-    "id": "dev-consultant",
-    "title": "Development Consultant",
+    "id": "civil-service-professional",
+    "title": "Civil Service Eligibility – Professional Passer",
+    "category": "Professional",
+    "organization": "Civil Service Commission",
     "year": "2026"
   },
   {
-    "id": "portfolio-ship",
-    "title": "TODO: Award title",
-    "year": "TODO"
+    "id": "deans-list",
+    "title": "Consistent Dean's List Scholar",
+    "category": "Academic",
+    "organization": "CRMC",
+    "year": "2022–2026"
+  },
+  {
+    "id": "full-stack-developer-year",
+    "title": "Full-Stack Developer of the Year",
+    "category": "Technical",
+    "organization": "CRMC",
+    "year": "2026"
+  },
+  {
+    "id": "leadership-award",
+    "title": "Leadership Awardee",
+    "category": "Leadership",
+    "organization": "CRMC",
+    "year": "2026"
+  },
+  {
+    "id": "outstanding-intern",
+    "title": "Outstanding Intern as Developer",
+    "category": "Professional",
+    "organization": "CRMC",
+    "year": "2026"
+  },
+  {
+    "id": "multimedia-wizard",
+    "title": "Multimedia Wizard Awardee",
+    "category": "Technical",
+    "organization": "CRMC",
+    "year": "2026"
+  },
+  {
+    "id": "best-pc-troubleshooting",
+    "title": "Best in PC Troubleshooting",
+    "category": "Technical",
+    "organization": "CRMC",
+    "year": "2026"
+  },
+  {
+    "id": "networking-excellence",
+    "title": "Networking Excellence Awardee",
+    "category": "Technical",
+    "organization": "CRMC",
+    "year": "2026"
+  },
+  {
+    "id": "psite-national-isite-quiz-bowl",
+    "title": "5th Placer — National ISITE Quiz Bowl",
+    "category": "Competition",
+    "organization": "PSITE",
+    "year": "2025"
+  },
+  {
+    "id": "cesafi-computer-quiz-bowl",
+    "title": "5th Placer — CESAFI Computer Quiz Bowl",
+    "category": "Competition",
+    "organization": "CESAFI",
+    "year": "2025"
+  },
+  {
+    "id": "sci-math-quiz-bowl",
+    "title": "2nd Placer — Sci-Math Quiz Bowl",
+    "category": "Competition",
+    "organization": "CRMC",
+    "year": "2026"
+  },
+  {
+    "id": "word-warpathon",
+    "title": "2nd Placer — Word Warpathon",
+    "category": "Competition",
+    "organization": "CRMC",
+    "year": "2026"
   }
 ]
