@@ -7,14 +7,14 @@ interface HeroAvatarProps {
 
 export function HeroAvatar({ src, alt }: HeroAvatarProps) {
   return (
-    <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 flex justify-center md:left-[22vw]">
-      <div className="relative h-[48vh] w-[min(72vw,340px)] md:h-[68vh] md:w-[min(36vw,440px)]">
+    <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 flex justify-center">
+      <div className="relative h-[52vh] w-[min(78vw,400px)] md:h-[72vh] md:w-[min(42vw,480px)]">
         <Image
           src={src}
           alt={alt}
           fill
           priority
-          sizes="(max-width: 768px) 72vw, 36vw"
+          sizes="(max-width: 768px) 78vw, 42vw"
           className="object-contain object-bottom"
         />
       </div>

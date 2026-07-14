@@ -1,3 +1,4 @@
+import { SectionAtmosphere } from "@/components/ui/SectionAtmosphere";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SectionShell } from "@/components/ui/SectionShell";
 import type { SiteConfig } from "@/lib/types";
@@ -19,14 +20,7 @@ export function Contact({ config }: ContactProps) {
       zIndex={6}
       style={{ ["--section-pad-y" as string]: "6rem" }}
     >
-      <div
-        aria-hidden
-        className="pointer-events-none absolute left-1/2 top-[8%] h-48 w-[min(80vw,520px)] -translate-x-1/2 opacity-60"
-        style={{
-          background:
-            "radial-gradient(ellipse at center, color-mix(in srgb, var(--accent-primary) 30%, transparent) 0%, transparent 70%)",
-        }}
-      />
+      <SectionAtmosphere variant="contact" />
 
       <div className="mx-auto max-w-3xl px-6 text-center md:px-8">
         <SectionHeading className="text-[clamp(2rem,5vw,3.5rem)]">

@@ -16,65 +16,67 @@ const toneClass: Record<GlitchTone, string> = {
   white: "bg-text-primary",
 };
 
-/**
- * Short horizontal streaks — tech-hero glitch language.
- * Kept decorative and low-opacity so they never compete with type.
- */
+/** Denser, higher-contrast streaks for hero + section accents. */
 const STREAKS: GlitchStreak[] = [
-  { top: "12%", left: "8%", width: "3.5rem", tone: "glow", opacity: 0.55 },
-  { top: "14%", left: "18%", width: "1.25rem", tone: "electric", opacity: 0.4 },
-  { top: "18%", left: "72%", width: "2.75rem", tone: "primary", opacity: 0.45 },
-  { top: "22%", left: "6%", width: "5rem", tone: "white", opacity: 0.18, height: "1px" },
-  { top: "28%", left: "55%", width: "1.75rem", tone: "glow", opacity: 0.5 },
-  { top: "31%", left: "62%", width: "0.85rem", tone: "electric", opacity: 0.55 },
-  { top: "36%", left: "10%", width: "2.25rem", tone: "primary", opacity: 0.35 },
-  { top: "41%", left: "78%", width: "4rem", tone: "glow", opacity: 0.4 },
-  { top: "44%", left: "84%", width: "1.1rem", tone: "white", opacity: 0.25 },
-  { top: "52%", left: "14%", width: "1.5rem", tone: "electric", opacity: 0.45 },
-  { top: "55%", left: "20%", width: "3.25rem", tone: "primary", opacity: 0.3 },
-  { top: "58%", left: "68%", width: "2rem", tone: "glow", opacity: 0.5 },
-  { top: "63%", left: "48%", width: "0.75rem", tone: "electric", opacity: 0.6 },
-  { top: "68%", left: "8%", width: "2.5rem", tone: "white", opacity: 0.15 },
-  { top: "72%", left: "75%", width: "3.5rem", tone: "primary", opacity: 0.35 },
-  { top: "76%", left: "82%", width: "1.25rem", tone: "glow", opacity: 0.45 },
-  { top: "24%", left: "40%", width: "1rem", tone: "electric", opacity: 0.35 },
-  { top: "48%", left: "38%", width: "2rem", tone: "primary", opacity: 0.25 },
+  { top: "10%", left: "22%", width: "4.5rem", tone: "glow", opacity: 0.75, height: "2px" },
+  { top: "11%", left: "32%", width: "1.5rem", tone: "electric", opacity: 0.7, height: "2px" },
+  { top: "14%", left: "68%", width: "3.25rem", tone: "primary", opacity: 0.65, height: "2px" },
+  { top: "15%", left: "76%", width: "1.1rem", tone: "white", opacity: 0.45, height: "2px" },
+  { top: "22%", left: "18%", width: "2.75rem", tone: "electric", opacity: 0.6, height: "2px" },
+  { top: "28%", left: "55%", width: "5rem", tone: "glow", opacity: 0.55, height: "2px" },
+  { top: "29%", left: "64%", width: "1.25rem", tone: "primary", opacity: 0.7, height: "3px" },
+  { top: "36%", left: "26%", width: "3.5rem", tone: "white", opacity: 0.35, height: "2px" },
+  { top: "42%", left: "72%", width: "2.5rem", tone: "glow", opacity: 0.7, height: "2px" },
+  { top: "43%", left: "78%", width: "0.9rem", tone: "electric", opacity: 0.75, height: "3px" },
+  { top: "48%", left: "20%", width: "4rem", tone: "primary", opacity: 0.55, height: "2px" },
+  { top: "54%", left: "58%", width: "3rem", tone: "glow", opacity: 0.6, height: "2px" },
+  { top: "58%", left: "30%", width: "1.75rem", tone: "electric", opacity: 0.65, height: "2px" },
+  { top: "62%", left: "74%", width: "4.25rem", tone: "primary", opacity: 0.55, height: "2px" },
+  { top: "63%", left: "82%", width: "1.4rem", tone: "white", opacity: 0.4, height: "2px" },
+  { top: "70%", left: "24%", width: "2.25rem", tone: "glow", opacity: 0.65, height: "2px" },
+  { top: "76%", left: "66%", width: "3.75rem", tone: "electric", opacity: 0.55, height: "2px" },
+  { top: "80%", left: "34%", width: "1.5rem", tone: "primary", opacity: 0.6, height: "3px" },
+  { top: "84%", left: "70%", width: "2.75rem", tone: "glow", opacity: 0.5, height: "2px" },
 ];
 
-export function GlitchField() {
+interface GlitchFieldProps {
+  className?: string;
+  density?: "full" | "lite";
+}
+
+export function GlitchField({ className = "", density = "full" }: GlitchFieldProps) {
+  const streaks = density === "lite" ? STREAKS.filter((_, i) => i % 2 === 0) : STREAKS;
+
   return (
     <div
       aria-hidden
-      className="pointer-events-none absolute inset-0 z-[1] overflow-hidden md:left-[22vw]"
+      className={["pointer-events-none absolute inset-0 z-[1] overflow-hidden", className].join(
+        " ",
+      )}
     >
-      {STREAKS.map((streak, index) => (
+      {streaks.map((streak, index) => (
         <span
           key={`${streak.top}-${streak.left}-${index}`}
-          className={[
-            "absolute block",
-            toneClass[streak.tone],
-            streak.height ? "" : "h-[2px]",
-          ].join(" ")}
+          className={["absolute block", toneClass[streak.tone]].join(" ")}
           style={{
             top: streak.top,
             left: streak.left,
             width: streak.width,
-            height: streak.height,
-            opacity: streak.opacity ?? 0.4,
+            height: streak.height ?? "2px",
+            opacity: streak.opacity ?? 0.55,
           }}
         />
       ))}
 
-      {/* Sparse scan-row clusters — short dashes grouped like a glitch burst */}
-      <div className="absolute top-[33%] left-[8%] flex gap-1 opacity-50">
-        <span className="block h-[2px] w-3 bg-accent-glow" />
-        <span className="block h-[2px] w-1.5 bg-accent-electric" />
-        <span className="block h-[2px] w-5 bg-accent-primary" />
+      <div className="absolute left-[26%] top-[32%] flex gap-1.5 opacity-70">
+        <span className="block h-[3px] w-4 bg-accent-glow" />
+        <span className="block h-[3px] w-2 bg-accent-electric" />
+        <span className="block h-[3px] w-6 bg-accent-primary" />
       </div>
-      <div className="absolute top-[61%] right-[12%] flex gap-1 opacity-45">
-        <span className="block h-[2px] w-4 bg-accent-primary" />
-        <span className="block h-[2px] w-2 bg-text-primary/80" />
-        <span className="block h-[2px] w-3 bg-accent-glow" />
+      <div className="absolute right-[16%] top-[58%] flex gap-1.5 opacity-65">
+        <span className="block h-[3px] w-5 bg-accent-primary" />
+        <span className="block h-[3px] w-2.5 bg-text-primary/70" />
+        <span className="block h-[3px] w-4 bg-accent-glow" />
       </div>
     </div>
   );

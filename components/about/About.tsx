@@ -1,8 +1,9 @@
 "use client";
 
 import { Reveal } from "@/components/ui/Reveal";
-import { SectionShell } from "@/components/ui/SectionShell";
+import { SectionAtmosphere } from "@/components/ui/SectionAtmosphere";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { SectionShell } from "@/components/ui/SectionShell";
 import { Tag } from "@/components/ui/Tag";
 import type { AboutContent } from "@/lib/types";
 
@@ -24,18 +25,7 @@ export function About({ content }: AboutProps) {
       style={{ ["--section-pad-y" as string]: "4rem" }}
       zIndex={1}
     >
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -right-[8%] top-0 h-[50%] w-[50%] opacity-50"
-        style={{
-          background:
-            "radial-gradient(ellipse at 70% 20%, color-mix(in srgb, var(--accent-primary) 28%, transparent) 0%, transparent 65%)",
-        }}
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute right-[8%] top-[18%] h-24 w-24 rounded-full border border-accent-glow/15"
-      />
+      <SectionAtmosphere variant="about" />
 
       <div className="pl-[8vw] pr-[4vw] pt-16 md:pl-[14vw] md:pr-[8vw] md:pt-32">
         <Reveal>
