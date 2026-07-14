@@ -232,4 +232,40 @@ body {
   );
 }
 
+/* Skills — character-select parallelograms */
+.skills-para {
+  transform: skewX(-10deg);
+}
+
+.skills-para-shadow {
+  z-index: 0;
+  background: var(--text-primary);
+  transform: skewX(-10deg) translate(7px, 7px);
+  opacity: 0.92;
+  pointer-events: none;
+}
+
+.skills-para[data-tone] {
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--bg-void) 85%, transparent);
+}
+
+.skills-para-content {
+  /* Un-skew + horizontal breathing room so type clears the slanted edges */
+  transform: skewX(10deg);
+  padding-left: clamp(1.35rem, 3.5vw, 2rem);
+  padding-right: clamp(1.35rem, 3.5vw, 2rem);
+}
+
+.skills-para-label {
+  transform: skewX(-5deg);
+  width: 100%;
+}
+
+.skills-para-row {
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--accent-primary) 50%, transparent) transparent;
+}
+
 
