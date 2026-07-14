@@ -1,0 +1,53 @@
+# Cursor Rules — Portfolio Website Build
+
+You are building a personal portfolio website. Before writing any code, read these files in this
+package, in order:
+
+1. `01_DESIGN_BRIEF.md` — the visual direction and, critically, the anti-patterns to avoid. Do not
+   skip this. The single biggest risk on this project is defaulting to a generic AI-portfolio
+   template — this file exists to prevent that.
+2. `02_DESIGN_SYSTEM.md` — exact color tokens, typography, spacing, shape language, and motion
+   rules. Use these values exactly; do not invent new colors or fonts outside this system.
+3. `03_ARCHITECTURE.md` — tech stack, folder structure, routing, and the JSON-driven content
+   contract.
+4. `04_SECTIONS.md` — the detailed spec for every section, in order.
+5. `/data/*.json` — the actual seed content. Some fields contain `TODO:` placeholder text; keep
+   these editable and obvious, don't silently invent final copy to replace them unless asked.
+
+## Hard rules
+- **Never hardcode copy, project data, skills, or timeline entries inside a component.** Always
+  read from the corresponding `/data/*.json` file via a typed loader in `/lib/types.ts`.
+- **Never default to a symmetric, centered, card-grid layout** for a section unless
+  `04_SECTIONS.md` explicitly says that section should be calm/symmetric (Contact, and the `/work`
+  overflow grid).
+- The Projects section's 2-3 featured entries must each have a **visually distinct layout
+  variant** — reuse of one symmetric `ProjectCard`-style template for all three is a direct
+  violation of the brief.
+- Use only the three defined type families (Chakra Petch, Big Shoulders Display, Inter) and only
+  in the roles assigned to them in `02_DESIGN_SYSTEM.md`.
+- Use only the CSS variable color tokens — no arbitrary hex values in component code.
+- Build mobile-first, but do not simply stack every asymmetric layout into a single centered
+  column on mobile — preserve some of the offset/overlap character at smaller sizes where
+  reasonably possible (e.g. an image can still bleed off one edge on mobile).
+- Respect `prefers-reduced-motion`.
+- TypeScript strict mode. Type every JSON shape in `/lib/types.ts` before building the components
+  that consume it.
+
+## Workflow
+1. Scaffold the Next.js App Router project and Tailwind config with the design tokens wired in.
+2. Build `/lib/types.ts` matching the seed JSON shapes exactly.
+3. Build shared primitives in `/components/ui` (Button, Tag, SectionHeading) using the design
+   system tokens.
+4. Build sections in the order listed in `04_SECTIONS.md`, starting with Hero + VerticalNavRail.
+5. Build the Projects section last among the homepage sections — it's the most involved
+   (three distinct custom layouts) and should be done once the design language feels established
+   from the earlier, simpler sections.
+6. Build the `/work` overflow route and optional `/work/[slug]` template.
+7. Pass over the whole page for motion polish (scroll reveals, hover states) once structure and
+   content are in place — don't animate before layout is settled.
+
+## When in doubt
+If a design decision isn't covered by these files, default to the principles in
+`01_DESIGN_BRIEF.md` section "Non-negotiable design principles" — asymmetry, confident color
+blocking, purposeful type, restrained motion, JSON-driven content — over convenience or the most
+common pattern in your training data.

@@ -1,0 +1,23 @@
+[
+  {
+    "id": "gallery-001",
+    "type": "project-shot",
+    "image": "/images/gallery/placeholder-1.png",
+    "caption": "TODO: e.g. NetDetect dashboard UI",
+    "aspect": "landscape"
+  },
+  {
+    "id": "gallery-002",
+    "type": "art",
+    "image": "/images/gallery/placeholder-2.png",
+    "caption": "TODO: e.g. GitHub README SVG concept",
+    "aspect": "portrait"
+  },
+  {
+    "id": "gallery-003",
+    "type": "project-shot",
+    "image": "/images/gallery/placeholder-3.png",
+    "caption": "TODO",
+    "aspect": "square"
+  }
+]

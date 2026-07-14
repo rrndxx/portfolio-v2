@@ -1,0 +1,20 @@
+{
+  "categories": [
+    {
+      "name": "Frontend",
+      "skills": ["React", "Next.js", "TypeScript", "Tailwind CSS"]
+    },
+    {
+      "name": "Backend",
+      "skills": ["NestJS", "FastAPI", "Node.js", "Express"]
+    },
+    {
+      "name": "Data & Infra",
+      "skills": ["PostgreSQL", "MySQL", "Redis", "Supabase", "Firebase", "Meilisearch"]
+    },
+    {
+      "name": "Tooling",
+      "skills": ["Docker"]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "name": "TODO: replace with your preferred display name",
+  "role": "Full-Stack Developer",
+  "heroHeadline": "TODO: short punchy role line for the hero wordmark, e.g. FULL-STACK / DEVELOPER",
+  "heroAvatar": "/images/avatar/hero-avatar.png",
+  "location": "Cebu City, Philippines",
+  "email": "TODO: your email",
+  "socials": {
+    "github": "https://github.com/rrndxx",
+    "portfolio": "https://rrndxx.netlify.app",
+    "linkedin": ""
+  },
+  "navItems": [
+    { "label": "Home", "href": "#hero" },
+    { "label": "About", "href": "#about" },
+    { "label": "Work", "href": "#projects" },
+    { "label": "Gallery", "href": "#gallery" },
+    { "label": "Contact", "href": "#contact" }
+  ],
+  "heroTag": "PORTFOLIO — 2026",
+  "heroCta": { "label": "Let's talk", "href": "#contact" },
+  "closingHeadline": "TODO: e.g. Let's build something worth shipping.",
+  "footerNote": "TODO: e.g. Designed and built by [name]. All rights reserved."
+}
