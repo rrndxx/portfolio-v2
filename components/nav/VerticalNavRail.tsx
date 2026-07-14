@@ -8,7 +8,8 @@ interface VerticalNavRailProps {
 }
 
 function sectionIdFromHref(href: string): string {
-  return href.startsWith("#") ? href.slice(1) : href;
+  const hash = href.includes("#") ? href.split("#")[1] : href.replace(/^#/, "");
+  return hash || "hero";
 }
 
 export function VerticalNavRail({ items }: VerticalNavRailProps) {

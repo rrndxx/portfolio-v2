@@ -56,7 +56,7 @@ function SocialIcon({
 
 export function Hero({ config }: HeroProps) {
   const mailto = config.email.startsWith("TODO")
-    ? "#contact"
+    ? "/#contact"
     : `mailto:${config.email}`;
 
   return (

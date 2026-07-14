@@ -11,14 +11,14 @@
     "linkedin": ""
   },
   "navItems": [
-    { "label": "Home", "href": "#hero" },
-    { "label": "About", "href": "#about" },
-    { "label": "Work", "href": "#projects" },
-    { "label": "Gallery", "href": "#gallery" },
-    { "label": "Contact", "href": "#contact" }
+    { "label": "Home", "href": "/#hero" },
+    { "label": "About", "href": "/#about" },
+    { "label": "Work", "href": "/#projects" },
+    { "label": "Gallery", "href": "/#gallery" },
+    { "label": "Contact", "href": "/#contact" }
   ],
   "heroTag": "PORTFOLIO — 2026",
-  "heroCta": { "label": "Let's talk", "href": "#contact" },
+  "heroCta": { "label": "Let's talk", "href": "/#contact" },
   "closingHeadline": "TODO: e.g. Let's build something worth shipping.",
   "footerNote": "TODO: e.g. Designed and built by [name]. All rights reserved."
 }

@@ -5,7 +5,7 @@
     "featured": true,
     "description": "Campus network monitoring platform. TODO: one-line description of what it does and the problem it solves.",
     "techStack": ["React", "Node.js", "TODO"],
-    "image": "/images/projects/netdetect/cover.png",
+    "image": "/images/projects/netdetect/cover.svg",
     "liveUrl": "",
     "repoUrl": "",
     "layoutVariant": "stacked-title-left-bleed"
@@ -16,7 +16,7 @@
     "featured": true,
     "description": "Inventory management application. TODO: one-line description of what it does and the problem it solves.",
     "techStack": ["Next.js", "TypeScript", "TODO"],
-    "image": "/images/projects/everyshelf/cover.png",
+    "image": "/images/projects/everyshelf/cover.svg",
     "liveUrl": "",
     "repoUrl": "",
     "layoutVariant": "right-bleed-diagonal"
@@ -27,7 +27,7 @@
     "featured": true,
     "description": "Clinic management platform. TODO: one-line description of what it does and the problem it solves.",
     "techStack": ["React", "NestJS", "PostgreSQL", "TODO"],
-    "image": "/images/projects/qr-wise-clinics/cover.png",
+    "image": "/images/projects/qr-wise-clinics/cover.svg",
     "liveUrl": "",
     "repoUrl": "",
     "layoutVariant": "full-bleed-color-field"
