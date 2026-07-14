@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1200" viewBox="0 0 800 1200" fill="none">
+  <rect width="800" height="1200" fill="#15151F"/>
+  <circle cx="400" cy="320" r="140" fill="#1C1C2A" stroke="#6C5CE7" stroke-width="4"/>
+  <path d="M220 1180c20-220 80-360 180-420 100 60 160 200 180 420" fill="#1C1C2A" stroke="#6C5CE7" stroke-width="4"/>
+  <circle cx="400" cy="300" r="48" fill="#A78BFA" opacity="0.35"/>
+  <text x="400" y="640" text-anchor="middle" fill="#8A8AA3" font-family="system-ui,sans-serif" font-size="28" letter-spacing="4">AVATAR PLACEHOLDER</text>
+  <text x="400" y="680" text-anchor="middle" fill="#8A8AA3" font-family="system-ui,sans-serif" font-size="18">/public/images/avatar/hero-avatar.png</text>
+</svg>

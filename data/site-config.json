@@ -1,8 +1,8 @@
 {
   "name": "TODO: replace with your preferred display name",
   "role": "Full-Stack Developer",
-  "heroHeadline": "TODO: short punchy role line for the hero wordmark, e.g. FULL-STACK / DEVELOPER",
-  "heroAvatar": "/images/avatar/hero-avatar.png",
+  "heroHeadline": "FULL-STACK / DEVELOPER",
+  "heroAvatar": "/images/avatar/hero-avatar.svg",
   "location": "Cebu City, Philippines",
   "email": "TODO: your email",
   "socials": {
