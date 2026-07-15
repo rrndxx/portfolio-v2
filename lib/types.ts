@@ -7,6 +7,8 @@ export interface Socials {
   github: string;
   linkedin: string;
   portfolio?: string;
+  facebook?: string;
+  instagram?: string;
 }
 
 export interface HeroCta {

@@ -18,7 +18,7 @@
     { "label": "Work", "href": "/#projects" },
     { "label": "Career", "href": "/#experience" },
     { "label": "Wins", "href": "/#achievements" },
-    { "label": "Gallery", "href": "/gallery" },
+    { "label": "Gallery", "href": "/#gallery" },
     { "label": "Contact", "href": "/#contact" }
   ],
   "heroTag": "PORTFOLIO",

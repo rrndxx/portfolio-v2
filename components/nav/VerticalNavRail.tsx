@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { defaultTransition } from "@/lib/motion";
@@ -65,26 +65,17 @@ function routeActiveId(pathname: string, navIds: string[]): string | null {
 
 export function VerticalNavRail({ items }: VerticalNavRailProps) {
   const pathname = usePathname();
-  const [activeId, setActiveId] = useState(
+  const navIds = useMemo(
+    () => items.map((item) => navKeyFromHref(item.href)),
+    [items],
+  );
+  const routeActive = routeActiveId(pathname, navIds);
+
+  const [spyId, setSpyId] = useState(
     () => navKeyFromHref(items[0]?.href ?? "hero"),
   );
 
-  const activeItem =
-    items.find((item) => navKeyFromHref(item.href) === activeId) ?? items[0];
-  const activeIndex = Math.max(
-    0,
-    items.findIndex((item) => navKeyFromHref(item.href) === activeId),
-  );
-
   useEffect(() => {
-    const navIds = items.map((item) => navKeyFromHref(item.href));
-    const fromRoute = routeActiveId(pathname, navIds);
-
-    if (fromRoute) {
-      setActiveId(fromRoute);
-      return;
-    }
-
     if (pathname !== "/") return;
 
     const elements = SPY_ORDER.map((id) => document.getElementById(id)).filter(
@@ -102,18 +93,27 @@ export function VerticalNavRail({ items }: VerticalNavRailProps) {
         if (top <= marker) current = el.id;
       }
 
-      setActiveId(resolveNavId(current, navIds));
+      setSpyId(resolveNavId(current, navIds));
     };
 
-    update();
     window.addEventListener("scroll", update, { passive: true });
     window.addEventListener("resize", update);
+    const frame = requestAnimationFrame(update);
 
     return () => {
+      cancelAnimationFrame(frame);
       window.removeEventListener("scroll", update);
       window.removeEventListener("resize", update);
     };
-  }, [items, pathname]);
+  }, [navIds, pathname]);
+
+  const activeId = routeActive ?? spyId;
+  const activeItem =
+    items.find((item) => navKeyFromHref(item.href) === activeId) ?? items[0];
+  const activeIndex = Math.max(
+    0,
+    items.findIndex((item) => navKeyFromHref(item.href) === activeId),
+  );
 
   return (
     <>
@@ -193,7 +193,7 @@ export function VerticalNavRail({ items }: VerticalNavRailProps) {
 
                 <a
                   href={item.href}
-                  onClick={() => setActiveId(id)}
+                  onClick={() => setSpyId(id)}
                   className={[
                     "nav-rail-link relative z-10 font-sans text-meta uppercase whitespace-nowrap tracking-[0.14em]",
                     isActive

@@ -75,9 +75,10 @@ function SlashLayer() {
  * Cyber fight-poster hero — hard diagonals, slash bands, cut plates.
  */
 export function Hero({ config }: HeroProps) {
-  const mailto = config.email.startsWith("TODO")
-    ? "/#contact"
-    : `mailto:${config.email}`;
+  const mailto =
+    !config.email || config.email.startsWith("TODO")
+      ? "/#contact"
+      : `mailto:${config.email}`;
 
   const brand = config.name.startsWith("TODO") ? "PORTFOLIO" : config.name;
   const backdrop = config.heroBackdrop?.trim() || "DEV";

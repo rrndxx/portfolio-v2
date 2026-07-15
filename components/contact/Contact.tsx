@@ -9,8 +9,8 @@ interface ContactProps {
 }
 
 export function Contact({ config }: ContactProps) {
-  const emailIsTodo = config.email.startsWith("TODO");
-  const mailto = emailIsTodo ? undefined : `mailto:${config.email}`;
+  const hasEmail = Boolean(config.email) && !config.email.startsWith("TODO");
+  const mailto = hasEmail ? `mailto:${config.email}` : undefined;
 
   return (
     <SectionShell
@@ -37,11 +37,7 @@ export function Contact({ config }: ContactProps) {
               >
                 {config.email}
               </a>
-            ) : (
-              <p className="mt-6 break-all font-sans text-[clamp(1.05rem,2.2vw,1.45rem)] font-medium text-accent-electric md:mt-8">
-                {config.email}
-              </p>
-            )}
+            ) : null}
 
             <div className="relative mt-10 pt-6 md:mt-12">
               <div
@@ -57,16 +53,6 @@ export function Contact({ config }: ContactProps) {
                 >
                   GitHub — rrndxx
                 </a>
-                {config.socials.portfolio ? (
-                  <a
-                    href={config.socials.portfolio}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="font-sans text-meta uppercase tracking-[0.08em] text-text-muted transition-colors hover:text-accent-glow"
-                  >
-                    Portfolio
-                  </a>
-                ) : null}
                 {config.socials.linkedin ? (
                   <a
                     href={config.socials.linkedin}
@@ -75,6 +61,36 @@ export function Contact({ config }: ContactProps) {
                     className="font-sans text-meta uppercase tracking-[0.08em] text-text-muted transition-colors hover:text-accent-glow"
                   >
                     LinkedIn
+                  </a>
+                ) : null}
+                {config.socials.facebook ? (
+                  <a
+                    href={config.socials.facebook}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-sans text-meta uppercase tracking-[0.08em] text-text-muted transition-colors hover:text-accent-glow"
+                  >
+                    Facebook
+                  </a>
+                ) : null}
+                {config.socials.instagram ? (
+                  <a
+                    href={config.socials.instagram}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-sans text-meta uppercase tracking-[0.08em] text-text-muted transition-colors hover:text-accent-glow"
+                  >
+                    Instagram
+                  </a>
+                ) : null}
+                {config.socials.portfolio ? (
+                  <a
+                    href={config.socials.portfolio}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-sans text-meta uppercase tracking-[0.08em] text-text-muted transition-colors hover:text-accent-glow"
+                  >
+                    Portfolio
                   </a>
                 ) : null}
               </div>
