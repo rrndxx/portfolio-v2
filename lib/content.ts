@@ -47,3 +47,20 @@ export function getAchievements(): Achievement[] {
 export function getGallery(): GalleryItem[] {
   return galleryJson as GalleryItem[];
 }
+
+export function getFeaturedGallery(limit = 6): GalleryItem[] {
+  const all = getGallery();
+  const featured = all.filter((item) => item.featured);
+  if (featured.length === 0) return all.slice(0, limit);
+
+  const selected = [...featured];
+  if (selected.length < limit) {
+    const featuredIds = new Set(featured.map((item) => item.id));
+    for (const item of all) {
+      if (selected.length >= limit) break;
+      if (!featuredIds.has(item.id)) selected.push(item);
+    }
+  }
+  return selected.slice(0, limit);
+}
+

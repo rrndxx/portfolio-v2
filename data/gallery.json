@@ -1,23 +1,85 @@
 [
   {
     "id": "gallery-001",
-    "type": "project-shot",
-    "image": "/images/gallery/placeholder-1.svg",
-    "caption": "TODO: e.g. NetDetect dashboard UI",
-    "aspect": "landscape"
-  },
-  {
-    "id": "gallery-002",
-    "type": "art",
-    "image": "/images/gallery/placeholder-2.svg",
-    "caption": "TODO: e.g. GitHub README SVG concept",
+    "type": "milestone",
+    "image": "/images/gallery/3.jpg",
+    "caption": "Latin Honors",
     "aspect": "portrait"
   },
   {
+    "id": "gallery-002",
+    "type": "milestone",
+    "image": "/images/gallery/1.jpg",
+    "caption": "Graduation",
+    "aspect": "landscape",
+    "featured": true
+  },
+  {
     "id": "gallery-003",
-    "type": "project-shot",
-    "image": "/images/gallery/placeholder-3.svg",
-    "caption": "TODO",
+    "type": "milestone",
+    "image": "/images/gallery/12.jpg",
+    "caption": "Pacific Equities Holding Corp.",
+    "aspect": "square",
+    "featured": true
+  },
+  {
+    "id": "gallery-004",
+    "type": "keeps",
+    "image": "/images/gallery/11.jpg",
+    "caption": "Pacific Equities Holding Corp.",
+    "aspect": "square",
+    "featured": true
+  },
+  {
+    "id": "gallery-005",
+    "type": "milestone",
+    "image": "/images/gallery/2.jpg",
+    "caption": "Civil Service Eligibility - Professional Passer",
+    "aspect": "landscape",
+    "featured": true
+  },
+  {
+    "id": "gallery-006",
+    "type": "milestone",
+    "image": "/images/gallery/7.jpg",
+    "caption": "CESAFI Computer Quiz Bowl 2025 - 5th Place",
+    "aspect": "landscape",
+    "featured": true
+  },
+  {
+    "id": "gallery-007",
+    "type": "keeps",
+    "image": "/images/gallery/4.jpg",
+    "caption": "Pacific Equities Holding Corp. - Internship",
+    "aspect": "square"
+  },
+  {
+    "id": "gallery-008",
+    "type": "milestone",
+    "image": "/images/gallery/5.jpg",
+    "caption": "ISITE National Computer Quiz Bowl 2025- 5th Place",
+    "aspect": "landscape",
+    "featured": true
+  },
+  {
+    "id": "gallery-009",
+    "type": "keeps",
+    "image": "/images/gallery/6.jpg",
+    "caption": "CESAFI Computer Quiz Bowl 2025 - 5th Place",
+    "aspect": "square"
+  },
+  {
+    "id": "gallery-010",
+    "type": "keeps",
+    "image": "/images/gallery/8.jpg",
+    "caption": "NetDetect - Full Stack Developer",
+    "aspect": "square"
+  },
+  {
+    "id": "gallery-011",
+    "type": "milestone",
+    "image": "/images/gallery/10.jpg",
+    "caption": "Sci-Math Quiz Bowl 2025 - 2nd Place",
     "aspect": "square"
   }
 ]

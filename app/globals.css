@@ -577,6 +577,204 @@ body {
   color: var(--accent-electric);
 }
 
+/* Loud section CTAs — filled + electric outline + glow */
+.work-cta-signal {
+  background: var(--accent-primary);
+  color: var(--text-on-accent);
+  box-shadow:
+    0 0 0 1px var(--accent-glow),
+    0 0 0 3px color-mix(in srgb, var(--accent-primary) 35%, transparent),
+    0 0 28px color-mix(in srgb, var(--accent-primary) 50%, transparent);
+}
+
+.work-cta-signal:hover {
+  background: var(--accent-glow);
+  color: var(--text-on-accent);
+  box-shadow:
+    0 0 0 1px var(--accent-electric),
+    0 0 0 3px color-mix(in srgb, var(--accent-glow) 40%, transparent),
+    0 0 36px color-mix(in srgb, var(--accent-glow) 55%, transparent);
+}
+
+/* Vertical nav — character-select active plate */
+.nav-rail-link {
+  display: block;
+  transform: rotate(-90deg);
+  transform-origin: center;
+  transition:
+    color 0.35s var(--ease-out-expo),
+    transform 0.35s var(--ease-out-expo),
+    opacity 0.35s var(--ease-out-expo),
+    text-shadow 0.35s var(--ease-out-expo);
+}
+
+.nav-rail-link:hover:not(.nav-rail-link-active) {
+  transform: rotate(-90deg) translateY(-5px);
+  color: var(--text-primary);
+}
+
+.nav-rail-link-active {
+  transform: rotate(-90deg) translateY(-14px) scale(1.2);
+  color: var(--accent-glow);
+  text-shadow:
+    0 0 12px color-mix(in srgb, var(--accent-glow) 70%, transparent),
+    0 0 28px color-mix(in srgb, var(--accent-primary) 45%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-rail-link,
+  .nav-rail-link:hover:not(.nav-rail-link-active),
+  .nav-rail-link-active {
+    transition: color 0.2s ease, opacity 0.2s ease;
+    transform: rotate(-90deg);
+  }
+
+  .nav-rail-link-active {
+    transform: rotate(-90deg) scale(1.08);
+  }
+}
+
+/* Contact — uplink console + HUD channels */
+.contact-console {
+  clip-path: polygon(
+    0 0,
+    calc(100% - 18px) 0,
+    100% 18px,
+    100% 100%,
+    18px 100%,
+    0 calc(100% - 18px)
+  );
+  background:
+    linear-gradient(
+      155deg,
+      color-mix(in srgb, var(--accent-primary) 14%, var(--bg-panel)) 0%,
+      var(--bg-void) 42%,
+      var(--bg-panel) 100%
+    );
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--accent-glow) 30%, transparent),
+    0 0 40px color-mix(in srgb, var(--accent-primary) 18%, transparent);
+}
+
+.contact-console-scan {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 3px,
+    color-mix(in srgb, var(--bg-void) 22%, transparent) 3px,
+    color-mix(in srgb, var(--bg-void) 22%, transparent) 4px
+  );
+  opacity: 0.45;
+  mix-blend-mode: soft-light;
+}
+
+.contact-channel {
+  clip-path: polygon(
+    0 0,
+    calc(100% - 12px) 0,
+    100% 12px,
+    100% 100%,
+    12px 100%,
+    0 calc(100% - 12px)
+  );
+  background: color-mix(in srgb, var(--bg-void) 78%, var(--bg-panel));
+  box-shadow: inset 0 0 0 1px var(--border-subtle);
+  transition:
+    box-shadow 0.3s var(--ease-out-expo),
+    background-color 0.3s var(--ease-out-expo);
+}
+
+.contact-channel-tab {
+  clip-path: polygon(8% 0, 100% 0, 92% 100%, 0 100%);
+  background: var(--accent-primary);
+  color: var(--text-on-accent);
+  padding: 0.15rem 0.55rem;
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  box-shadow: 0 0 12px color-mix(in srgb, var(--accent-primary) 45%, transparent);
+}
+
+.contact-channel-edge {
+  background: color-mix(in srgb, var(--border-subtle) 80%, transparent);
+  transition: background-color 0.3s var(--ease-out-expo), box-shadow 0.3s var(--ease-out-expo);
+}
+
+.contact-channel-live {
+  background: color-mix(in srgb, var(--accent-primary) 10%, var(--bg-void));
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--accent-glow) 55%, transparent),
+    0 0 22px color-mix(in srgb, var(--accent-primary) 28%, transparent);
+}
+
+.contact-channel-live .contact-channel-edge {
+  background: var(--accent-electric);
+  box-shadow: 0 0 12px color-mix(in srgb, var(--accent-glow) 65%, transparent);
+}
+
+.contact-channel-live .contact-channel-tab {
+  background: var(--accent-glow);
+}
+
+.contact-field {
+  display: block;
+  width: 100%;
+  border: 0;
+  background: transparent;
+  padding: 2.15rem 0.95rem 0.85rem;
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  color: var(--text-primary);
+  outline: none;
+  caret-color: var(--accent-glow);
+}
+
+.contact-field-area {
+  min-height: 9rem;
+  resize: vertical;
+  line-height: 1.55;
+  padding-bottom: 1rem;
+}
+
+.contact-field::placeholder {
+  color: color-mix(in srgb, var(--text-muted) 85%, transparent);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+}
+
+.contact-field:disabled {
+  opacity: 0.55;
+  cursor: wait;
+}
+
+.contact-field:-webkit-autofill,
+.contact-field:-webkit-autofill:hover,
+.contact-field:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--text-primary);
+  transition: background-color 9999s ease-in-out 0s;
+  box-shadow: 0 0 0 1000px var(--bg-void) inset;
+}
+
+.nav-rail-plate {
+  clip-path: polygon(6% 0, 100% 0, 94% 100%, 0 100%);
+  background: color-mix(in srgb, var(--accent-primary) 28%, var(--bg-void));
+  box-shadow:
+    inset 0 0 0 1px var(--accent-glow),
+    0 0 18px color-mix(in srgb, var(--accent-primary) 40%, transparent);
+}
+
+.nav-sector-hud {
+  clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));
+  background: color-mix(in srgb, var(--bg-void) 82%, transparent);
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--accent-glow) 55%, transparent),
+    0 0 24px color-mix(in srgb, var(--accent-primary) 35%, transparent);
+}
+
 /* Achievements — lower-third parallelogram plates */
 .achieve-lt {
   transition: transform 0.3s var(--ease-out-expo);

@@ -14,6 +14,25 @@ export interface HeroCta {
   href: string;
 }
 
+export interface ContactFormCopy {
+  eyebrow: string;
+  title: string;
+  statusIdle: string;
+  channelMeta: string;
+  nameLabel: string;
+  subjectLabel: string;
+  messageLabel: string;
+  namePlaceholder: string;
+  subjectPlaceholder: string;
+  messagePlaceholder: string;
+  submitLabel: string;
+  sendingLabel: string;
+  successMessage: string;
+  errorMessage: string;
+  /** Netlify function path, e.g. `/.netlify/functions/contact` */
+  endpoint: string;
+}
+
 export interface SiteConfig {
   name: string;
   role: string;
@@ -28,6 +47,7 @@ export interface SiteConfig {
   heroCta: HeroCta;
   closingHeadline: string;
   footerNote: string;
+  contactForm: ContactFormCopy;
 }
 
 export interface AboutContent {
@@ -75,7 +95,7 @@ export interface Achievement {
   organization?: string;
 }
 
-export type GalleryItemType = "project-shot" | "art";
+export type GalleryItemType = "project" | "milestone" | "keeps";
 export type GalleryAspect = "landscape" | "portrait" | "square";
 
 export interface GalleryItem {
@@ -84,4 +104,6 @@ export interface GalleryItem {
   image: string;
   caption: string;
   aspect: GalleryAspect;
+  /** Shown in the homepage gallery preview when true. */
+  featured?: boolean;
 }

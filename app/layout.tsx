@@ -28,7 +28,7 @@ const inter = Inter({
 const site = getSiteConfig();
 
 export const metadata: Metadata = {
-  title: `${site.name.startsWith("TODO") ? site.role : site.name} — Portfolio`,
+  title: `${site.name.startsWith("TODO") ? site.role : site.name}`,
   description: `${site.role} based in ${site.location}`,
 };
 

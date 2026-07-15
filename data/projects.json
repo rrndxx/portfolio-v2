@@ -4,7 +4,15 @@
     "name": "NetDetect",
     "featured": true,
     "description": "A centralized campus network monitoring platform that provides real-time visibility into network health, helping administrators detect issues quickly and minimize downtime.",
-    "techStack": ["React", "Node.js", "Express", "FastAPI", "Docker", "PostgreSQL", "Redis"],
+    "techStack": [
+      "React",
+      "Node.js",
+      "Express",
+      "FastAPI",
+      "Docker",
+      "PostgreSQL",
+      "Redis"
+    ],
     "image": "/images/projects/netdetect/cover.png",
     "liveUrl": "",
     "repoUrl": "",
@@ -15,7 +23,14 @@
     "name": "Everyshelf",
     "featured": true,
     "description": "An inventory management system that streamlines stock tracking, inventory updates, and reporting, helping businesses reduce errors and improve operational efficiency.",
-    "techStack": ["Next.js", "Supabase", "Tailwind CSS", "Shadcn UI", "Framer Motion", "Lottie"],
+    "techStack": [
+      "Next.js",
+      "Supabase",
+      "Tailwind CSS",
+      "Shadcn UI",
+      "Framer Motion",
+      "Lottie"
+    ],
     "image": "/images/projects/everyshelf/cover.jpg",
     "liveUrl": "https://everyshelf.com",
     "repoUrl": "",
@@ -31,5 +46,32 @@
     "liveUrl": "",
     "repoUrl": "",
     "layoutVariant": "angled-color-field"
+  },
+  {
+    "slug": "bola",
+    "name": "Bola",
+    "featured": true,
+    "description": "A browser-based physics puzzle game where players guide a ball through obstacle-filled levels using momentum, gravity, tilt, and rebound mechanics. Built around satisfying rolling and bouncing physics.",
+    "techStack": [
+      "Next.js",
+      "Tailwind CSS",
+      "Shadcn UI",
+      "Framer Motion",
+      "GSAP"
+    ],
+    "image": "/images/projects/bola/cover.png",
+    "liveUrl": "https://bola-one.vercel.app/",
+    "repoUrl": "https://github.com/rrndxx/BOLA",
+    "layoutVariant": "angled-color-field",
+    "productBrief": {
+      "tagline": "A physics rolling puzzle where players nudge, tilt, and time momentum through curved paths, ramps, and obstacles.",
+      "pitch": "A physics rolling puzzle where players nudge, tilt, and time momentum through curved paths, ramps, and obstacles.",
+      "coreGameplayHook": "A physics rolling puzzle where players nudge, tilt, and time momentum through curved paths, ramps, and obstacles.",
+      "platform": "Web browser",
+      "audience": "Casual and puzzle-game players who enjoy tactile, playful, satisfying gameplay.",
+      "primaryGoal": "Play Now",
+      "tone": "Playful, energetic, tactile, and momentum-driven.",
+      "successCriteria": "Visitors immediately understand the physics ball gameplay, experience the game's movement through page animations, and click Play Now."
+    }
   }
 ]

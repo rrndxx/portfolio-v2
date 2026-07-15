@@ -1,14 +1,16 @@
 {
-  "name": "RRNDXX",
+  "name": "Rendyll Ryan Cabardo",
   "role": "Full-Stack Developer",
-  "heroHeadline": "FULL-STACK / DEVELOPER",
+  "heroHeadline": "Full-Stack Developer",
   "heroBackdrop": "",
   "heroAvatar": "/images/avatar/hero-avatar.png",
   "location": "Cebu City, Philippines",
-  "email": "rendyllcabardo11@gmail.com",
+  "email": "",
   "socials": {
     "github": "https://github.com/rrndxx",
-    "linkedin": "https://www.linkedin.com/in/rendyll"
+    "linkedin": "https://www.linkedin.com/in/rendyll",
+    "facebook": "https://www.facebook.com/rendyllryan.cabardo",
+    "instagram": "https://www.instagram.com/rrndxx/"
   },
   "navItems": [
     { "label": "Home", "href": "/#hero" },
@@ -16,11 +18,28 @@
     { "label": "Work", "href": "/#projects" },
     { "label": "Career", "href": "/#experience" },
     { "label": "Wins", "href": "/#achievements" },
-    { "label": "Gallery", "href": "/#gallery" },
+    { "label": "Gallery", "href": "/gallery" },
     { "label": "Contact", "href": "/#contact" }
   ],
   "heroTag": "PORTFOLIO",
   "heroCta": { "label": "Let's talk", "href": "/#contact" },
   "closingHeadline": "Let's build something useful together.",
-  "footerNote": "Designed and built by Rendyll Ryan Cabardo."
+  "footerNote": "Designed and built by Rendyll Ryan Cabardo.",
+  "contactForm": {
+    "eyebrow": "Transmit_",
+    "title": "Uplink",
+    "statusIdle": "Awaiting input_",
+    "channelMeta": "Ch_ 03 · Live",
+    "nameLabel": "Name_",
+    "subjectLabel": "Subject_",
+    "messageLabel": "Message_",
+    "namePlaceholder": "Callsign / name",
+    "subjectPlaceholder": "Subject line",
+    "messagePlaceholder": "Message payload",
+    "submitLabel": "Send transmission",
+    "sendingLabel": "Sending…",
+    "successMessage": "Transmission received. I'll reply soon.",
+    "errorMessage": "Signal lost. Try again or email me directly.",
+    "endpoint": "/.netlify/functions/contact"
+  }
 }

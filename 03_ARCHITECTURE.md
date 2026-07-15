@@ -46,10 +46,15 @@
   /experience
     ExperienceTimeline.tsx
   /gallery
-    Gallery.tsx
+    GalleryPreview.tsx       → homepage teaser (featured tiles + link to archive)
+    GalleryArchive.tsx       → full /gallery page (filters + dense grid)
+    GalleryCard.tsx          → shared cyber frame tile + lightbox
   /contact
     Contact.tsx
   /ui                         → small shared primitives (Button, Tag, SectionHeading)
+/app
+  /gallery/page.tsx          → full visual archive
+  /work/...                  → project overflow + case study
 /data
   site-config.json
   about.json

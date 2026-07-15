@@ -2,7 +2,7 @@ import { About } from "@/components/about/About";
 import { Achievements } from "@/components/achievements/Achievements";
 import { Contact } from "@/components/contact/Contact";
 import { ExperienceTimeline } from "@/components/experience/ExperienceTimeline";
-import { Gallery } from "@/components/gallery/Gallery";
+import { GalleryPreview } from "@/components/gallery/GalleryPreview";
 import { Hero } from "@/components/hero/Hero";
 import { FeaturedProjects } from "@/components/projects/FeaturedProjects";
 import { SkillsGrid } from "@/components/skills/SkillsGrid";
@@ -10,6 +10,7 @@ import {
   getAbout,
   getAchievements,
   getExperience,
+  getFeaturedGallery,
   getFeaturedProjects,
   getGallery,
   getSiteConfig,
@@ -23,7 +24,8 @@ export default function HomePage() {
   const featured = getFeaturedProjects();
   const experience = getExperience();
   const achievements = getAchievements();
-  const gallery = getGallery();
+  const galleryPreview = getFeaturedGallery(6);
+  const galleryTotal = getGallery().length;
 
   return (
     <main>
@@ -33,7 +35,7 @@ export default function HomePage() {
       <FeaturedProjects projects={featured} />
       <ExperienceTimeline entries={experience} />
       <Achievements items={achievements} />
-      <Gallery items={gallery} />
+      <GalleryPreview items={galleryPreview} totalCount={galleryTotal} />
       <Contact config={site} />
     </main>
   );

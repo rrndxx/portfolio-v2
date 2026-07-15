@@ -50,7 +50,7 @@ export function FeaturedProjects({ projects }: FeaturedProjectsProps) {
       <Reveal className="relative z-[1] mt-12 px-[6vw] pb-8 md:mt-16 md:px-[12vw] md:pb-12">
         <Link
           href="/work"
-          className="work-cta work-cta-ghost inline-flex items-center gap-2 px-6 py-3 font-sans text-meta uppercase tracking-[0.1em] text-text-primary transition-colors hover:text-accent-glow"
+          className="work-cta work-cta-signal inline-flex items-center gap-2 px-7 py-3.5 font-sans text-meta uppercase tracking-[0.12em]"
         >
           View all work
           <span aria-hidden>→</span>
