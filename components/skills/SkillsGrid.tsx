@@ -5,6 +5,7 @@ import { SectionAtmosphere } from "@/components/ui/SectionAtmosphere";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SectionShell } from "@/components/ui/SectionShell";
 import type { SkillCategory, SkillsContent } from "@/lib/types";
+import type { CSSProperties } from "react";
 
 interface SkillsGridProps {
   content: SkillsContent;
@@ -46,11 +47,12 @@ const PANEL_STYLES = [
   },
 ] as const;
 
+/** Stagger offsets — lighter on small screens so the cluster still breathes. */
 const PANEL_OFFSET = [
-  "md:mt-0",
-  "md:mt-10",
-  "md:mt-4",
-  "md:mt-14",
+  "mt-0 sm:mt-0 lg:mt-0",
+  "mt-3 sm:mt-6 lg:mt-10",
+  "mt-1 sm:mt-3 lg:mt-4",
+  "mt-4 sm:mt-8 lg:mt-14",
 ] as const;
 
 function SkillParallelogram({
@@ -65,7 +67,7 @@ function SkillParallelogram({
   return (
     <div
       className={[
-        "relative w-full max-w-[240px] shrink-0 md:max-w-none md:flex-1",
+        "skills-para-wrap relative w-full min-w-0",
         "transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-2 hover:scale-[1.01]",
         PANEL_OFFSET[index % PANEL_OFFSET.length],
       ].join(" ")}
@@ -79,11 +81,10 @@ function SkillParallelogram({
       <div
         data-tone={style.indexTone}
         className={[
-          "skills-para relative flex h-[440px] flex-col overflow-hidden md:h-[520px] lg:h-[560px]",
+          "skills-para relative flex min-h-[20rem] flex-col overflow-hidden sm:min-h-[22rem] lg:min-h-[28rem]",
           style.fill,
         ].join(" ")}
       >
-        {/* Scanlines */}
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0 opacity-20"
@@ -93,16 +94,14 @@ function SkillParallelogram({
           }}
         />
 
-        {/* Glitch ribbon */}
         <div
           aria-hidden
           className="glitch-texture pointer-events-none absolute inset-x-0 top-0 z-[2] h-2 opacity-75"
         />
 
-        {/* Barcode ticks */}
         <div
           aria-hidden
-          className="absolute right-4 top-5 z-[2] flex gap-[3px]"
+          className="absolute right-3 top-4 z-[2] flex gap-[3px] sm:right-4 sm:top-5"
         >
           {[0, 1, 2, 3].map((i) => (
             <span
@@ -113,15 +112,16 @@ function SkillParallelogram({
           ))}
         </div>
 
-        <div className="skills-para-content relative z-[1] flex h-full flex-col py-8 md:py-10">
+        <div className="skills-para-content relative z-[1] flex h-full flex-col py-6 sm:py-8 md:py-10">
           <div className="flex items-center gap-2">
             <span className="inline-flex gap-[2px]">
               {[0, 1, 2].map((i) => (
                 <span
                   key={i}
-                  className={["block h-2 w-[2px] -skew-x-[22deg]", style.tick].join(
-                    " ",
-                  )}
+                  className={[
+                    "block h-2 w-[2px] -skew-x-[22deg]",
+                    style.tick,
+                  ].join(" ")}
                 />
               ))}
             </span>
@@ -135,20 +135,23 @@ function SkillParallelogram({
             </p>
           </div>
 
-          <ul className="mt-8 flex flex-1 flex-col gap-3.5 md:mt-10 md:gap-4">
+          <ul className="mt-6 flex flex-1 flex-col gap-2.5 sm:mt-8 sm:gap-3.5 md:mt-10 md:gap-4">
             {category.skills.map((skill, skillIndex) => {
               const stepsFromBottom = category.skills.length - 1 - skillIndex;
               return (
                 <li
                   key={skill}
-                  style={{
-                    marginLeft: `${stepsFromBottom * 0.85}rem`,
-                    marginRight: `${skillIndex * 0.35}rem`,
-                  }}
+                  className="skills-skill-item"
+                  style={
+                    {
+                      ["--skill-indent" as string]: `${stepsFromBottom}`,
+                      ["--skill-outdent" as string]: `${skillIndex}`,
+                    } as CSSProperties
+                  }
                 >
                   <span
                     className={[
-                      "block border-b pb-2 font-sans text-[0.95rem] font-semibold leading-snug md:text-body",
+                      "block border-b pb-1.5 font-sans text-[0.85rem] font-semibold leading-snug sm:pb-2 sm:text-[0.95rem] md:text-body",
                       style.text,
                       style.rule,
                     ].join(" ")}
@@ -161,9 +164,9 @@ function SkillParallelogram({
             })}
           </ul>
 
-          <div className="mt-auto pt-6">
-            <div className="skills-para-label mx-auto border border-accent-glow/25 bg-bg-void px-3 py-2.5 text-center">
-              <p className="font-display text-[clamp(0.9rem,1.5vw,1.2rem)] uppercase leading-none tracking-tight text-accent-glow">
+          <div className="mt-auto pt-5 sm:pt-6">
+            <div className="skills-para-label mx-auto border border-accent-glow/25 bg-bg-void px-2.5 py-2 text-center sm:px-3 sm:py-2.5">
+              <p className="font-display text-[clamp(0.85rem,2.8vw,1.2rem)] uppercase leading-none tracking-tight text-accent-glow">
                 {category.name}
               </p>
             </div>
@@ -186,7 +189,7 @@ export function SkillsGrid({ content }: SkillsGridProps) {
     >
       <SectionAtmosphere variant="skills" />
 
-      <div className="relative z-[1] pl-[6vw] pr-[6vw] md:pl-[10vw] md:pr-[8vw]">
+      <div className="relative z-[1] pl-[5vw] pr-[5vw] sm:pl-[6vw] sm:pr-[6vw] md:pl-[10vw] md:pr-[8vw]">
         <Reveal>
           <div className="mb-3 flex gap-[3px]">
             {[0, 1, 2].map((i) => (
@@ -197,13 +200,13 @@ export function SkillsGrid({ content }: SkillsGridProps) {
             ))}
           </div>
           <SectionHeading className="mb-3 md:mb-4">Skills</SectionHeading>
-          <p className="mb-10 max-w-md font-sans text-meta uppercase tracking-[0.12em] text-text-muted md:mb-14">
+          <p className="mb-8 max-w-md font-sans text-meta uppercase tracking-[0.12em] text-text-muted sm:mb-10 md:mb-14">
             Stack modules_ // loadout
           </p>
         </Reveal>
 
         <Reveal delay={0.08}>
-          <div className="skills-para-row flex items-start gap-5 overflow-x-auto px-1 pb-8 md:gap-6 md:overflow-visible md:px-2 md:pb-6 lg:gap-8 lg:px-4">
+          <div className="skills-para-row grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-2 sm:gap-x-5 sm:gap-y-8 lg:grid-cols-4 lg:items-start lg:gap-x-6 lg:gap-y-0 xl:gap-x-8">
             {content.categories.map((category, index) => (
               <SkillParallelogram
                 key={category.name}

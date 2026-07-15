@@ -463,13 +463,13 @@ body {
 
 /* Skills — character-select parallelograms */
 .skills-para {
-  transform: skewX(-10deg);
+  transform: skewX(-6deg);
 }
 
 .skills-para-shadow {
   z-index: 0;
   background: var(--text-primary);
-  transform: skewX(-10deg) translate(7px, 7px);
+  transform: skewX(-6deg) translate(5px, 5px);
   opacity: 0.92;
   pointer-events: none;
 }
@@ -482,19 +482,61 @@ body {
 
 .skills-para-content {
   /* Un-skew + horizontal breathing room so type clears the slanted edges */
-  transform: skewX(10deg);
-  padding-left: clamp(1.35rem, 3.5vw, 2rem);
-  padding-right: clamp(1.35rem, 3.5vw, 2rem);
+  transform: skewX(6deg);
+  padding-left: clamp(1.1rem, 4vw, 2rem);
+  padding-right: clamp(1.1rem, 4vw, 2rem);
 }
 
 .skills-para-label {
-  transform: skewX(-5deg);
+  transform: skewX(-4deg);
   width: 100%;
 }
 
-.skills-para-row {
-  scrollbar-width: thin;
-  scrollbar-color: color-mix(in srgb, var(--accent-primary) 50%, transparent) transparent;
+.skills-skill-item {
+  margin-left: calc(var(--skill-indent, 0) * 0.4rem);
+  margin-right: calc(var(--skill-outdent, 0) * 0.2rem);
+}
+
+@media (min-width: 640px) {
+  .skills-para {
+    transform: skewX(-8deg);
+  }
+
+  .skills-para-shadow {
+    transform: skewX(-8deg) translate(6px, 6px);
+  }
+
+  .skills-para-content {
+    transform: skewX(8deg);
+  }
+
+  .skills-skill-item {
+    margin-left: calc(var(--skill-indent, 0) * 0.65rem);
+    margin-right: calc(var(--skill-outdent, 0) * 0.28rem);
+  }
+}
+
+@media (min-width: 1024px) {
+  .skills-para {
+    transform: skewX(-10deg);
+  }
+
+  .skills-para-shadow {
+    transform: skewX(-10deg) translate(7px, 7px);
+  }
+
+  .skills-para-content {
+    transform: skewX(10deg);
+  }
+
+  .skills-para-label {
+    transform: skewX(-5deg);
+  }
+
+  .skills-skill-item {
+    margin-left: calc(var(--skill-indent, 0) * 0.85rem);
+    margin-right: calc(var(--skill-outdent, 0) * 0.35rem);
+  }
 }
 
 /* Gallery — chamfered cyber frames */
