@@ -10,9 +10,10 @@ import type { Project } from "@/lib/types";
 
 interface FeaturedProjectsProps {
   projects: Project[];
+  totalCount: number;
 }
 
-export function FeaturedProjects({ projects }: FeaturedProjectsProps) {
+export function FeaturedProjects({ projects, totalCount }: FeaturedProjectsProps) {
   return (
     <SectionShell
       id="projects"
@@ -53,6 +54,12 @@ export function FeaturedProjects({ projects }: FeaturedProjectsProps) {
           className="work-cta work-cta-signal inline-flex items-center gap-2 px-7 py-3.5 font-sans text-meta uppercase tracking-[0.12em]"
         >
           View all work
+          <span
+            className="ml-1 inline-flex items-center border border-accent-electric/80 bg-bg-void/70 px-2 py-0.5 text-[0.68rem] leading-none tracking-[0.16em] text-accent-electric"
+            aria-label={`${totalCount} total projects in archive`}
+          >
+            {String(totalCount).padStart(2, "0")}
+          </span>
           <span aria-hidden>→</span>
         </Link>
       </Reveal>

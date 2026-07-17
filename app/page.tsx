@@ -12,6 +12,7 @@ import {
   getExperience,
   getFeaturedGallery,
   getFeaturedProjects,
+  getProjects,
   getGallery,
   getSiteConfig,
   getSkills,
@@ -21,6 +22,7 @@ export default function HomePage() {
   const site = getSiteConfig();
   const about = getAbout();
   const skills = getSkills();
+  const allProjects = getProjects();
   const featured = getFeaturedProjects();
   const experience = getExperience();
   const achievements = getAchievements();
@@ -32,7 +34,7 @@ export default function HomePage() {
       <Hero config={site} />
       <About content={about} />
       <SkillsGrid content={skills} />
-      <FeaturedProjects projects={featured} />
+      <FeaturedProjects projects={featured} totalCount={allProjects.length} />
       <ExperienceTimeline entries={experience} />
       <Achievements items={achievements} />
       <GalleryPreview items={galleryPreview} totalCount={galleryTotal} />

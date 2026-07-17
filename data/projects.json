@@ -73,5 +73,20 @@
       "tone": "Playful, energetic, tactile, and momentum-driven.",
       "successCriteria": "Visitors immediately understand the physics ball gameplay, experience the game's movement through page animations, and click Play Now."
     }
-  }
+  },
+  {
+  "slug": "qr-wise-clinics-landing",
+  "name": "QR Wise Clinics Landing Page",
+  "description": "A modern marketing website for QR Wise Clinics that showcases its clinic management platform, highlights key features, and drives healthcare providers to request demos and get started.",
+  "techStack": [
+    "Astro",
+    "Tailwind CSS",
+    "Shadcn UI",
+    "Framer Motion"
+  ],
+  "image": "/images/projects/qr-wise-clinics-landing/cover.jpg",
+  "liveUrl": "",
+  "repoUrl": "",
+  "layoutVariant": "angled-color-field"
+}
 ]
