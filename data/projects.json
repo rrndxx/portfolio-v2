@@ -16,7 +16,45 @@
     "image": "/images/projects/netdetect/cover.png",
     "liveUrl": "",
     "repoUrl": "",
-    "layoutVariant": "angled-color-field"
+    "layoutVariant": "angled-color-field",
+    "caseStudy": {
+      "role": "Full-stack developer",
+      "timeline": "2024",
+      "summary": "A unified operations dashboard for campus network teams — surfacing uptime, DNS load, and wireless traffic in one place instead of scattered tools.",
+      "problem": "Campus IT relied on disconnected checks and manual follow-ups when links degraded. Admins lacked a single pane of glass for uptime, DNS anomalies, and wireless congestion, which slowed incident response and made root-cause analysis harder during peak hours.",
+      "approach": "Designed a modular monitoring stack: a React dashboard for live status, Node/Express services for ingestion and alerting, and FastAPI workers for heavier analytics. PostgreSQL stores historical metrics; Redis caches hot telemetry for sub-second refreshes. Docker Compose packages the stack for repeatable deployment across environments.",
+      "highlights": [
+        "Live uptime and wireless traffic panels with at-a-glance health states",
+        "DNS request volume tracking to spot spikes before they become outages",
+        "Service-oriented backend split between Express APIs and FastAPI analytics",
+        "Redis-backed caching layer for responsive dashboard polling",
+        "Containerized deployment for consistent staging and production parity"
+      ],
+      "outcomes": [
+        {
+          "label": "Visibility",
+          "value": "Single dashboard for multi-signal network health"
+        },
+        {
+          "label": "Response",
+          "value": "Faster triage with centralized alerts and history"
+        },
+        {
+          "label": "Reliability",
+          "value": "Cached telemetry keeps the UI responsive under load"
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Architecture",
+          "body": "The frontend polls lightweight Express endpoints while heavier aggregations run in FastAPI. Redis sits between ingestion and the UI so repeated dashboard loads do not hammer PostgreSQL. Each service is isolated in its own container to simplify scaling individual bottlenecks."
+        },
+        {
+          "heading": "What I'd improve next",
+          "body": "Add role-based access for department-level views, push notifications for threshold breaches, and automated runbooks that link alerts to suggested remediation steps."
+        }
+      ]
+    }
   },
   {
     "slug": "everyshelf",
@@ -34,7 +72,45 @@
     "image": "/images/projects/everyshelf/cover.jpg",
     "liveUrl": "https://everyshelf.com",
     "repoUrl": "",
-    "layoutVariant": "angled-color-field"
+    "layoutVariant": "angled-color-field",
+    "caseStudy": {
+      "role": "Full-stack developer · UI lead",
+      "timeline": "2024 — Present",
+      "summary": "A product-grade inventory workspace for teams that need accurate stock counts, fast updates, and readable reports without spreadsheet chaos.",
+      "problem": "Small and mid-size businesses were tracking inventory across spreadsheets and ad-hoc notes. Stock adjustments were error-prone, reports were manual, and staff had no shared source of truth for what was on hand versus what was committed.",
+      "approach": "Built Everyshelf on Next.js with Supabase for auth, realtime data, and row-level security. Shadcn UI primitives were customized to match a dense operational UI — quick-entry flows, filterable tables, and motion cues (Framer Motion + Lottie) that guide attention without slowing power users.",
+      "highlights": [
+        "Unified stock ledger with audit-friendly update flows",
+        "Responsive admin surfaces tuned for tablet use on the shop floor",
+        "Report views that summarize movement without exporting to Excel",
+        "Motion and micro-feedback for confirmations and empty states",
+        "Supabase-backed auth and data layer with typed client access"
+      ],
+      "outcomes": [
+        {
+          "label": "Accuracy",
+          "value": "Single source of truth replaces scattered spreadsheets"
+        },
+        {
+          "label": "Speed",
+          "value": "Streamlined stock-in / stock-out workflows"
+        },
+        {
+          "label": "Clarity",
+          "value": "Built-in reporting for inventory movement"
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Product focus",
+          "body": "The interface prioritizes scan-friendly layouts and obvious primary actions — adjust stock, review history, export summaries — so non-technical staff can operate confidently on day one."
+        },
+        {
+          "heading": "Technical notes",
+          "body": "Server and client components split by interactivity needs. Shared UI tokens keep the marketing site and app shell visually aligned while allowing denser table typography inside the product."
+        }
+      ]
+    }
   },
   {
     "slug": "qr-wise-clinics",
@@ -45,7 +121,45 @@
     "image": "/images/projects/qr-wise-clinics/cover.jpg",
     "liveUrl": "",
     "repoUrl": "",
-    "layoutVariant": "angled-color-field"
+    "layoutVariant": "angled-color-field",
+    "caseStudy": {
+      "role": "Full-stack developer",
+      "timeline": "2024",
+      "summary": "An end-to-end clinic operations platform covering scheduling, records, billing, and payments — designed to reduce admin friction for small healthcare teams.",
+      "problem": "Clinics juggled separate tools for appointments, patient files, and billing. Front-desk staff duplicated data entry, patients waited longer for confirmations, and payment reconciliation happened outside the main workflow.",
+      "approach": "Delivered a Next.js application backed by Supabase, modeling patients, appointments, invoices, and payments in one schema. UI flows mirror real clinic sequences — book, check in, treat, bill — with Shadcn components adapted for high-contrast, low-friction forms.",
+      "highlights": [
+        "Appointment scheduling with staff-facing calendar views",
+        "Patient record management tied to visit history",
+        "Billing and payment tracking in the same workspace",
+        "Role-aware views for admin versus front-desk tasks",
+        "Consistent design system across clinical and financial modules"
+      ],
+      "outcomes": [
+        {
+          "label": "Operations",
+          "value": "Fewer handoffs between scheduling and billing"
+        },
+        {
+          "label": "Records",
+          "value": "Patient history accessible from a single profile"
+        },
+        {
+          "label": "Experience",
+          "value": "Clearer staff workflows from booking to payment"
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Workflow design",
+          "body": "Screens were mapped to actual clinic shifts — morning intake, mid-day adjustments, end-of-day reconciliation — so the product reflects how staff already work rather than forcing a generic CRM pattern."
+        },
+        {
+          "heading": "Data model",
+          "body": "Supabase row-level policies separate clinic tenants while keeping queries simple for the Next.js server layer. Shared types flow from the database shape into UI forms to reduce drift."
+        }
+      ]
+    }
   },
   {
     "slug": "bola",
@@ -72,21 +186,98 @@
       "primaryGoal": "Play Now",
       "tone": "Playful, energetic, tactile, and momentum-driven.",
       "successCriteria": "Visitors immediately understand the physics ball gameplay, experience the game's movement through page animations, and click Play Now."
+    },
+    "caseStudy": {
+      "role": "Developer · game UX",
+      "timeline": "2024",
+      "summary": "A momentum-first browser puzzle where the marketing site sells the feel of the ball before you hit Play — motion, tilt, and rebound baked into both game and landing experience.",
+      "problem": "Physics puzzlers live or die on feel. The challenge was communicating satisfying roll-and-bounce mechanics in a lightweight web game while giving the promo site enough motion language that players understand the hook before launching.",
+      "approach": "Built the playable game for the browser with tuned gravity, ramp angles, and rebound feedback. The Next.js landing layer uses Framer Motion and GSAP to echo in-game movement — parallax, elastic transitions, and CTA emphasis on Play Now. Open-sourced the repo for portfolio transparency.",
+      "highlights": [
+        "Momentum-driven levels with ramps, curves, and obstacle rebounds",
+        "Landing animations that preview gameplay feel before launch",
+        "Playful visual tone aligned with casual puzzle audiences",
+        "GSAP timelines for hero motion; Framer for component-level interaction",
+        "Deployable static-friendly build on Vercel"
+      ],
+      "outcomes": [
+        {
+          "label": "Gameplay",
+          "value": "Readable physics feedback on every roll and bounce"
+        },
+        {
+          "label": "Marketing",
+          "value": "Landing page motion mirrors in-game momentum"
+        },
+        {
+          "label": "Reach",
+          "value": "Instant browser play — no install friction"
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Motion direction",
+          "body": "Animation choices follow the product brief tone — playful and tactile. Elements ease with weight, not linear slides, so the site feels like the ball itself has mass."
+        },
+        {
+          "heading": "Scope",
+          "body": "Focused on a tight core loop — nudge, tilt, recover — before expanding level variety. The case study site prioritizes clarity of mechanics over feature lists."
+        }
+      ]
     }
   },
   {
-  "slug": "qr-wise-clinics-landing",
-  "name": "QR Wise Clinics Landing Page",
-  "description": "A modern marketing website for QR Wise Clinics that showcases its clinic management platform, highlights key features, and drives healthcare providers to request demos and get started.",
-  "techStack": [
-    "Astro",
-    "Tailwind CSS",
-    "Shadcn UI",
-    "Framer Motion"
-  ],
-  "image": "/images/projects/qr-wise-clinics-landing/cover.png",
-  "liveUrl": "https://qrclinics.netlify.app/",
-  "repoUrl": "",
-  "layoutVariant": "angled-color-field"
-}
+    "slug": "qr-wise-clinics-landing",
+    "name": "QR Wise Clinics Landing Page",
+    "featured": false,
+    "description": "A modern marketing website for QR Wise Clinics that showcases its clinic management platform, highlights key features, and drives healthcare providers to request demos and get started.",
+    "techStack": [
+      "Astro",
+      "Tailwind CSS",
+      "Shadcn UI",
+      "Framer Motion"
+    ],
+    "image": "/images/projects/qr-wise-clinics-landing/cover.png",
+    "liveUrl": "https://qrclinics.netlify.app/",
+    "repoUrl": "",
+    "layoutVariant": "angled-color-field",
+    "caseStudy": {
+      "role": "Front-end developer",
+      "timeline": "2024",
+      "summary": "A fast, conversion-focused marketing site for the QR Wise Clinics platform — feature storytelling, social proof, and demo CTAs without the weight of a full app bundle.",
+      "problem": "The clinic product needed a public face that could explain complex workflows to healthcare providers quickly. A heavy SPA would hurt SEO and first paint; the page also had to drive demo requests, not just look polished.",
+      "approach": "Shipped with Astro for static-first delivery and selective hydration. Tailwind and Shadcn patterns keep visual parity with the product while Framer Motion adds restrained scroll reveals on key sections. Copy and section order follow a provider decision journey — problem, capabilities, trust, contact.",
+      "highlights": [
+        "Static-first Astro architecture for fast initial load",
+        "Feature modules mapped to real clinic workflows",
+        "Demo and contact CTAs placed at high-intent scroll points",
+        "Motion reserved for hero and feature reveals — not decorative noise",
+        "Deployed on Netlify with edge-friendly assets"
+      ],
+      "outcomes": [
+        {
+          "label": "Performance",
+          "value": "Lightweight pages with minimal client JavaScript"
+        },
+        {
+          "label": "Messaging",
+          "value": "Clear feature narrative for healthcare buyers"
+        },
+        {
+          "label": "Conversion",
+          "value": "Demo-focused CTAs throughout the scroll path"
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Content structure",
+          "body": "Sections alternate between capability proof and outcomes language so skimmers and deep readers both find a path to the demo form."
+        },
+        {
+          "heading": "Brand alignment",
+          "body": "Shared typography and chip components echo the main product UI, signaling that the landing experience and the app belong to the same system."
+        }
+      ]
+    }
+  }
 ]

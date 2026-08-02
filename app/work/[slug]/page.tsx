@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { CaseStudyView } from "@/components/projects/CaseStudyView";
 import { getProjects } from "@/lib/content";
-import { getProjectBySlug } from "@/lib/projects";
+import { getAdjacentProjects, getProjectBySlug } from "@/lib/projects";
 
 interface WorkSlugPageProps {
   params: Promise<{ slug: string }>;
@@ -18,16 +18,23 @@ export async function generateMetadata({
   const { slug } = await params;
   const project = getProjectBySlug(slug, getProjects());
   if (!project) return { title: "Project" };
+
+  const summary =
+    project.caseStudy?.summary ?? project.description;
+
   return {
     title: `${project.name} — Case Study`,
-    description: project.description,
+    description: summary,
   };
 }
 
 export default async function WorkSlugPage({ params }: WorkSlugPageProps) {
   const { slug } = await params;
-  const project = getProjectBySlug(slug, getProjects());
+  const projects = getProjects();
+  const project = getProjectBySlug(slug, projects);
   if (!project) notFound();
 
-  return <CaseStudyView project={project} />;
+  const { prev, next } = getAdjacentProjects(slug, projects);
+
+  return <CaseStudyView project={project} prev={prev} next={next} />;
 }

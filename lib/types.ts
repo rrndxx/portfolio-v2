@@ -70,16 +70,51 @@ export interface SkillsContent {
 /** Shared angled composition; side is chosen by featured index (alternating). */
 export type ProjectLayoutVariant = "angled-color-field";
 
+export interface CaseStudyOutcome {
+  label: string;
+  value: string;
+}
+
+export interface CaseStudySection {
+  heading: string;
+  body: string;
+}
+
+export interface CaseStudy {
+  role: string;
+  timeline: string;
+  /** Optional lead — falls back to project.description when omitted. */
+  summary?: string;
+  problem: string;
+  approach: string;
+  highlights: string[];
+  outcomes: CaseStudyOutcome[];
+  sections?: CaseStudySection[];
+}
+
+export interface ProductBrief {
+  tagline: string;
+  pitch: string;
+  coreGameplayHook: string;
+  platform: string;
+  audience: string;
+  primaryGoal: string;
+  tone: string;
+  successCriteria: string;
+}
+
 export interface Project {
   slug: string;
   name: string;
-  featured: boolean;
+  featured?: boolean;
   description: string;
   techStack: string[];
   image: string;
-  liveUrl: string;
-  repoUrl: string;
+  liveUrl?: string;
+  repoUrl?: string;
   layoutVariant: ProjectLayoutVariant;
+  caseStudy?: CaseStudy;
+  productBrief?: ProductBrief;
 }
 
 export interface ExperienceEntry {
