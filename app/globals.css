@@ -618,18 +618,54 @@ body {
 }
 
 .work-stage-copy {
-  max-height: min(42vh, 100%);
-  overflow-y: auto;
-  overscroll-behavior: contain;
-  scrollbar-width: thin;
-  scrollbar-color: color-mix(in srgb, var(--accent-glow) 35%, transparent)
-    transparent;
+  max-height: none;
+  overflow: visible;
 }
 
 @media (min-width: 768px) {
-  .work-stage-copy {
-    max-height: calc(100dvh - 7.5rem);
+  .work-stage-shell {
+    display: flex;
   }
+
+  .work-stage-copy {
+    max-height: calc(100dvh - 8.5rem);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+    scrollbar-color: color-mix(in srgb, var(--accent-glow) 35%, transparent)
+      transparent;
+    padding-right: 4px;
+  }
+}
+
+.work-stage-bg {
+  clip-path: polygon(38% 0, 100% 0, 100% 100%, 8% 100%);
+}
+
+.work-roster-bg {
+  clip-path: polygon(0 0, 38% 0, 8% 100%, 0 100%);
+}
+
+@media (max-width: 767px) {
+  .work-stage-bg {
+    clip-path: polygon(0 28%, 100% 18%, 100% 100%, 0 100%);
+  }
+
+  .work-roster-bg {
+    clip-path: polygon(0 0, 100% 0, 100% 28%, 0 38%);
+  }
+}
+
+.work-stage-preview {
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--accent-glow) 35%, transparent),
+    0 12px 40px color-mix(in srgb, var(--bg-void) 55%, transparent);
+}
+
+.work-roster-shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
 }
 
 .work-slot {
