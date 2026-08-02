@@ -66,7 +66,7 @@
     "id": "psite-national-isite-quiz-bowl",
     "title": "5th Placer — National ISITE Quiz Bowl",
     "category": "Competition",
-    "organization": "PSITE",
+    "organization": "ISITE",
     "year": "2025"
   },
   {
@@ -81,13 +81,13 @@
     "title": "2nd Placer — Sci-Math Quiz Bowl",
     "category": "Competition",
     "organization": "CRMC",
-    "year": "2026"
+    "year": "2025"
   },
   {
     "id": "word-warpathon",
     "title": "2nd Placer — Word Warpathon",
     "category": "Competition",
     "organization": "CRMC",
-    "year": "2026"
+    "year": "2025"
   }
 ]
