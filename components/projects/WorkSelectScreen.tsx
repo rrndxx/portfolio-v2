@@ -38,7 +38,7 @@ function WorkStagePanel({ project }: { project: Project }) {
 
     <>
 
-      <div className="relative mx-auto w-full max-w-md flex-1 md:mx-0 md:max-w-none md:self-end">
+      <div className="relative mx-auto w-full shrink-0 md:mx-0 md:self-end">
 
         <div
 
@@ -56,7 +56,7 @@ function WorkStagePanel({ project }: { project: Project }) {
 
         />
 
-        <div className="project-card-frame relative z-[1] mx-auto aspect-[3/4] w-[min(100%,380px)] overflow-hidden md:w-[min(100%,440px)] lg:w-[min(92%,520px)]">
+        <div className="project-card-frame relative z-[1] mx-auto aspect-[3/4] w-[min(100%,300px)] overflow-hidden md:w-[min(100%,280px)] lg:w-[min(100%,320px)]">
 
           <Image
 
@@ -68,7 +68,7 @@ function WorkStagePanel({ project }: { project: Project }) {
 
             priority
 
-            sizes="(max-width: 768px) 90vw, 520px"
+            sizes="(max-width: 768px) 90vw, 320px"
 
             className="object-cover object-top"
 
@@ -80,7 +80,7 @@ function WorkStagePanel({ project }: { project: Project }) {
 
 
 
-      <div className="work-stage-copy relative z-[2] mt-8 w-full max-w-lg md:mt-0 md:w-[42%] md:self-end md:pb-6 lg:w-[38%]">
+      <div className="work-stage-copy relative z-[2] mt-8 w-full md:mt-0 md:w-[min(100%,22rem)] md:shrink-0 md:self-end md:pb-6 lg:w-[min(100%,26rem)]">
 
         <div className="mb-2 flex gap-[3px]">
 
@@ -432,7 +432,7 @@ export function WorkSelectScreen({ projects }: WorkSelectScreenProps) {
 
           style={{
 
-            clipPath: "polygon(36% 0, 100% 0, 100% 100%, 8% 100%)",
+            clipPath: "polygon(42% 0, 100% 0, 100% 100%, 10% 100%)",
 
           }}
 
@@ -448,7 +448,7 @@ export function WorkSelectScreen({ projects }: WorkSelectScreenProps) {
 
               "repeating-linear-gradient(-22deg, transparent 0, transparent 26px, color-mix(in srgb, var(--bg-void) 55%, transparent) 26px, color-mix(in srgb, var(--bg-void) 55%, transparent) 28px)",
 
-            clipPath: "polygon(36% 0, 100% 0, 100% 100%, 8% 100%)",
+            clipPath: "polygon(42% 0, 100% 0, 100% 100%, 10% 100%)",
 
           }}
 
@@ -464,7 +464,7 @@ export function WorkSelectScreen({ projects }: WorkSelectScreenProps) {
 
               "repeating-linear-gradient(135deg, var(--text-primary) 0 1px, transparent 1px 16px)",
 
-            clipPath: "polygon(0 0, 36% 0, 8% 100%, 0 100%)",
+            clipPath: "polygon(0 0, 42% 0, 10% 100%, 0 100%)",
 
           }}
 
@@ -522,11 +522,11 @@ export function WorkSelectScreen({ projects }: WorkSelectScreenProps) {
 
 
 
-      <div className="relative z-10 flex h-full min-h-0 flex-col md:flex-row md:gap-8 lg:gap-12 lg:pl-[calc(3rem+4vw)]">
+      <div className="relative z-10 grid h-full min-h-0 grid-cols-1 md:grid-cols-[clamp(18rem,32vw,24rem)_minmax(0,1fr)] lg:pl-[calc(3rem+4vw)]">
 
         {/* Scrollable roster — left on desktop, top strip on mobile */}
 
-        <aside className="flex min-h-0 shrink-0 flex-col px-[5vw] pt-16 md:h-full md:w-[200px] md:px-[6vw] md:pb-20 md:pt-20 lg:w-[240px]">
+        <aside className="flex min-h-0 flex-col border-border-subtle/20 px-[5vw] pt-16 md:h-full md:border-r md:px-6 md:pb-20 md:pt-20 lg:px-8">
 
           <div className="mb-4 flex shrink-0 items-end justify-between gap-4 md:mb-6 md:block">
 
@@ -614,7 +614,7 @@ export function WorkSelectScreen({ projects }: WorkSelectScreenProps) {
 
                     aria-selected={isActive}
 
-                    className="relative w-[140px] shrink-0 md:w-full"
+                    className="relative w-[148px] shrink-0 sm:w-[160px] md:w-full"
 
                   >
 
@@ -658,7 +658,7 @@ export function WorkSelectScreen({ projects }: WorkSelectScreenProps) {
 
                           fill
 
-                          sizes="200px"
+                          sizes="(max-width: 768px) 160px, 320px"
 
                           className="object-cover"
 
@@ -722,7 +722,7 @@ export function WorkSelectScreen({ projects }: WorkSelectScreenProps) {
 
           aria-live="polite"
 
-          className="relative flex min-h-0 flex-1 flex-col overflow-hidden px-[5vw] pb-16 pt-2 md:sticky md:top-0 md:h-dvh md:flex-row md:items-end md:gap-6 md:px-[6vw] md:pb-20 md:pt-20 lg:gap-10"
+          className="relative flex min-h-0 flex-col overflow-hidden px-[5vw] pb-16 pt-2 md:sticky md:top-0 md:h-dvh md:items-start md:justify-end md:px-6 md:pb-20 md:pt-20 lg:px-10"
 
         >
 
@@ -732,7 +732,7 @@ export function WorkSelectScreen({ projects }: WorkSelectScreenProps) {
 
               key={active.slug}
 
-              className="flex min-h-0 w-full flex-1 flex-col md:flex-row md:items-end md:gap-6 lg:gap-10"
+              className="flex min-h-0 w-full max-w-[52rem] flex-col md:flex-row md:items-end md:gap-6 lg:gap-8"
 
               initial={stageMotion.initial}
 
