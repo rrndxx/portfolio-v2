@@ -566,6 +566,41 @@ body {
 }
 
 /* /work — character-select archive */
+.work-roster-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--accent-electric) 45%, transparent)
+    transparent;
+}
+
+.work-roster-scroll::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+.work-roster-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.work-roster-scroll::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--accent-electric) 45%, transparent);
+  border-radius: 999px;
+}
+
+.work-stage-copy {
+  max-height: min(42vh, 100%);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--accent-glow) 35%, transparent)
+    transparent;
+}
+
+@media (min-width: 768px) {
+  .work-stage-copy {
+    max-height: calc(100dvh - 7.5rem);
+  }
+}
+
 .work-slot {
   transform: skewX(-10deg);
 }
