@@ -1,9 +1,8 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
 import { usePathname } from "next/navigation";
-import { defaultTransition } from "@/lib/motion";
+import { NavSectorHud } from "@/components/nav/NavSectorHud";
 import type { NavItem } from "@/lib/types";
 
 interface VerticalNavRailProps {
@@ -117,51 +116,12 @@ export function VerticalNavRail({ items }: VerticalNavRailProps) {
 
   return (
     <>
-      {/* Sits under hero CTA — selected sector nameplate */}
-      <div
-        aria-live="polite"
-        className="pointer-events-none fixed right-4 top-[4.5rem] z-40 md:right-6 md:top-[5.25rem] lg:right-8"
-      >
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeId}
-            initial={{ opacity: 0, x: 16, y: -8 }}
-            animate={{ opacity: 1, x: 0, y: 0 }}
-            exit={{ opacity: 0, x: 12, y: -6 }}
-            transition={defaultTransition}
-            className="nav-sector-hud relative min-w-[9.5rem] px-4 py-3 md:min-w-[11rem] md:px-5 md:py-3.5"
-          >
-            <div
-              aria-hidden
-              className="glitch-texture pointer-events-none absolute inset-x-0 top-0 h-1 opacity-80"
-            />
-            <div className="mb-1.5 flex items-center justify-between gap-3">
-              <span className="font-sans text-[0.58rem] uppercase tracking-[0.18em] text-accent-glow">
-                Sector_
-              </span>
-              <span className="font-sans text-[0.58rem] uppercase tracking-[0.14em] text-text-muted">
-                {String(activeIndex + 1).padStart(2, "0")}/
-                {String(items.length).padStart(2, "0")}
-              </span>
-            </div>
-            <p className="font-display text-[1.15rem] uppercase leading-none tracking-tight text-text-primary md:text-[1.35rem]">
-              {activeItem?.label ?? "Home"}
-              <span className="text-accent-glow">_</span>
-            </p>
-            <div aria-hidden className="mt-2 flex items-center gap-1.5">
-              <span className="h-px flex-1 bg-gradient-to-r from-accent-electric/80 to-transparent" />
-              <span className="flex gap-[2px]">
-                {[0, 1, 2].map((i) => (
-                  <span
-                    key={i}
-                    className="block h-2 w-[2px] -skew-x-[22deg] bg-accent-electric"
-                  />
-                ))}
-              </span>
-            </div>
-          </motion.div>
-        </AnimatePresence>
-      </div>
+      <NavSectorHud
+        label={activeItem?.label ?? "Home"}
+        index={activeIndex}
+        total={items.length}
+        sectorKey={activeId}
+      />
 
       <nav
         aria-label="Primary"

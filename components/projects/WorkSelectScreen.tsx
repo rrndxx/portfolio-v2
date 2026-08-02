@@ -14,6 +14,8 @@ import { CyberAmbient } from "@/components/ui/CyberAmbient";
 
 import { GlitchField } from "@/components/hero/GlitchField";
 
+import { WorkRosterList } from "@/components/projects/WorkRosterList";
+
 import { defaultTransition, hoverTransition } from "@/lib/motion";
 
 import type { Project } from "@/lib/types";
@@ -570,147 +572,13 @@ export function WorkSelectScreen({ projects }: WorkSelectScreenProps) {
 
 
 
-          <div
-
-            ref={rosterRef}
-
-            className="work-roster-scroll shrink-0 overflow-x-auto overflow-y-hidden pb-4 md:min-h-0 md:flex-1 md:overflow-x-visible md:overflow-y-auto md:pb-16"
-
-          >
-
-            <ul
-
-              className="flex gap-4 md:flex-col md:gap-5"
-
-              role="listbox"
-
-              aria-label="Project roster"
-
-              aria-activedescendant={`work-slot-${active.slug}`}
-
-            >
-
-              {projects.map((project, index) => {
-
-                const isActive = project.slug === active.slug;
-
-                return (
-
-                  <li
-
-                    key={project.slug}
-
-                    id={`work-slot-${project.slug}`}
-
-                    ref={(node) => {
-
-                      if (node) slotRefs.current.set(project.slug, node);
-
-                      else slotRefs.current.delete(project.slug);
-
-                    }}
-
-                    role="option"
-
-                    aria-selected={isActive}
-
-                    className="relative w-[148px] shrink-0 sm:w-[160px] md:w-full"
-
-                  >
-
-                    <div
-
-                      aria-hidden
-
-                      className="work-slot-shadow absolute inset-0"
-
-                    />
-
-                    <button
-
-                      type="button"
-
-                      onClick={() => selectProject(project.slug)}
-
-                      className={[
-
-                        "work-slot relative block w-full overflow-hidden text-left transition-[transform,filter] duration-300",
-
-                        isActive
-
-                          ? "work-slot-active scale-[1.02]"
-
-                          : "hover:-translate-y-1.5 hover:brightness-110",
-
-                      ].join(" ")}
-
-                      aria-pressed={isActive}
-
-                    >
-
-                      <div className="work-slot-inner relative aspect-[4/5] bg-bg-panel-raised">
-
-                        <Image
-
-                          src={project.image}
-
-                          alt=""
-
-                          fill
-
-                          sizes="(max-width: 768px) 160px, 320px"
-
-                          className="object-cover"
-
-                        />
-
-                        <div className="absolute inset-0 bg-gradient-to-t from-bg-void/90 via-transparent to-transparent" />
-
-                        <div className="absolute left-2 top-2 flex gap-[2px]">
-
-                          {[0, 1, 2].map((i) => (
-
-                            <span
-
-                              key={i}
-
-                              className="block h-2 w-[2px] -skew-x-[22deg] bg-accent-glow/70"
-
-                            />
-
-                          ))}
-
-                        </div>
-
-                        <div className="absolute inset-x-0 bottom-0 p-2.5">
-
-                          <p className="font-sans text-[0.6rem] uppercase tracking-[0.14em] text-accent-glow/80">
-
-                            {String(index + 1).padStart(2, "0")}_
-
-                          </p>
-
-                          <p className="mt-0.5 font-display text-sm uppercase leading-tight text-text-primary">
-
-                            {project.name}
-
-                          </p>
-
-                        </div>
-
-                      </div>
-
-                    </button>
-
-                  </li>
-
-                );
-
-              })}
-
-            </ul>
-
-          </div>
+          <WorkRosterList
+            projects={projects}
+            activeSlug={activeSlug}
+            onSelect={selectProject}
+            listRef={rosterRef}
+            slotRefs={slotRefs}
+          />
 
         </aside>
 

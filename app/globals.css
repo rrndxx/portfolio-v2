@@ -570,6 +570,37 @@ body {
   scrollbar-width: thin;
   scrollbar-color: color-mix(in srgb, var(--accent-electric) 45%, transparent)
     transparent;
+  padding-inline: 2px;
+}
+
+.work-roster-row {
+  min-width: 0;
+}
+
+.work-roster-btn {
+  clip-path: polygon(
+    0 0,
+    calc(100% - 8px) 0,
+    100% 8px,
+    100% 100%,
+    8px 100%,
+    0 calc(100% - 8px)
+  );
+  background: color-mix(in srgb, var(--bg-void) 40%, transparent);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--border-subtle) 80%, transparent);
+}
+
+.work-roster-btn-active {
+  background: color-mix(in srgb, var(--bg-panel-raised) 92%, var(--bg-void));
+  box-shadow:
+    inset 3px 0 0 var(--accent-glow),
+    inset 0 0 0 1px color-mix(in srgb, var(--accent-glow) 45%, transparent),
+    0 0 20px color-mix(in srgb, var(--accent-primary) 25%, transparent);
+}
+
+.work-roster-thumb {
+  clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--border-subtle) 70%, transparent);
 }
 
 .work-roster-scroll::-webkit-scrollbar {
