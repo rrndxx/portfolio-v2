@@ -148,7 +148,7 @@ function assembleProjects(
   const catalog = getProjects();
   const bySlug = new Map(catalog.map((project) => [project.slug, project]));
 
-  return profile.projects
+  const ranked = profile.projects
     .filter(
       (ref) =>
         ref.roles.includes(role.id) ||
@@ -159,20 +159,22 @@ function assembleProjects(
       return { ref, score: ref.weight + exact };
     })
     .sort((a, b) => b.score - a.score)
-    .slice(0, limit)
-    .map(({ ref }) => {
-      const project = bySlug.get(ref.slug);
-      if (!project) return null;
-      return {
-        slug: project.slug,
-        name: project.name,
-        blurb: ref.blurb ?? project.description,
-        techStack: project.techStack.filter((item) => !item.startsWith("TODO")),
-        liveUrl: project.liveUrl || undefined,
-        repoUrl: project.repoUrl || undefined,
-      };
-    })
-    .filter((item): item is AssembledResumeProject => item !== null);
+    .slice(0, limit);
+
+  const assembled: AssembledResumeProject[] = [];
+  for (const { ref } of ranked) {
+    const project = bySlug.get(ref.slug);
+    if (!project) continue;
+    assembled.push({
+      slug: project.slug,
+      name: project.name,
+      blurb: ref.blurb ?? project.description,
+      techStack: project.techStack.filter((item) => !item.startsWith("TODO")),
+      liveUrl: project.liveUrl || undefined,
+      repoUrl: project.repoUrl || undefined,
+    });
+  }
+  return assembled;
 }
 
 function assembleAchievements(
@@ -183,7 +185,7 @@ function assembleAchievements(
   const catalog = getAchievements();
   const byId = new Map(catalog.map((item) => [item.id, item]));
 
-  return profile.achievements
+  const ranked = profile.achievements
     .filter(
       (ref) =>
         ref.roles.includes(role.id) ||
@@ -194,19 +196,21 @@ function assembleAchievements(
       return { ref, score: ref.weight + exact };
     })
     .sort((a, b) => b.score - a.score)
-    .slice(0, limit)
-    .map(({ ref }) => {
-      const item = byId.get(ref.id);
-      if (!item) return null;
-      return {
-        id: item.id,
-        title: item.title,
-        year: item.year,
-        category: item.category,
-        organization: item.organization,
-      };
-    })
-    .filter((item): item is AssembledResumeAchievement => item !== null);
+    .slice(0, limit);
+
+  const assembled: AssembledResumeAchievement[] = [];
+  for (const { ref } of ranked) {
+    const item = byId.get(ref.id);
+    if (!item) continue;
+    assembled.push({
+      id: item.id,
+      title: item.title,
+      year: item.year,
+      category: item.category,
+      organization: item.organization,
+    });
+  }
+  return assembled;
 }
 
 export function assembleResumeDocument(
