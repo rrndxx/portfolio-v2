@@ -1,0 +1,107 @@
+[
+  {
+    "id": "crmc-technical-staff",
+    "title": "Technical Staff",
+    "organization": "Cebu Roosevelt Memorial Colleges",
+    "location": "Cebu, Philippines",
+    "start": "July 2026",
+    "end": "Present",
+    "sortKey": "2026-07",
+    "bullets": [
+      {
+        "id": "crmc-ts-infra",
+        "text": "Provide technical support and maintenance for institutional IT needs and campus infrastructure.",
+        "roles": ["technical-support", "software-engineer", "fullstack"],
+        "weight": 100
+      },
+      {
+        "id": "crmc-ts-troubleshoot",
+        "text": "Diagnose and resolve hardware, software, and connectivity issues for staff and campus systems.",
+        "roles": ["technical-support"],
+        "weight": 95
+      },
+      {
+        "id": "crmc-ts-users",
+        "text": "Support end users with clear communication while keeping systems available for daily operations.",
+        "roles": ["technical-support", "web-developer"],
+        "weight": 80
+      },
+      {
+        "id": "crmc-ts-bridge",
+        "text": "Bridge technical and non-technical stakeholders when evaluating tools and operational workflows.",
+        "roles": ["fullstack", "software-engineer", "frontend", "backend"],
+        "weight": 70
+      }
+    ]
+  },
+  {
+    "id": "pehc-consultant",
+    "title": "Full Stack Developer — Development Consultant",
+    "organization": "Pacific Equities Holding Corp.",
+    "location": "Philippines",
+    "start": "May 2026",
+    "end": "July 2026",
+    "sortKey": "2026-05",
+    "bullets": [
+      {
+        "id": "pehc-c-fullstack",
+        "text": "Developed and maintained full-stack web applications using Next.js, Supabase, Tailwind CSS, and Shadcn UI.",
+        "roles": ["fullstack", "software-engineer", "web-developer"],
+        "weight": 100
+      },
+      {
+        "id": "pehc-c-frontend",
+        "text": "Built responsive product interfaces with Next.js, Tailwind CSS, and Shadcn UI focused on clear operational workflows.",
+        "roles": ["frontend", "web-developer"],
+        "weight": 100
+      },
+      {
+        "id": "pehc-c-backend",
+        "text": "Implemented Supabase-backed data models, auth flows, and application logic for production web features.",
+        "roles": ["backend", "fullstack", "software-engineer"],
+        "weight": 90
+      },
+      {
+        "id": "pehc-c-delivery",
+        "text": "Owned feature delivery from implementation through iteration with stakeholders in a consulting engagement.",
+        "roles": ["fullstack", "software-engineer", "frontend", "backend", "web-developer"],
+        "weight": 75
+      }
+    ]
+  },
+  {
+    "id": "pehc-intern",
+    "title": "Full Stack Developer — Intern",
+    "organization": "Pacific Equities Holding Corp.",
+    "location": "Philippines",
+    "start": "January 2026",
+    "end": "April 2026",
+    "sortKey": "2026-01",
+    "bullets": [
+      {
+        "id": "pehc-i-fullstack",
+        "text": "Built full-stack web application features using Next.js, Supabase, Tailwind CSS, and Shadcn UI.",
+        "roles": ["fullstack", "software-engineer", "web-developer"],
+        "weight": 100
+      },
+      {
+        "id": "pehc-i-frontend",
+        "text": "Implemented UI components and page flows in Next.js with Tailwind CSS and Shadcn UI.",
+        "roles": ["frontend", "web-developer"],
+        "weight": 100
+      },
+      {
+        "id": "pehc-i-data",
+        "text": "Worked with Supabase for application data and authentication patterns in a real product codebase.",
+        "roles": ["backend", "fullstack", "software-engineer"],
+        "weight": 85
+      },
+      {
+        "id": "pehc-i-collab",
+        "text": "Collaborated with the development team to ship maintainable features under internship timelines.",
+        "roles": ["fullstack", "frontend", "backend", "software-engineer", "web-developer", "technical-support"],
+        "weight": 70
+      }
+    ]
+  }
+]

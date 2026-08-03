@@ -144,3 +144,159 @@ export interface GalleryItem {
   /** Shown in the homepage gallery preview when true. */
   featured?: boolean;
 }
+
+/* ── Resume / CV API (consumed by external builder site) ── */
+
+export type ResumeDocumentKind = "resume" | "cv";
+
+export type ResumeRoleId =
+  | "fullstack"
+  | "frontend"
+  | "backend"
+  | "technical-support"
+  | "software-engineer"
+  | "web-developer";
+
+export interface ResumeContact {
+  name: string;
+  email: string;
+  phone?: string;
+  location: string;
+  links: {
+    label: string;
+    url: string;
+  }[];
+}
+
+export interface ResumeEducation {
+  id: string;
+  school: string;
+  degree: string;
+  honors?: string;
+  start: string;
+  end: string;
+  location?: string;
+}
+
+export interface ResumeExperienceBullet {
+  id: string;
+  text: string;
+  /** Roles that should prefer this bullet. Empty = available to all. */
+  roles: ResumeRoleId[];
+  /** Higher = more likely to appear when a role profile selects this job. */
+  weight: number;
+}
+
+export interface ResumeExperienceJob {
+  id: string;
+  title: string;
+  organization: string;
+  location?: string;
+  start: string;
+  end: string;
+  /** ISO-ish sort key, e.g. 2026-07 */
+  sortKey: string;
+  bullets: ResumeExperienceBullet[];
+}
+
+export interface ResumeSkillGroup {
+  name: string;
+  skills: string[];
+}
+
+export interface ResumeProjectRef {
+  slug: string;
+  /** One-line impact blurb for ATS (overrides project.description when set). */
+  blurb?: string;
+  roles: ResumeRoleId[];
+  weight: number;
+}
+
+export interface ResumeAchievementRef {
+  id: string;
+  roles: ResumeRoleId[];
+  weight: number;
+}
+
+export interface ResumeProfile {
+  contact: ResumeContact;
+  targetTitleDefault: string;
+  summaries: Partial<Record<ResumeRoleId, string>> & { default: string };
+  education: ResumeEducation[];
+  skillGroups: ResumeSkillGroup[];
+  /** Extra skills to inject only for certain roles. */
+  roleSkillOverrides?: Partial<
+    Record<ResumeRoleId, { emphasize: string[]; deprioritize: string[] }>
+  >;
+  projects: ResumeProjectRef[];
+  achievements: ResumeAchievementRef[];
+}
+
+export interface ResumeRoleProfile {
+  id: ResumeRoleId;
+  label: string;
+  /** Headline shown under the name on the document. */
+  targetTitle: string;
+  relatedRoles: ResumeRoleId[];
+  /** Max bullets per experience job (resume). CV uses a higher soft cap. */
+  maxBulletsPerJob: number;
+  maxProjects: { resume: number; cv: number };
+  maxAchievements: { resume: number; cv: number };
+  skillCategoryOrder: string[];
+  experienceOrder: string[];
+  notes?: string;
+}
+
+export interface AssembledResumeExperience {
+  id: string;
+  title: string;
+  organization: string;
+  location?: string;
+  start: string;
+  end: string;
+  bullets: string[];
+}
+
+export interface AssembledResumeProject {
+  slug: string;
+  name: string;
+  blurb: string;
+  techStack: string[];
+  liveUrl?: string;
+  repoUrl?: string;
+}
+
+export interface AssembledResumeAchievement {
+  id: string;
+  title: string;
+  year: string;
+  category?: string;
+  organization?: string;
+}
+
+/** Payload returned by GET /api/resume — builder site renders templates from this. */
+export interface AssembledResumeDocument {
+  meta: {
+    role: ResumeRoleId;
+    roleLabel: string;
+    kind: ResumeDocumentKind;
+    generatedAt: string;
+    source: "portfolio-v2";
+    atsHints: string[];
+  };
+  contact: ResumeContact;
+  targetTitle: string;
+  summary: string;
+  skills: ResumeSkillGroup[];
+  experience: AssembledResumeExperience[];
+  projects: AssembledResumeProject[];
+  education: ResumeEducation[];
+  achievements: AssembledResumeAchievement[];
+}
+
+export interface ResumeRoleListItem {
+  id: ResumeRoleId;
+  label: string;
+  targetTitle: string;
+  relatedRoles: ResumeRoleId[];
+}

@@ -1,0 +1,225 @@
+{
+  "contact": {
+    "name": "Rendyll Ryan Cabardo",
+    "email": "TODO: set your resume email",
+    "phone": "",
+    "location": "Cebu City, Philippines",
+    "links": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/rrndxx"
+      },
+      {
+        "label": "LinkedIn",
+        "url": "https://www.linkedin.com/in/rendyll"
+      },
+      {
+        "label": "Portfolio",
+        "url": "https://rrndxx.netlify.app"
+      }
+    ]
+  },
+  "targetTitleDefault": "Full-Stack Developer",
+  "summaries": {
+    "default": "Full-stack developer and Magna Cum Laude BSIT graduate based in Cebu City. I build modern web applications end-to-end—clean UI, reliable APIs, and maintainable architecture—with a focus on shipping useful software.",
+    "fullstack": "Full-stack developer specializing in Next.js, Supabase, and Node-based backends. I design and ship production web apps from UI through data layer, with attention to clean architecture, performance, and maintainable code.",
+    "frontend": "Frontend-focused developer building polished, accessible interfaces with React, Next.js, and Tailwind. I care about clear UX, motion that supports hierarchy, and component systems that stay maintainable as products grow.",
+    "backend": "Backend-capable full-stack developer experienced with Node.js, Express, FastAPI, and PostgreSQL. I build APIs, data models, and service layers that keep applications reliable and easy to operate.",
+    "technical-support": "Technical support professional and BSIT graduate with hands-on experience maintaining campus IT infrastructure. Strong troubleshooting foundation (PC, networking) plus development background that helps bridge users, systems, and software teams.",
+    "software-engineer": "Software engineer and Magna Cum Laude BSIT graduate who builds full-stack web systems with React/Next.js and modern backends. Comfortable owning features from requirements through deployment.",
+    "web-developer": "Web developer building responsive, production-ready sites and apps with Next.js, Tailwind, and modern tooling. Experienced delivering product UIs, marketing sites, and full-stack features for real stakeholders."
+  },
+  "education": [
+    {
+      "id": "bsit-crmc",
+      "school": "Cebu Roosevelt Memorial Colleges",
+      "degree": "Bachelor of Science in Information Technology",
+      "honors": "Magna Cum Laude",
+      "start": "2022",
+      "end": "2026",
+      "location": "Cebu, Philippines"
+    }
+  ],
+  "skillGroups": [
+    {
+      "name": "Frontend",
+      "skills": [
+        "React",
+        "Next.js",
+        "React Native",
+        "Tailwind CSS",
+        "Shadcn UI",
+        "Framer Motion",
+        "GSAP"
+      ]
+    },
+    {
+      "name": "Backend",
+      "skills": ["Node.js", "Express", "NestJS", "FastAPI", "Flask", "PHP"]
+    },
+    {
+      "name": "Data & Infra",
+      "skills": [
+        "PostgreSQL",
+        "MySQL",
+        "MongoDB",
+        "Supabase",
+        "Firebase",
+        "Redis",
+        "Meilisearch",
+        "Docker"
+      ]
+    },
+    {
+      "name": "Support & Systems",
+      "skills": [
+        "Technical troubleshooting",
+        "PC maintenance",
+        "Networking fundamentals",
+        "IT infrastructure support",
+        "End-user support"
+      ]
+    },
+    {
+      "name": "Tooling",
+      "skills": ["Git", "GitHub", "Astro"]
+    }
+  ],
+  "roleSkillOverrides": {
+    "frontend": {
+      "emphasize": [
+        "React",
+        "Next.js",
+        "Tailwind CSS",
+        "Shadcn UI",
+        "Framer Motion",
+        "GSAP",
+        "Astro"
+      ],
+      "deprioritize": ["PHP", "Flask", "NestJS", "Meilisearch"]
+    },
+    "backend": {
+      "emphasize": [
+        "Node.js",
+        "Express",
+        "FastAPI",
+        "PostgreSQL",
+        "Redis",
+        "Docker",
+        "Supabase"
+      ],
+      "deprioritize": ["Framer Motion", "GSAP", "React Native", "Shadcn UI"]
+    },
+    "technical-support": {
+      "emphasize": [
+        "Technical troubleshooting",
+        "PC maintenance",
+        "Networking fundamentals",
+        "IT infrastructure support",
+        "End-user support",
+        "Git"
+      ],
+      "deprioritize": ["GSAP", "Framer Motion", "Meilisearch", "NestJS"]
+    },
+    "fullstack": {
+      "emphasize": [
+        "Next.js",
+        "React",
+        "Supabase",
+        "Node.js",
+        "PostgreSQL",
+        "Tailwind CSS",
+        "Docker"
+      ],
+      "deprioritize": []
+    }
+  },
+  "projects": [
+    {
+      "slug": "netdetect",
+      "blurb": "Campus network monitoring platform with live health dashboards, DNS/wireless metrics, and a Dockerized multi-service stack.",
+      "roles": ["fullstack", "backend", "software-engineer", "technical-support"],
+      "weight": 90
+    },
+    {
+      "slug": "everyshelf",
+      "blurb": "Inventory management product for stock tracking, updates, and reporting—built with Next.js and Supabase.",
+      "roles": ["fullstack", "frontend", "software-engineer", "web-developer"],
+      "weight": 95
+    },
+    {
+      "slug": "qr-wise-clinics",
+      "blurb": "Clinic operations platform covering scheduling, patient records, billing, and payments.",
+      "roles": ["fullstack", "frontend", "software-engineer", "web-developer"],
+      "weight": 88
+    },
+    {
+      "slug": "bola",
+      "blurb": "Browser physics puzzle game with momentum-driven gameplay and a motion-led marketing site.",
+      "roles": ["frontend", "web-developer", "software-engineer"],
+      "weight": 75
+    },
+    {
+      "slug": "qr-wise-clinics-landing",
+      "blurb": "Marketing site for QR Wise Clinics—Astro static-first build focused on feature storytelling and demo conversion.",
+      "roles": ["frontend", "web-developer"],
+      "weight": 70
+    }
+  ],
+  "achievements": [
+    {
+      "id": "magna-cum-laude",
+      "roles": [
+        "fullstack",
+        "frontend",
+        "backend",
+        "software-engineer",
+        "web-developer",
+        "technical-support"
+      ],
+      "weight": 100
+    },
+    {
+      "id": "civil-service-professional",
+      "roles": ["technical-support", "software-engineer", "fullstack"],
+      "weight": 85
+    },
+    {
+      "id": "full-stack-developer-year",
+      "roles": ["fullstack", "software-engineer", "web-developer", "backend"],
+      "weight": 95
+    },
+    {
+      "id": "outstanding-intern",
+      "roles": ["fullstack", "frontend", "software-engineer", "web-developer"],
+      "weight": 90
+    },
+    {
+      "id": "best-pc-troubleshooting",
+      "roles": ["technical-support"],
+      "weight": 95
+    },
+    {
+      "id": "networking-excellence",
+      "roles": ["technical-support", "backend"],
+      "weight": 90
+    },
+    {
+      "id": "deans-list",
+      "roles": [
+        "fullstack",
+        "frontend",
+        "backend",
+        "software-engineer",
+        "web-developer",
+        "technical-support"
+      ],
+      "weight": 70
+    },
+    {
+      "id": "psite-national-isite-quiz-bowl",
+      "roles": ["software-engineer", "fullstack", "technical-support"],
+      "weight": 65
+    }
+  ]
+}

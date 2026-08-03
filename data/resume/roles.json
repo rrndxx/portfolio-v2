@@ -1,0 +1,74 @@
+[
+  {
+    "id": "fullstack",
+    "label": "Full-Stack Developer",
+    "targetTitle": "Full-Stack Developer",
+    "relatedRoles": ["software-engineer", "web-developer", "backend", "frontend"],
+    "maxBulletsPerJob": 3,
+    "maxProjects": { "resume": 3, "cv": 5 },
+    "maxAchievements": { "resume": 4, "cv": 8 },
+    "skillCategoryOrder": ["Frontend", "Backend", "Data & Infra", "Tooling"],
+    "experienceOrder": ["pehc-consultant", "pehc-intern", "crmc-technical-staff"],
+    "notes": "Default product/engineering track — balanced FE/BE + shipping projects."
+  },
+  {
+    "id": "frontend",
+    "label": "Frontend Developer",
+    "targetTitle": "Frontend Developer",
+    "relatedRoles": ["web-developer", "fullstack", "software-engineer"],
+    "maxBulletsPerJob": 3,
+    "maxProjects": { "resume": 3, "cv": 5 },
+    "maxAchievements": { "resume": 3, "cv": 6 },
+    "skillCategoryOrder": ["Frontend", "Tooling", "Backend", "Data & Infra"],
+    "experienceOrder": ["pehc-consultant", "pehc-intern", "crmc-technical-staff"],
+    "notes": "UI/UX and component systems first; keep backend skills secondary."
+  },
+  {
+    "id": "backend",
+    "label": "Backend Developer",
+    "targetTitle": "Backend Developer",
+    "relatedRoles": ["fullstack", "software-engineer"],
+    "maxBulletsPerJob": 3,
+    "maxProjects": { "resume": 3, "cv": 4 },
+    "maxAchievements": { "resume": 3, "cv": 6 },
+    "skillCategoryOrder": ["Backend", "Data & Infra", "Tooling", "Frontend"],
+    "experienceOrder": ["pehc-consultant", "pehc-intern", "crmc-technical-staff"],
+    "notes": "APIs, data, infra — NetDetect and Supabase work lead."
+  },
+  {
+    "id": "technical-support",
+    "label": "Technical Support",
+    "targetTitle": "Technical Support Specialist",
+    "relatedRoles": ["software-engineer"],
+    "maxBulletsPerJob": 4,
+    "maxProjects": { "resume": 2, "cv": 3 },
+    "maxAchievements": { "resume": 5, "cv": 8 },
+    "skillCategoryOrder": ["Support & Systems", "Tooling", "Data & Infra", "Frontend", "Backend"],
+    "experienceOrder": ["crmc-technical-staff", "pehc-consultant", "pehc-intern"],
+    "notes": "Lead with CRMC technical staff + troubleshooting awards; light project proof."
+  },
+  {
+    "id": "software-engineer",
+    "label": "Software Engineer",
+    "targetTitle": "Software Engineer",
+    "relatedRoles": ["fullstack", "backend", "frontend", "web-developer"],
+    "maxBulletsPerJob": 3,
+    "maxProjects": { "resume": 3, "cv": 5 },
+    "maxAchievements": { "resume": 4, "cv": 8 },
+    "skillCategoryOrder": ["Frontend", "Backend", "Data & Infra", "Tooling"],
+    "experienceOrder": ["pehc-consultant", "pehc-intern", "crmc-technical-staff"],
+    "notes": "General SWE framing — same core stack, broader title."
+  },
+  {
+    "id": "web-developer",
+    "label": "Web Developer",
+    "targetTitle": "Web Developer",
+    "relatedRoles": ["frontend", "fullstack", "software-engineer"],
+    "maxBulletsPerJob": 3,
+    "maxProjects": { "resume": 3, "cv": 5 },
+    "maxAchievements": { "resume": 3, "cv": 6 },
+    "skillCategoryOrder": ["Frontend", "Tooling", "Backend", "Data & Infra"],
+    "experienceOrder": ["pehc-consultant", "pehc-intern", "crmc-technical-staff"],
+    "notes": "Sites + apps; good for agency/marketing-adjacent roles."
+  }
+]
