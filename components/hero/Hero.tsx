@@ -81,7 +81,7 @@ export function Hero({ config }: HeroProps) {
       : `mailto:${config.email}`;
 
   const brand = config.name.startsWith("TODO") ? "PORTFOLIO" : config.name;
-  const backdrop = config.heroBackdrop?.trim() || "DEV";
+  const backdrop = config.heroBackdrop?.trim() || "RRNDXX";
   const headlineParts = config.heroHeadline
     .split("/")
     .map((p) => p.trim())
