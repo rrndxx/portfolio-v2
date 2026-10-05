@@ -1,5 +1,29 @@
 {
   "pullQuote": "I build software that scales—from thoughtful user experiences to resilient systems behind the scenes.",
-  "paragraph": "I'm a full-stack developer based in Cebu City, Philippines, and a Magna Cum Laude graduate with a Bachelor of Science in Information Technology. I enjoy building modern, user-focused applications from concept to deployment, combining intuitive user experiences with reliable, scalable systems. I'm passionate about clean architecture, maintainable code, and solving complex problems through thoughtful engineering. My goal is to create softwares that are not only functional and efficient but also deliver lasting value to the people who use it.",
-  "credentials": []
+  "paragraph": "I'm a full-stack developer based in Cebu City, Philippines, and a Magna Cum Laude BSIT graduate. I ship modern web products from concept to deployment—clean UI, reliable APIs, and maintainable architecture. Recent work spans inventory platforms, clinic operations systems, campus network monitoring, and production consulting with Next.js and Supabase. I care about clear engineering, measurable outcomes, and software people actually want to use.",
+  "credentials": [
+    "BSIT — Magna Cum Laude",
+    "Civil Service Professional",
+    "Full-Stack Developer of the Year",
+    "Outstanding Intern — Developer",
+    "Cebu City, PH"
+  ],
+  "highlights": [
+    {
+      "label": "Honors",
+      "value": "Magna Cum Laude"
+    },
+    {
+      "label": "Eligibility",
+      "value": "CSC Professional"
+    },
+    {
+      "label": "Award",
+      "value": "Full-Stack Dev of the Year"
+    },
+    {
+      "label": "Core stack",
+      "value": "Next.js · Supabase · Node"
+    }
+  ]
 }

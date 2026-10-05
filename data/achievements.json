@@ -4,14 +4,32 @@
     "title": "Magna Cum Laude",
     "category": "Academic",
     "organization": "CRMC",
-    "year": "2026"
+    "year": "2026",
+    "featured": true
   },
   {
     "id": "civil-service-professional",
     "title": "Civil Service Eligibility – Professional Passer",
     "category": "Professional",
     "organization": "Civil Service Commission",
-    "year": "2026"
+    "year": "2026",
+    "featured": true
+  },
+  {
+    "id": "full-stack-developer-year",
+    "title": "Full-Stack Developer of the Year",
+    "category": "Technical",
+    "organization": "CRMC",
+    "year": "2026",
+    "featured": true
+  },
+  {
+    "id": "outstanding-intern",
+    "title": "Outstanding Intern as Developer",
+    "category": "Professional",
+    "organization": "CRMC",
+    "year": "2026",
+    "featured": true
   },
   {
     "id": "deans-list",
@@ -21,23 +39,9 @@
     "year": "2022–2026"
   },
   {
-    "id": "full-stack-developer-year",
-    "title": "Full-Stack Developer of the Year",
-    "category": "Technical",
-    "organization": "CRMC",
-    "year": "2026"
-  },
-  {
     "id": "leadership-award",
     "title": "Leadership Awardee",
     "category": "Leadership",
-    "organization": "CRMC",
-    "year": "2026"
-  },
-  {
-    "id": "outstanding-intern",
-    "title": "Outstanding Intern as Developer",
-    "category": "Professional",
     "organization": "CRMC",
     "year": "2026"
   },

@@ -1,8 +1,8 @@
 {
   "name": "Rendyll Ryan Cabardo",
   "role": "Full-Stack Developer",
-  "heroHeadline": "Full-Stack Developer",
-  "heroBackdrop": "",
+  "heroHeadline": "FULL-STACK / DEVELOPER",
+  "heroBackdrop": "RRNDXX",
   "heroAvatar": "/images/avatar/hero-avatar.png",
   "location": "Cebu City, Philippines",
   "email": "",
@@ -21,7 +21,7 @@
     { "label": "Gallery", "href": "/#gallery" },
     { "label": "Contact", "href": "/#contact" }
   ],
-  "heroTag": "PORTFOLIO",
+  "heroTag": "PORTFOLIO — 2026",
   "heroCta": { "label": "Let's talk", "href": "/#contact" },
   "closingHeadline": "Let's build something useful together.",
   "footerNote": "Designed and built by Rendyll Ryan Cabardo.",

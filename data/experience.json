@@ -3,24 +3,24 @@
     "date": "July 2026 - Present",
     "role": "Technical Staff",
     "org": "Cebu Roosevelt Memorial Colleges",
-    "description": "Providing technical support and maintenance to the institution's IT needs and infrastructure"
+    "description": "Own day-to-day IT support and campus infrastructure maintenance—troubleshooting hardware/software issues, keeping systems available for staff and operations, and bridging technical needs across the institution."
   },
   {
     "date": "May 2026 - July 2026 (3 months)",
     "role": "Full Stack Developer - Development Consultant",
     "org": "Pacific Equities Holding Corp.",
-    "description": "Developing and maintaining full-stack web applications using Next.js, Supabase, Tailwind CSS and Shadcn UI"
+    "description": "Shipped and maintained production full-stack features with Next.js, Supabase, Tailwind CSS, and Shadcn UI—owning implementation through iteration with stakeholders in a consulting engagement."
   },
   {
     "date": "January 2026 - April 2026",
     "role": "Full Stack Developer - Intern",
     "org": "Pacific Equities Holding Corp.",
-    "description": "Developing full-stack web applications using Next.js, Supabase, Tailwind CSS and Shadcn UI"
+    "description": "Built full-stack web application features in a real product codebase using Next.js and Supabase; recognized as Outstanding Intern as Developer."
   },
   {
     "date": "September 2022 - June 2026",
     "role": "BSIT Graduate — Magna Cum Laude",
     "org": "Cebu Roosevelt Memorial Colleges",
-    "description": "Bachelor of Science in Information Technology"
+    "description": "Bachelor of Science in Information Technology. Consistent Dean's List scholar; awarded Full-Stack Developer of the Year, Leadership, Networking Excellence, and related technical honors."
   }
 ]

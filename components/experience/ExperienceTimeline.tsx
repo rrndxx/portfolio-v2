@@ -40,6 +40,10 @@ export function ExperienceTimeline({ entries }: ExperienceTimelineProps) {
             ))}
           </div>
           <SectionHeading className="mb-3 md:mb-4">Experience</SectionHeading>
+          <p className="mb-3 max-w-xl font-sans text-body text-text-secondary">
+            From Magna Cum Laude BSIT through internship, consulting delivery,
+            and campus technical operations.
+          </p>
           <p className="mb-12 max-w-md font-sans text-meta uppercase tracking-[0.12em] text-text-muted md:mb-16">
             Career log_ // timeline
           </p>

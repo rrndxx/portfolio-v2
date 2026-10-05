@@ -1,19 +1,41 @@
 {
+  "intro": "Production stack across UI, APIs, data, and deployment — tuned for shipping real products.",
+  "coreStack": [
+    "Next.js",
+    "React",
+    "TypeScript",
+    "Node.js",
+    "Supabase",
+    "PostgreSQL",
+    "Tailwind CSS",
+    "Docker"
+  ],
   "categories": [
     {
       "name": "Frontend",
       "skills": [
         "React",
         "Next.js",
+        "TypeScript",
         "React Native",
         "Tailwind CSS",
         "Shadcn UI",
-        "Framer Motion"
+        "Framer Motion",
+        "GSAP",
+        "Astro"
       ]
     },
     {
       "name": "Backend",
-      "skills": ["Node.js", "Express", "NestJS", "FastAPI", "Flask", "PHP"]
+      "skills": [
+        "Node.js",
+        "Express",
+        "NestJS",
+        "FastAPI",
+        "Flask",
+        "PHP",
+        "REST APIs"
+      ]
     },
     {
       "name": "Data & Infra",
@@ -24,12 +46,20 @@
         "Supabase",
         "Firebase",
         "Redis",
-        "Meilisearch"
+        "Meilisearch",
+        "Docker"
       ]
     },
     {
       "name": "Tooling",
-      "skills": ["Docker", "Git", "GitHub"]
+      "skills": [
+        "Git",
+        "GitHub",
+        "Docker Compose",
+        "Netlify",
+        "Vercel",
+        "CI-ready workflows"
+      ]
     }
   ]
 }

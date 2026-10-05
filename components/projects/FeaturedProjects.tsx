@@ -36,6 +36,10 @@ export function FeaturedProjects({ projects, totalCount }: FeaturedProjectsProps
             ))}
           </div>
           <SectionHeading className="mb-3 md:mb-4">Work</SectionHeading>
+          <p className="mb-3 max-w-xl font-sans text-body text-text-secondary md:mb-4">
+            Selected builds that show full-stack delivery — product UI, data
+            layers, and real stakeholder workflows.
+          </p>
           <p className="mb-10 max-w-lg font-sans text-meta uppercase tracking-[0.12em] text-text-muted md:mb-14">
             Featured deployments_ // case files
           </p>

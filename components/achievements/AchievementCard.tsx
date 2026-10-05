@@ -2,6 +2,7 @@ import type { Achievement } from "@/lib/types";
 
 interface AchievementCardProps {
   achievement: Achievement;
+  featured?: boolean;
 }
 
 const GRAD_LIGHT =
@@ -23,41 +24,70 @@ function HatchMarks({ className = "" }: { className?: string }) {
 }
 
 /**
- * Lower-third plate — light title field + purple end cap; purple type;
- * year centered on the main bar’s bottom edge (half overlap, bottom-right).
+ * Lower-third plate — light title field + purple end cap; year on the seam.
  */
-export function AchievementCard({ achievement }: AchievementCardProps) {
+export function AchievementCard({
+  achievement,
+  featured = false,
+}: AchievementCardProps) {
   return (
-    <article className="achieve-lt group relative w-full pb-4 pt-1">
+    <article
+      className={[
+        "achieve-lt group relative w-full pb-4 pt-1",
+        featured ? "achieve-lt-featured" : "",
+      ].join(" ")}
+    >
       <div aria-hidden className="achieve-lt-outline pointer-events-none absolute" />
 
       <div className="relative z-[1]">
-        <div className="relative min-h-[3.75rem] md:min-h-[4rem]">
-          {/* Purple end cap (was light) */}
+        <div
+          className={[
+            "relative",
+            featured ? "min-h-[4.5rem] md:min-h-[5rem]" : "min-h-[3.75rem] md:min-h-[4rem]",
+          ].join(" ")}
+        >
           <div
             aria-hidden
             className="achieve-lt-plate achieve-lt-shadow absolute inset-y-0 right-0 w-[22%]"
             style={{ background: GRAD_PURPLE }}
           />
-          {/* Light title field (was purple) */}
           <div
             className="achieve-lt-plate achieve-lt-shadow absolute inset-y-0 left-0 right-[14%]"
             style={{ background: GRAD_LIGHT }}
           />
-          {/* Seam */}
           <div
             aria-hidden
             className="pointer-events-none absolute inset-y-[10%] right-[20%] z-[1] w-px -skew-x-[14deg] bg-bg-void/50"
           />
 
-          <div className="relative z-[2] flex min-h-[3.75rem] items-center justify-between gap-3 py-2.5 pl-4 pr-[28%] md:min-h-[4rem] md:pl-5">
-            <h3 className="min-w-0 font-hero text-[clamp(0.72rem,1.2vw,0.95rem)] font-bold uppercase leading-[1.15] tracking-[0.03em] text-accent-primary">
-              {achievement.title}
-            </h3>
+          <div
+            className={[
+              "relative z-[2] flex items-center justify-between gap-3 py-2.5 pl-4 pr-[28%] md:pl-5",
+              featured ? "min-h-[4.5rem] md:min-h-[5rem]" : "min-h-[3.75rem] md:min-h-[4rem]",
+            ].join(" ")}
+          >
+            <div className="min-w-0">
+              {(achievement.category || achievement.organization) && (
+                <p className="mb-1 font-sans text-[0.55rem] uppercase tracking-[0.14em] text-accent-primary/80">
+                  {[achievement.category, achievement.organization]
+                    .filter(Boolean)
+                    .join(" · ")}
+                </p>
+              )}
+              <h3
+                className={[
+                  "min-w-0 font-hero font-bold uppercase leading-[1.15] tracking-[0.03em] text-accent-primary",
+                  featured
+                    ? "text-[clamp(0.85rem,1.5vw,1.15rem)]"
+                    : "text-[clamp(0.72rem,1.2vw,0.95rem)]",
+                ].join(" ")}
+              >
+                {achievement.title}
+              </h3>
+            </div>
             <HatchMarks />
           </div>
 
-          {/* Year — bottom edge of main = vertical center of year */}
           <div className="absolute bottom-0 right-[6%] z-[3] w-[42%] max-w-[9.5rem] translate-y-1/2">
             <div
               className="achieve-lt-plate achieve-lt-shadow"

@@ -31,7 +31,7 @@ export default function HomePage() {
 
   return (
     <main>
-      <Hero config={site} />
+      <Hero config={site} proofSignals={about.highlights} />
       <About content={about} />
       <SkillsGrid content={skills} />
       <FeaturedProjects projects={featured} totalCount={allProjects.length} />

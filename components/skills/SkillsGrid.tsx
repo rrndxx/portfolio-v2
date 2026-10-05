@@ -178,6 +178,12 @@ function SkillParallelogram({
 }
 
 export function SkillsGrid({ content }: SkillsGridProps) {
+  const coreStack = content.coreStack ?? [];
+  const skillCount = content.categories.reduce(
+    (sum, category) => sum + category.skills.length,
+    0,
+  );
+
   return (
     <SectionShell
       id="skills"
@@ -200,10 +206,45 @@ export function SkillsGrid({ content }: SkillsGridProps) {
             ))}
           </div>
           <SectionHeading className="mb-3 md:mb-4">Skills</SectionHeading>
-          <p className="mb-8 max-w-md font-sans text-meta uppercase tracking-[0.12em] text-text-muted sm:mb-10 md:mb-14">
-            Stack modules_ // loadout
+          <p className="mb-2 max-w-xl font-sans text-meta uppercase tracking-[0.12em] text-text-muted">
+            Stack modules_ // {String(content.categories.length).padStart(2, "0")}{" "}
+            units · {String(skillCount).padStart(2, "0")} tools
           </p>
+          {content.intro ? (
+            <p className="mb-8 max-w-2xl font-sans text-body text-text-secondary sm:mb-10 md:mb-12">
+              {content.intro}
+            </p>
+          ) : (
+            <p className="mb-8 max-w-md font-sans text-meta uppercase tracking-[0.12em] text-text-muted sm:mb-10 md:mb-14">
+              Loadout_
+            </p>
+          )}
         </Reveal>
+
+        {coreStack.length > 0 ? (
+          <Reveal delay={0.05}>
+            <div className="mb-10 md:mb-14">
+              <p className="mb-3 font-sans text-meta uppercase tracking-[0.14em] text-accent-glow">
+                Core stack_
+              </p>
+              <ul className="flex flex-wrap gap-2 md:gap-2.5">
+                {coreStack.map((skill, index) => (
+                  <li
+                    key={skill}
+                    className="skills-core-chip"
+                    style={{
+                      transform: `translateY(${(index % 3) * 3}px)`,
+                    }}
+                  >
+                    <span className="font-sans text-[0.68rem] uppercase tracking-[0.1em] text-text-primary md:text-meta">
+                      {skill}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </Reveal>
+        ) : null}
 
         <Reveal delay={0.08}>
           <div className="skills-para-row grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-2 sm:gap-x-5 sm:gap-y-8 lg:grid-cols-4 lg:items-start lg:gap-x-6 lg:gap-y-0 xl:gap-x-8">

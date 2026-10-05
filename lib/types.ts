@@ -52,10 +52,17 @@ export interface SiteConfig {
   contactForm: ContactFormCopy;
 }
 
+export interface AboutHighlight {
+  label: string;
+  value: string;
+}
+
 export interface AboutContent {
   pullQuote: string;
   paragraph: string;
   credentials: string[];
+  /** Quick-scan proof points under the bio (honors, eligibility, stack focus). */
+  highlights?: AboutHighlight[];
 }
 
 export interface SkillCategory {
@@ -64,6 +71,10 @@ export interface SkillCategory {
 }
 
 export interface SkillsContent {
+  /** One-line section intro for recruiters scanning the stack. */
+  intro?: string;
+  /** High-signal tools shown above category panels. */
+  coreStack?: string[];
   categories: SkillCategory[];
 }
 
@@ -130,6 +141,8 @@ export interface Achievement {
   year: string;
   category?: string;
   organization?: string;
+  /** Headline wins surfaced first in the Achievements section. */
+  featured?: boolean;
 }
 
 export type GalleryItemType = "project" | "milestone" | "keeps";

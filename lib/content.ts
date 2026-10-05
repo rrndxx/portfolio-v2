@@ -44,6 +44,13 @@ export function getAchievements(): Achievement[] {
   return achievementsJson as Achievement[];
 }
 
+export function getFeaturedAchievements(limit = 4): Achievement[] {
+  const all = getAchievements();
+  const featured = all.filter((item) => item.featured);
+  if (featured.length === 0) return all.slice(0, limit);
+  return featured.slice(0, limit);
+}
+
 export function getGallery(): GalleryItem[] {
   return galleryJson as GalleryItem[];
 }

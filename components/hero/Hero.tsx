@@ -4,10 +4,12 @@ import type { ReactNode } from "react";
 import { Button } from "@/components/ui/Button";
 import { GlitchField } from "@/components/hero/GlitchField";
 import { HeroAvatar } from "@/components/hero/HeroAvatar";
-import type { SiteConfig } from "@/lib/types";
+import type { AboutHighlight, SiteConfig } from "@/lib/types";
 
 interface HeroProps {
   config: SiteConfig;
+  /** Credibility chips from about.json — shown instead of generic side plates. */
+  proofSignals?: AboutHighlight[];
 }
 
 function SocialIcon({
@@ -40,15 +42,12 @@ function SocialIcon({
 function SlashLayer() {
   return (
     <div aria-hidden className="pointer-events-none absolute inset-0 z-[2] overflow-hidden">
-      {/* Thick accent slash */}
       <div className="hero-slash hero-slash-a" />
       <div className="hero-slash hero-slash-b" />
       <div className="hero-slash hero-slash-c" />
       <div className="hero-slash hero-slash-d" />
-      {/* Corner cut plates */}
       <div className="hero-cut hero-cut-tl" />
       <div className="hero-cut hero-cut-br" />
-      {/* Hard barcode ticks */}
       <div className="absolute left-[8%] top-[22%] flex gap-1 md:left-[12%]">
         {[0, 1, 2, 3, 4].map((i) => (
           <span
@@ -72,9 +71,9 @@ function SlashLayer() {
 }
 
 /**
- * Cyber fight-poster hero — hard diagonals, slash bands, cut plates.
+ * Cyber fight-poster hero — proof plates surface credentials early.
  */
-export function Hero({ config }: HeroProps) {
+export function Hero({ config, proofSignals = [] }: HeroProps) {
   const mailto =
     !config.email || config.email.startsWith("TODO")
       ? "/#contact"
@@ -86,6 +85,8 @@ export function Hero({ config }: HeroProps) {
     .split("/")
     .map((p) => p.trim())
     .filter(Boolean);
+  const leftProof = proofSignals[0];
+  const rightProof = proofSignals[1] ?? proofSignals[2];
 
   return (
     <section id="hero" className="hero-fight relative min-h-dvh overflow-hidden">
@@ -94,14 +95,13 @@ export function Hero({ config }: HeroProps) {
       <SlashLayer />
       <GlitchField className="z-[3] opacity-70" />
 
-      {/* Mega backdrop word */}
       <div
         aria-hidden
         className="hero-enter-word pointer-events-none absolute inset-x-0 top-[10%] z-[5] flex justify-center md:top-[5%]"
       >
         <span className="hero-fight-mega select-none font-display font-black uppercase leading-none text-bg-void">
           {backdrop}
-        </span> 
+        </span>
       </div>
 
       <div className="hero-enter-ui absolute left-4 top-5 z-30 md:left-16 md:top-7 lg:left-20">
@@ -116,8 +116,7 @@ export function Hero({ config }: HeroProps) {
         </Button>
       </div>
 
-      {/* Left plate */}
-      <div className="hero-enter-ui absolute left-4 top-[42%] z-30 hidden max-w-[11rem] md:left-16 md:block lg:left-20">
+      <div className="hero-enter-ui absolute left-4 top-[42%] z-30 hidden max-w-[12rem] md:left-16 md:block lg:left-20">
         <div className="hero-fight-plate -skew-x-[14deg] border border-accent-glow/40 bg-bg-void/70 px-4 py-3">
           <div className="skew-x-[14deg]">
             <div className="mb-2 flex gap-[3px]">
@@ -128,23 +127,46 @@ export function Hero({ config }: HeroProps) {
                 />
               ))}
             </div>
-            <p className="font-sans text-meta uppercase leading-relaxed tracking-[0.1em] text-text-primary">
-              {config.location}
-            </p>
+            {leftProof ? (
+              <>
+                <p className="font-sans text-[0.58rem] uppercase tracking-[0.14em] text-accent-glow">
+                  {leftProof.label}_
+                </p>
+                <p className="mt-1 font-sans text-meta uppercase leading-relaxed tracking-[0.08em] text-text-primary">
+                  {leftProof.value}
+                </p>
+              </>
+            ) : (
+              <p className="font-sans text-meta uppercase leading-relaxed tracking-[0.1em] text-text-primary">
+                {config.location}
+              </p>
+            )}
           </div>
         </div>
       </div>
 
-      {/* Right plate */}
       <div className="hero-enter-ui absolute right-4 top-[38%] z-30 hidden max-w-[13rem] md:right-8 md:block lg:right-10">
         <div className="hero-fight-plate -skew-x-[14deg] bg-text-primary px-4 py-3 shadow-[5px_5px_0_var(--bg-void)]">
           <div className="skew-x-[14deg]">
-            <p className="font-sans text-meta uppercase tracking-[0.1em] text-text-on-accent">
-              {config.role}
-            </p>
-            <p className="mt-1 font-hero text-lg font-bold uppercase tracking-wide text-accent-primary">
-              {brand}
-            </p>
+            {rightProof ? (
+              <>
+                <p className="font-sans text-[0.58rem] uppercase tracking-[0.12em] text-text-on-accent/70">
+                  {rightProof.label}_
+                </p>
+                <p className="mt-1 font-hero text-base font-bold uppercase tracking-wide text-accent-primary md:text-lg">
+                  {rightProof.value}
+                </p>
+              </>
+            ) : (
+              <>
+                <p className="font-sans text-meta uppercase tracking-[0.1em] text-text-on-accent">
+                  {config.role}
+                </p>
+                <p className="mt-1 font-hero text-lg font-bold uppercase tracking-wide text-accent-primary">
+                  {brand}
+                </p>
+              </>
+            )}
           </div>
         </div>
       </div>
@@ -182,6 +204,19 @@ export function Hero({ config }: HeroProps) {
           </p>
         </div>
 
+        {proofSignals.length > 0 ? (
+          <ul className="mt-4 flex max-w-lg flex-wrap items-center justify-center gap-x-3 gap-y-1 md:hidden">
+            {proofSignals.slice(0, 3).map((signal) => (
+              <li
+                key={signal.label}
+                className="font-sans text-[0.58rem] uppercase tracking-[0.12em] text-text-primary/80"
+              >
+                <span className="text-accent-glow">{signal.value}</span>
+              </li>
+            ))}
+          </ul>
+        ) : null}
+
         <div className="mt-5 flex items-center gap-5">
           <SocialIcon href={config.socials.github} label="GitHub">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
@@ -189,7 +224,15 @@ export function Hero({ config }: HeroProps) {
             </svg>
           </SocialIcon>
           <SocialIcon href={mailto} label="Email">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden>
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.8"
+              aria-hidden
+            >
               <rect x="3" y="5" width="18" height="14" rx="2" />
               <path d="m3 7 9 7 9-7" />
             </svg>
