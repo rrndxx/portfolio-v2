@@ -1,10 +1,8 @@
 /**
- * Seed local (or Turso) DB from /data/*.json.
- * Usage: npm run db:seed
+ * Seed DB from /data/*.json.
  *
- * Env:
- *   DATABASE_URL=file:./data/portfolio.db   (default)
- *   TURSO_DATABASE_URL + TURSO_AUTH_TOKEN     (production seed)
+ *   npm run db:seed         → local SQLite (ignores Turso even if set)
+ *   npm run db:seed:turso   → Turso (needs TURSO_DATABASE_URL + TURSO_AUTH_TOKEN)
  */
 import { config } from "dotenv";
 import { readFileSync } from "node:fs";
@@ -13,8 +11,13 @@ import { join } from "node:path";
 config({ path: ".env.local" });
 config();
 
+const wantsTurso = process.argv.includes("--turso");
+// Default seed target is local so Turso creds in .env.local don't break day-to-day seeding.
+process.env.DB_TARGET = wantsTurso ? "turso" : "local";
+process.env.DB_DEBUG = "1";
+
 async function main() {
-  // Dynamic import after dotenv so client picks up env.
+  const { describeDbTarget, ensureSchema } = await import("../lib/db/client");
   const {
     dbPutAbout,
     dbPutResumeProfile,
@@ -27,7 +30,8 @@ async function main() {
     dbReplaceResumeExperience,
     dbReplaceResumeRoles,
   } = await import("../lib/db/queries");
-  const { ensureSchema } = await import("../lib/db/client");
+
+  console.log(`Seeding → ${describeDbTarget()}`);
 
   const root = process.cwd();
   const readJson = <T>(rel: string): T =>
@@ -67,6 +71,6 @@ async function main() {
 }
 
 main().catch((err) => {
-  console.error(err);
+  console.error(err instanceof Error ? err.message : err);
   process.exit(1);
 });

@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "db:seed": "tsx scripts/seed.ts"
+    "db:seed": "tsx scripts/seed.ts",
+    "db:seed:turso": "tsx scripts/seed.ts --turso"
   },
   "dependencies": {
     "@libsql/client": "^0.18.0",
