@@ -25,18 +25,23 @@ const inter = Inter({
   display: "swap",
 });
 
-const site = getSiteConfig();
+export const dynamic = "force-dynamic";
 
-export const metadata: Metadata = {
-  title: `${site.name.startsWith("TODO") ? site.role : site.name}`,
-  description: `${site.role} based in ${site.location}`,
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const site = await getSiteConfig();
+  return {
+    title: `${site.name.startsWith("TODO") ? site.role : site.name}`,
+    description: `${site.role} based in ${site.location}`,
+  };
+}
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const site = await getSiteConfig();
+
   return (
     <html
       lang="en"

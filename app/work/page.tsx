@@ -7,8 +7,8 @@ export const metadata: Metadata = {
   description: "All projects and case studies",
 };
 
-export default function WorkPage() {
-  const projects = getProjects();
+export default async function WorkPage() {
+  const projects = await getProjects();
 
   return (
     <main>

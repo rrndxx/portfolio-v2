@@ -7,8 +7,8 @@ export const metadata: Metadata = {
   description: "Visual buffer — captures, milestones, and keeps",
 };
 
-export default function GalleryPage() {
-  const items = getGallery();
+export default async function GalleryPage() {
+  const items = await getGallery();
 
   return (
     <main>

@@ -10,7 +10,9 @@ import {
   isResumeRoleId,
   listResumeRoles,
 } from "@/lib/resume";
-import type { ResumeDocumentKind } from "@/lib/types";
+import type { ResumeDocumentKind, ResumeRoleId } from "@/lib/types";
+
+export const dynamic = "force-dynamic";
 
 export async function OPTIONS(request: Request) {
   return resumeOptions(request);
@@ -34,7 +36,7 @@ export async function GET(request: Request) {
   if (!roleParam) {
     return resumeJson(
       {
-        roles: listResumeRoles(),
+        roles: await listResumeRoles(),
         endpoints: {
           roles: "/api/resume/roles",
           document: "/api/resume?role={roleId}&kind=resume|cv",
@@ -47,11 +49,11 @@ export async function GET(request: Request) {
     );
   }
 
-  if (!isResumeRoleId(roleParam)) {
+  if (!(await isResumeRoleId(roleParam))) {
     return resumeJson(
       {
         error: `Unknown role "${roleParam}".`,
-        roles: listResumeRoles().map((role) => role.id),
+        roles: (await listResumeRoles()).map((role) => role.id),
       },
       request,
       { status: 400 },
@@ -67,12 +69,13 @@ export async function GET(request: Request) {
   }
 
   const kind = kindParam as ResumeDocumentKind;
-  const role = getResumeRole(roleParam);
+  const roleId = roleParam as ResumeRoleId;
+  const role = await getResumeRole(roleId);
   if (!role) {
     return resumeJson({ error: "Role not found." }, request, { status: 404 });
   }
 
-  const document = assembleResumeDocument(roleParam, kind);
+  const document = await assembleResumeDocument(roleId, kind);
 
   return resumeJson(document, request, {
     headers: {

@@ -1,7 +1,9 @@
-import profileJson from "@/data/resume/profile.json";
-import experienceJson from "@/data/resume/experience.json";
-import rolesJson from "@/data/resume/roles.json";
 import { getAchievements, getProjects } from "@/lib/content";
+import {
+  dbGetResumeExperience,
+  dbGetResumeProfile,
+  dbGetResumeRoles,
+} from "@/lib/db/queries";
 import type {
   AssembledResumeAchievement,
   AssembledResumeDocument,
@@ -16,10 +18,6 @@ import type {
   ResumeSkillGroup,
 } from "@/lib/types";
 
-const profile = profileJson as ResumeProfile;
-const experience = experienceJson as ResumeExperienceJob[];
-const roles = rolesJson as ResumeRoleProfile[];
-
 const ATS_HINTS = [
   "Single-column layout",
   "Standard section headings: Summary, Skills, Experience, Projects, Education, Achievements",
@@ -27,7 +25,21 @@ const ATS_HINTS = [
   "Use the provided bullet strings verbatim unless the user edits them",
 ] as const;
 
-export function listResumeRoles(): ResumeRoleListItem[] {
+async function loadResumeSources(): Promise<{
+  profile: ResumeProfile;
+  experience: ResumeExperienceJob[];
+  roles: ResumeRoleProfile[];
+}> {
+  const [profile, experience, roles] = await Promise.all([
+    dbGetResumeProfile(),
+    dbGetResumeExperience(),
+    dbGetResumeRoles(),
+  ]);
+  return { profile, experience, roles };
+}
+
+export async function listResumeRoles(): Promise<ResumeRoleListItem[]> {
+  const roles = await dbGetResumeRoles();
   return roles.map((role) => ({
     id: role.id,
     label: role.label,
@@ -36,11 +48,15 @@ export function listResumeRoles(): ResumeRoleListItem[] {
   }));
 }
 
-export function getResumeRole(roleId: string): ResumeRoleProfile | undefined {
+export async function getResumeRole(
+  roleId: string,
+): Promise<ResumeRoleProfile | undefined> {
+  const roles = await dbGetResumeRoles();
   return roles.find((role) => role.id === roleId);
 }
 
-export function isResumeRoleId(value: string): value is ResumeRoleId {
+export async function isResumeRoleId(value: string): Promise<boolean> {
+  const roles = await dbGetResumeRoles();
   return roles.some((role) => role.id === value);
 }
 
@@ -70,6 +86,7 @@ function pickBullets(
 }
 
 function assembleSkills(
+  profile: ResumeProfile,
   role: ResumeRoleProfile,
 ): ResumeSkillGroup[] {
   const override = profile.roleSkillOverrides?.[role.id];
@@ -111,6 +128,7 @@ function assembleSkills(
 }
 
 function assembleExperience(
+  experience: ResumeExperienceJob[],
   role: ResumeRoleProfile,
   kind: ResumeDocumentKind,
 ): AssembledResumeExperience[] {
@@ -140,12 +158,13 @@ function assembleExperience(
     .filter((job) => job.bullets.length > 0);
 }
 
-function assembleProjects(
+async function assembleProjects(
+  profile: ResumeProfile,
   role: ResumeRoleProfile,
   kind: ResumeDocumentKind,
-): AssembledResumeProject[] {
+): Promise<AssembledResumeProject[]> {
   const limit = role.maxProjects[kind];
-  const catalog = getProjects();
+  const catalog = await getProjects();
   const bySlug = new Map(catalog.map((project) => [project.slug, project]));
 
   const ranked = profile.projects
@@ -177,12 +196,13 @@ function assembleProjects(
   return assembled;
 }
 
-function assembleAchievements(
+async function assembleAchievements(
+  profile: ResumeProfile,
   role: ResumeRoleProfile,
   kind: ResumeDocumentKind,
-): AssembledResumeAchievement[] {
+): Promise<AssembledResumeAchievement[]> {
   const limit = role.maxAchievements[kind];
-  const catalog = getAchievements();
+  const catalog = await getAchievements();
   const byId = new Map(catalog.map((item) => [item.id, item]));
 
   const ranked = profile.achievements
@@ -213,19 +233,23 @@ function assembleAchievements(
   return assembled;
 }
 
-export function assembleResumeDocument(
+export async function assembleResumeDocument(
   roleId: ResumeRoleId,
   kind: ResumeDocumentKind = "resume",
-): AssembledResumeDocument {
-  const role = getResumeRole(roleId);
+): Promise<AssembledResumeDocument> {
+  const { profile, experience, roles } = await loadResumeSources();
+  const role = roles.find((item) => item.id === roleId);
   if (!role) {
     throw new Error(`Unknown resume role: ${roleId}`);
   }
 
   const summary =
-    profile.summaries[roleId] ??
-    profile.summaries.default ??
-    "";
+    profile.summaries[roleId] ?? profile.summaries.default ?? "";
+
+  const [projects, achievements] = await Promise.all([
+    assembleProjects(profile, role, kind),
+    assembleAchievements(profile, role, kind),
+  ]);
 
   return {
     meta: {
@@ -239,10 +263,10 @@ export function assembleResumeDocument(
     contact: profile.contact,
     targetTitle: role.targetTitle || profile.targetTitleDefault,
     summary,
-    skills: assembleSkills(role),
-    experience: assembleExperience(role, kind),
-    projects: assembleProjects(role, kind),
+    skills: assembleSkills(profile, role),
+    experience: assembleExperience(experience, role, kind),
+    projects,
     education: profile.education,
-    achievements: assembleAchievements(role, kind),
+    achievements,
   };
 }

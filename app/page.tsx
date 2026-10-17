@@ -18,16 +18,28 @@ import {
   getSkills,
 } from "@/lib/content";
 
-export default function HomePage() {
-  const site = getSiteConfig();
-  const about = getAbout();
-  const skills = getSkills();
-  const allProjects = getProjects();
-  const featured = getFeaturedProjects();
-  const experience = getExperience();
-  const achievements = getAchievements();
-  const galleryPreview = getFeaturedGallery(6);
-  const galleryTotal = getGallery().length;
+export default async function HomePage() {
+  const [
+    site,
+    about,
+    skills,
+    allProjects,
+    featured,
+    experience,
+    achievements,
+    galleryPreview,
+    gallery,
+  ] = await Promise.all([
+    getSiteConfig(),
+    getAbout(),
+    getSkills(),
+    getProjects(),
+    getFeaturedProjects(),
+    getExperience(),
+    getAchievements(),
+    getFeaturedGallery(6),
+    getGallery(),
+  ]);
 
   return (
     <main>
@@ -37,7 +49,7 @@ export default function HomePage() {
       <FeaturedProjects projects={featured} totalCount={allProjects.length} />
       <ExperienceTimeline entries={experience} />
       <Achievements items={achievements} />
-      <GalleryPreview items={galleryPreview} totalCount={galleryTotal} />
+      <GalleryPreview items={galleryPreview} totalCount={gallery.length} />
       <Contact config={site} />
     </main>
   );

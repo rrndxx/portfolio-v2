@@ -9,18 +9,23 @@ interface WorkSlugPageProps {
 }
 
 export async function generateStaticParams() {
-  return getProjects().map((project) => ({ slug: project.slug }));
+  try {
+    const projects = await getProjects();
+    return projects.map((project) => ({ slug: project.slug }));
+  } catch {
+    return [];
+  }
 }
 
 export async function generateMetadata({
   params,
 }: WorkSlugPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const project = getProjectBySlug(slug, getProjects());
+  const projects = await getProjects();
+  const project = getProjectBySlug(slug, projects);
   if (!project) return { title: "Project" };
 
-  const summary =
-    project.caseStudy?.summary ?? project.description;
+  const summary = project.caseStudy?.summary ?? project.description;
 
   return {
     title: `${project.name} — Case Study`,
@@ -30,7 +35,7 @@ export async function generateMetadata({
 
 export default async function WorkSlugPage({ params }: WorkSlugPageProps) {
   const { slug } = await params;
-  const projects = getProjects();
+  const projects = await getProjects();
   const project = getProjectBySlug(slug, projects);
   if (!project) notFound();
 

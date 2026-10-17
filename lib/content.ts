@@ -1,3 +1,12 @@
+import {
+  dbGetAbout,
+  dbGetAchievements,
+  dbGetExperience,
+  dbGetGallery,
+  dbGetProjects,
+  dbGetSiteConfig,
+  dbGetSkills,
+} from "@/lib/db/queries";
 import type {
   AboutContent,
   Achievement,
@@ -8,55 +17,50 @@ import type {
   SkillsContent,
 } from "@/lib/types";
 
-import aboutJson from "@/data/about.json";
-import achievementsJson from "@/data/achievements.json";
-import experienceJson from "@/data/experience.json";
-import galleryJson from "@/data/gallery.json";
-import projectsJson from "@/data/projects.json";
-import siteConfigJson from "@/data/site-config.json";
-import skillsJson from "@/data/skills.json";
-
-export function getSiteConfig(): SiteConfig {
-  return siteConfigJson as SiteConfig;
+export async function getSiteConfig(): Promise<SiteConfig> {
+  return dbGetSiteConfig();
 }
 
-export function getAbout(): AboutContent {
-  return aboutJson as AboutContent;
+export async function getAbout(): Promise<AboutContent> {
+  return dbGetAbout();
 }
 
-export function getSkills(): SkillsContent {
-  return skillsJson as SkillsContent;
+export async function getSkills(): Promise<SkillsContent> {
+  return dbGetSkills();
 }
 
-export function getProjects(): Project[] {
-  return projectsJson as Project[];
+export async function getProjects(): Promise<Project[]> {
+  return dbGetProjects();
 }
 
-export function getFeaturedProjects(): Project[] {
-  return getProjects().filter((project) => project.featured).slice(0, 3);
+export async function getFeaturedProjects(): Promise<Project[]> {
+  const projects = await getProjects();
+  return projects.filter((project) => project.featured).slice(0, 3);
 }
 
-export function getExperience(): ExperienceEntry[] {
-  return experienceJson as ExperienceEntry[];
+export async function getExperience(): Promise<ExperienceEntry[]> {
+  return dbGetExperience();
 }
 
-export function getAchievements(): Achievement[] {
-  return achievementsJson as Achievement[];
+export async function getAchievements(): Promise<Achievement[]> {
+  return dbGetAchievements();
 }
 
-export function getFeaturedAchievements(limit = 4): Achievement[] {
-  const all = getAchievements();
+export async function getFeaturedAchievements(
+  limit = 4,
+): Promise<Achievement[]> {
+  const all = await getAchievements();
   const featured = all.filter((item) => item.featured);
   if (featured.length === 0) return all.slice(0, limit);
   return featured.slice(0, limit);
 }
 
-export function getGallery(): GalleryItem[] {
-  return galleryJson as GalleryItem[];
+export async function getGallery(): Promise<GalleryItem[]> {
+  return dbGetGallery();
 }
 
-export function getFeaturedGallery(limit = 6): GalleryItem[] {
-  const all = getGallery();
+export async function getFeaturedGallery(limit = 6): Promise<GalleryItem[]> {
+  const all = await getGallery();
   const featured = all.filter((item) => item.featured);
   if (featured.length === 0) return all.slice(0, limit);
 
@@ -70,4 +74,3 @@ export function getFeaturedGallery(limit = 6): GalleryItem[] {
   }
   return selected.slice(0, limit);
 }
-

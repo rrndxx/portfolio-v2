@@ -8,15 +8,17 @@ package, in order:
    template — this file exists to prevent that.
 2. `02_DESIGN_SYSTEM.md` — exact color tokens, typography, spacing, shape language, and motion
    rules. Use these values exactly; do not invent new colors or fonts outside this system.
-3. `03_ARCHITECTURE.md` — tech stack, folder structure, routing, and the JSON-driven content
-   contract.
+3. `03_ARCHITECTURE.md` — tech stack, folder structure, routing, and the DB content contract
+   (seeded from `/data/*.json`).
 4. `04_SECTIONS.md` — the detailed spec for every section, in order.
-5. `/data/*.json` — the actual seed content. Some fields contain `TODO:` placeholder text; keep
-   these editable and obvious, don't silently invent final copy to replace them unless asked.
+5. `/data/*.json` — seed/backup content imported into SQLite/Turso via `npm run db:seed`. Some
+   fields contain `TODO:` placeholder text; keep these editable and obvious, don't silently invent
+   final copy to replace them unless asked.
 
 ## Hard rules
 - **Never hardcode copy, project data, skills, or timeline entries inside a component.** Always
-  read from the corresponding `/data/*.json` file via a typed loader in `/lib/types.ts`.
+  read via typed loaders in `/lib/content.ts` / `/lib/resume.ts` (backed by the database; shapes in
+  `/lib/types.ts`). Day-to-day edits go through `/admin`, not component code.
 - **Never default to a symmetric, centered, card-grid layout** for a section unless
   `04_SECTIONS.md` explicitly says that section should be calm/symmetric (Contact, and the `/work`
   overflow grid).

@@ -64,11 +64,14 @@ function routeActiveId(pathname: string, navIds: string[]): string | null {
 
 export function VerticalNavRail({ items }: VerticalNavRailProps) {
   const pathname = usePathname();
+  const isAdmin = pathname.startsWith("/admin");
   const navIds = useMemo(
     () => items.map((item) => navKeyFromHref(item.href)),
     [items],
   );
   const routeActive = routeActiveId(pathname, navIds);
+
+  if (isAdmin) return null;
 
   const [spyId, setSpyId] = useState(
     () => navKeyFromHref(items[0]?.href ?? "hero"),

@@ -4,7 +4,9 @@
 - Next.js (App Router), TypeScript strict mode
 - Tailwind CSS (design tokens from 02_DESIGN_SYSTEM.md wired into `tailwind.config.ts`)
 - Framer Motion for animation
-- No CMS — content is local JSON files under `/data`, typed with TypeScript interfaces
+- Content store: libSQL / SQLite (local `file:./data/portfolio.db` in dev; Turso in production)
+- Admin console at `/admin` (password via `ADMIN_PASSWORD`) to edit live content
+- `/data/*.json` remain the seed/backup source — import with `npm run db:seed`
 - Deploy target: Netlify (matches existing `rrndxx.netlify.app`)
 
 ## Routes
@@ -73,11 +75,15 @@
 ```
 
 ## Content editing contract
-Every piece of copy, project entry, skill, timeline item, and gallery item is defined in `/data/*.json`.
-Components read from these files at build time (Server Components importing JSON directly, or a
-small typed loader in `/lib`). **No section component should contain hardcoded copy** — if new
-placeholder text is needed temporarily, put it in the JSON file with a clear `TODO` marker inside
-the string itself, e.g. `"headline": "TODO: replace with your own tagline"`.
+Every piece of copy, project entry, skill, timeline item, gallery item, and resume payload is stored
+in the SQLite / Turso database and loaded via typed helpers in `/lib/content.ts` and `/lib/resume.ts`.
+**No section component should contain hardcoded copy.**
 
-See `04_SECTIONS.md` for what each section needs from its JSON file, and the `/data/*.json` seed
-files in this package for the actual shape + starter content.
+Day-to-day edits: use `/admin` (signed-in with `ADMIN_PASSWORD`). Shapes match the TypeScript
+interfaces in `/lib/types.ts` (and the original `/data/*.json` seed files).
+
+Bootstrap / reset: `npm run db:seed` imports all `/data/*.json` (portfolio + `data/resume/*`) into
+the configured database. On Netlify, set `TURSO_DATABASE_URL`, `TURSO_AUTH_TOKEN`, `ADMIN_PASSWORD`,
+and `ADMIN_SESSION_SECRET`, then run the seed once against Turso.
+
+See `04_SECTIONS.md` for what each section needs, and `/data/*.json` for the seed shapes.
