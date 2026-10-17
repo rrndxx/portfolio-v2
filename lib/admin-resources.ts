@@ -18,14 +18,14 @@ export function isAdminResource(value: string): value is AdminResource {
 }
 
 export const ADMIN_RESOURCE_LABELS: Record<AdminResource, string> = {
-  "site-config": "Site / Hero / Contact",
+  "site-config": "Site & contact",
   about: "About",
   skills: "Skills",
   projects: "Projects",
-  experience: "Experience timeline",
+  experience: "Experience",
   achievements: "Achievements",
   gallery: "Gallery",
   "resume-profile": "Resume profile",
-  "resume-experience": "Resume experience",
+  "resume-experience": "Resume jobs",
   "resume-roles": "Resume roles",
 };

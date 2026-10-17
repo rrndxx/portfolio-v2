@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { Field, PrimaryButton, TextInput } from "@/components/admin/ui";
 
 export function AdminLoginForm() {
   const router = useRouter();
@@ -37,7 +38,7 @@ export function AdminLoginForm() {
   return (
     <form
       onSubmit={onSubmit}
-      className="mx-auto flex w-full max-w-sm flex-col gap-4 border border-border-subtle bg-bg-panel p-6"
+      className="mx-auto flex w-full max-w-sm flex-col gap-5 border border-border-subtle bg-bg-panel p-6"
     >
       <div>
         <p className="font-mono text-meta uppercase tracking-[0.14em] text-text-secondary">
@@ -46,20 +47,22 @@ export function AdminLoginForm() {
         <h1 className="mt-2 font-display text-h3 text-text-primary">
           Content console
         </h1>
+        <p className="mt-2 font-sans text-[13px] text-text-muted">
+          Edit site copy, projects, gallery, and resume data without touching code.
+        </p>
       </div>
 
-      <label className="flex flex-col gap-2">
-        <span className="font-mono text-meta text-text-secondary">Password</span>
-        <input
+      <Field label="Password">
+        <TextInput
           type="password"
           name="password"
           autoComplete="current-password"
           value={password}
           onChange={(event) => setPassword(event.target.value)}
-          className="border border-border-subtle bg-bg-void px-3 py-2 font-sans text-body text-text-primary outline-none focus:border-accent-electric"
           required
+          autoFocus
         />
-      </label>
+      </Field>
 
       {error ? (
         <p className="font-mono text-meta text-accent-primary" role="alert">
@@ -67,13 +70,9 @@ export function AdminLoginForm() {
         </p>
       ) : null}
 
-      <button
-        type="submit"
-        disabled={pending}
-        className="bg-accent-primary px-4 py-2.5 font-sans text-body font-semibold text-text-primary transition hover:bg-accent-electric disabled:opacity-60"
-      >
+      <PrimaryButton type="submit" disabled={pending}>
         {pending ? "Signing in…" : "Sign in"}
-      </button>
+      </PrimaryButton>
     </form>
   );
 }

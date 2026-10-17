@@ -1,5 +1,5 @@
 import { notFound, redirect } from "next/navigation";
-import { AdminEditor } from "@/components/admin/AdminEditor";
+import { AdminResourceView } from "@/components/admin/AdminResourceView";
 import { isAdminAuthenticated } from "@/lib/admin-auth";
 import {
   isAdminResource,
@@ -25,5 +25,5 @@ export default async function AdminResourcePage({
 
   const data = await loadAdminResource(resource as AdminResource);
 
-  return <AdminEditor resource={resource} initialData={data} />;
+  return <AdminResourceView resource={resource} data={data} />;
 }
