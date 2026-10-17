@@ -1,11 +1,11 @@
 "use client";
 
 import type { ReactNode } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { CyberAmbient } from "@/components/ui/CyberAmbient";
 import { GlitchField } from "@/components/hero/GlitchField";
+import { CyberDesktopScreen } from "@/components/projects/CyberDesktopScreen";
 import { Tag } from "@/components/ui/Tag";
 import { defaultTransition, viewportOnce } from "@/lib/motion";
 import type { CaseStudy, CaseStudyOutcome, ProductBrief, Project } from "@/lib/types";
@@ -183,20 +183,18 @@ export function CaseStudyView({ project, prev, next }: CaseStudyViewProps) {
       <CyberAmbient density="lite" className="z-[1]" />
       <GlitchField density="lite" className="z-[1] opacity-40" />
 
-      <div className="relative z-[2]">
-        <div className="project-card-frame relative aspect-[16/9] w-full overflow-hidden bg-bg-panel sm:aspect-[21/9] md:aspect-[24/9]">
-          <Image
-            src={project.image}
-            alt={project.name}
-            fill
+      <div className="relative z-[2] overflow-hidden border-b border-border-subtle bg-bg-panel/40 px-[5vw] pb-10 pt-16 sm:px-6 md:pb-14 md:pt-20 lg:pl-[calc(3rem+4vw)] lg:pr-10">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 bg-gradient-to-br from-accent-primary/20 via-transparent to-transparent"
+        />
+        <div className="relative mx-auto w-full max-w-4xl">
+          <CyberDesktopScreen
+            project={project}
+            tone="electric"
+            lean="none"
             priority
-            sizes="100vw"
-            className="object-cover object-top"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-bg-void via-bg-void/55 to-transparent" />
-          <div
-            aria-hidden
-            className="glitch-texture pointer-events-none absolute inset-x-0 top-0 z-10 h-3 opacity-80"
+            sizes="(max-width: 768px) 90vw, 896px"
           />
         </div>
       </div>

@@ -1,7 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
+import { CyberDesktopScreen } from "@/components/projects/CyberDesktopScreen";
 import type { Project } from "@/lib/types";
 
 interface WorkStagePanelProps {
@@ -9,30 +9,25 @@ interface WorkStagePanelProps {
 }
 
 /**
- * Selected project stage — preview + copy in a responsive grid that stays in viewport.
+ * Selected project stage — desktop preview + copy in a responsive grid.
  */
 export function WorkStagePanel({ project }: WorkStagePanelProps) {
   const tech = project.techStack.filter((item) => !item.startsWith("TODO"));
 
   return (
-    <div className="work-stage-grid grid w-full min-w-0 grid-cols-1 gap-6 sm:gap-7 md:grid-cols-[minmax(9rem,34%)_minmax(0,1fr)] md:items-start md:gap-6 lg:grid-cols-[minmax(11rem,32%)_minmax(0,1fr)] lg:gap-8">
+    <div className="work-stage-grid grid w-full min-w-0 grid-cols-1 gap-6 sm:gap-7 md:grid-cols-[minmax(12rem,42%)_minmax(0,1fr)] md:items-start md:gap-6 lg:grid-cols-[minmax(14rem,44%)_minmax(0,1fr)] lg:gap-8">
       <div className="relative min-w-0 md:sticky md:top-20">
         <div
           aria-hidden
-          className="work-stage-plate pointer-events-none absolute -inset-x-2 -inset-y-2 bg-accent-primary/35 md:-inset-x-3"
+          className="work-stage-plate pointer-events-none absolute -inset-x-3 -inset-y-4 bg-accent-primary/30 md:-inset-x-4"
         />
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-x-0 top-0 z-[2] h-1 glitch-texture opacity-70"
-        />
-        <div className="project-card-frame work-stage-preview relative z-[1] mx-auto aspect-[4/3] w-full max-w-[280px] overflow-hidden sm:max-w-[320px] md:mx-0 md:max-w-none">
-          <Image
-            src={project.image}
-            alt={project.name}
-            fill
+        <div className="relative z-[1]">
+          <CyberDesktopScreen
+            project={project}
+            tone={project.featured ? "electric" : "primary"}
+            lean="none"
             priority
-            sizes="(max-width: 640px) 90vw, (max-width: 1024px) 34vw, 280px"
-            className="object-cover object-top"
+            sizes="(max-width: 768px) 90vw, (max-width: 1024px) 42vw, 380px"
           />
         </div>
       </div>
@@ -47,7 +42,7 @@ export function WorkStagePanel({ project }: WorkStagePanelProps) {
           ))}
         </div>
         <p className="font-sans text-meta uppercase tracking-[0.2em] text-text-muted">
-          {project.featured ? "Featured project_" : "Project_"}
+          {project.featured ? "Featured deployment_" : "Deployment_"}
         </p>
 
         <div className="relative mt-2 md:mt-3">

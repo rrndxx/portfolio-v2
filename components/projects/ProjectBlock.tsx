@@ -1,9 +1,9 @@
 "use client";
 
 import type { ReactNode } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { CyberDesktopScreen } from "@/components/projects/CyberDesktopScreen";
 import { defaultTransition, viewportOnce } from "@/lib/motion";
 import { projectLinks } from "@/lib/projects";
 import type { Project } from "@/lib/types";
@@ -190,10 +190,14 @@ export function ProjectBlock({ project, index = 0 }: ProjectBlockProps) {
     </div>
   );
 
+  const screenTone =
+    index % 3 === 0 ? "primary" : index % 3 === 1 ? "electric" : "dim";
+  const screenLean = visualOnEnd ? "right" : "left";
+
   const visual = (
     <div
       className={[
-        "relative flex flex-1 items-end justify-center overflow-visible px-4 pb-0 pt-8 md:min-h-[420px] md:px-6 md:pt-6",
+        "relative flex flex-1 items-center justify-center overflow-visible px-4 py-8 md:min-h-[420px] md:px-5 md:py-10 lg:px-8",
         visualOnEnd ? "md:justify-end" : "md:justify-start",
       ].join(" ")}
     >
@@ -201,67 +205,45 @@ export function ProjectBlock({ project, index = 0 }: ProjectBlockProps) {
         from="fade"
         delay={0.04}
         className={[
-          "absolute top-[10%] h-[78%] w-[88%] md:top-[8%] md:h-[84%] md:w-[92%]",
-          visualOnEnd ? "right-0" : "left-0",
+          "absolute top-[12%] h-[70%] w-[92%] md:top-[10%] md:h-[76%] md:w-[96%]",
+          visualOnEnd ? "right-[-2%]" : "left-[-2%]",
           plate,
           visualOnEnd ? "slant-panel" : "slant-panel-flip",
         ].join(" ")}
       >
         <div className="project-orb-scanlines absolute inset-0 opacity-40" />
-        <span className="absolute left-[12%] top-[16%] h-[2px] w-10 bg-accent-glow/70" />
+        <span className="absolute left-[10%] top-[14%] h-[2px] w-10 bg-accent-glow/70" />
         <span
-          className="glitch-anim-flicker absolute left-[12%] top-[19%] h-[2px] w-4 bg-text-primary/40"
+          className="glitch-anim-flicker absolute left-[10%] top-[17%] h-[2px] w-4 bg-text-primary/40"
           style={{ animationDelay: `${0.4 + index * 0.35}s` }}
         />
-        <span className="absolute right-[14%] top-[42%] h-[2px] w-8 bg-bg-void/50" />
-        <span className="absolute right-[18%] bottom-[28%] h-[2px] w-12 bg-accent-electric/55" />
-        <div className="absolute bottom-4 left-[12%] flex gap-[3px]">
-          {[0, 1, 2, 3].map((i) => (
-            <span
-              key={i}
-              className="block h-2.5 w-[2px] -skew-x-[22deg] bg-text-primary/35"
-            />
-          ))}
-        </div>
+        <span className="absolute right-[12%] top-[38%] h-[2px] w-8 bg-bg-void/50" />
+        <span className="absolute right-[16%] bottom-[24%] h-[2px] w-12 bg-accent-electric/55" />
       </Layer>
-
-      <div
-        aria-hidden
-        className={[
-          "poly-silhouette absolute top-[12%] z-[1] h-[70%] w-[70%] bg-accent-glow/20",
-          visualOnEnd ? "right-[4%]" : "left-[4%]",
-        ].join(" ")}
-      />
 
       <Layer
         from={visualOnEnd ? "right" : "left"}
         delay={0.14}
         className={[
-          "relative z-10 w-[min(78%,340px)] md:w-[min(85%,380px)]",
-          "md:-mb-8 lg:-mb-12",
-          visualOnEnd ? "md:mr-2 lg:mr-4" : "md:ml-2 lg:ml-4",
+          "relative z-10 w-full max-w-[520px]",
+          visualOnEnd
+            ? "md:translate-x-2 lg:translate-x-4"
+            : "md:-translate-x-2 lg:-translate-x-4",
+          "md:mb-[-0.5rem] lg:mb-[-1rem]",
         ].join(" ")}
       >
-        <div className="gallery-frame group relative aspect-[4/5] w-full overflow-hidden">
-          <Image
-            src={project.image}
-            alt={project.name}
-            fill
-            sizes="(max-width: 768px) 78vw, 380px"
-            className="object-cover object-top transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"
-          />
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-bg-panel to-transparent md:hidden" />
-          <div
-            aria-hidden
-            className="glitch-texture pointer-events-none absolute inset-x-0 top-0 h-1.5 opacity-70"
-          />
-        </div>
+        <CyberDesktopScreen
+          project={project}
+          tone={screenTone}
+          lean={screenLean}
+          sizes="(max-width: 768px) 90vw, 520px"
+        />
 
         {tech[0] ? (
           <div
             className={[
-              "absolute bottom-4 z-20 slant-chip border border-accent-glow/30 bg-bg-void/90 px-3 py-1.5",
-              visualOnEnd ? "right-3" : "left-3",
+              "absolute -bottom-1 z-20 slant-chip border border-accent-glow/30 bg-bg-void/90 px-3 py-1.5",
+              visualOnEnd ? "left-2 md:left-4" : "right-2 md:right-4",
             ].join(" ")}
           >
             <span className="font-sans text-[0.65rem] uppercase tracking-[0.14em] text-accent-glow">

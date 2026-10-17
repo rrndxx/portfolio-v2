@@ -41,7 +41,7 @@ export function FeaturedProjects({ projects, totalCount }: FeaturedProjectsProps
             layers, and real stakeholder workflows.
           </p>
           <p className="mb-10 max-w-lg font-sans text-meta uppercase tracking-[0.12em] text-text-muted md:mb-14">
-            Featured deployments_ // case files
+            Featured web deployments_ // live viewports
           </p>
         </Reveal>
       </div>
